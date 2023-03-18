@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Stock {
-    private Long id;
-    private String name;
-    private String symbol;
+    private final Long id;
+    private final String name;
+    private final String symbol;
 }

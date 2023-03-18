@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class Website {
-    private Long id;
-    private String name;
-    private String url;
-    private String username;
-    private String password;
+    private final Long id;
+    private final String name;
+    private final String url;
+    private final String username;
+    private final String password;
 }

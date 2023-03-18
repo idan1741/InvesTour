@@ -6,9 +6,9 @@ import java.sql.Timestamp;
 
 @Data
 public class News {
-    private Long id;
-    private Website website;
-    private Stock stock;
-    private String url;
-    private Timestamp timestamp;
+    private final Long id;
+    private final Website website;
+    private final Stock stock;
+    private final String url;
+    private final Timestamp timestamp;
 }
