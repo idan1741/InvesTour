@@ -2,15 +2,16 @@ package InvesTour.Controllers;
 
 import InvesTour.Models.User;
 import InvesTour.Services.UsersService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/user")
+@AllArgsConstructor
 public class UsersController {
-    @Autowired
-    UsersService usersService;
+    private final UsersService usersService;
     @GetMapping(value = "/{id}")
     public void getUserById(@PathVariable("id") Long id) {
 
