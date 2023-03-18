@@ -1,10 +1,15 @@
 package InvesTour.Controllers;
 
+import InvesTour.Services.NewsService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/news")
+@AllArgsConstructor
 public class NewsController {
+
+    private final NewsService newsService;
 
     @GetMapping(value = "/articles")
     public void getAllArticles() {
