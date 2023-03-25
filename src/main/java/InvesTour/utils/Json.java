@@ -2,6 +2,7 @@ package InvesTour.utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 
@@ -22,5 +23,9 @@ public class Json {
     @SneakyThrows
     public static <T> T fromJson(String str, Class<T> clazz) {
         return mapper.readValue(str, clazz);
+    }
+
+    public static ObjectNode empty() {
+        return mapper.createObjectNode();
     }
 }
