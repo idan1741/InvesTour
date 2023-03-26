@@ -19,6 +19,7 @@ import { Store, createStore, applyMiddleware } from 'redux';
 import { rootReducer, INITIAL_STATE } from './app-reducer';
 import { createLogger } from 'redux-logger';
 import { ArticleComponent } from 'src/article/article.component';
+import { RequestConfigService } from 'src/server-requests/requests.service';
 
 export const store: Store<any> = createStore(
   rootReducer,
@@ -47,7 +48,7 @@ export const store: Store<any> = createStore(
     FormsModule,
     NgReduxModule
   ],
-  providers: [],
+  providers: [RequestConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
