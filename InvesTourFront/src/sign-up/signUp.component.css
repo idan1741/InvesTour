@@ -1,0 +1,58 @@
+.signIn {
+    width: 100vw;
+    height: 100vh;
+    background-color: #333333;
+    font-family: Calibri;
+    color: white;
+}
+
+.logo {
+    display: flex;
+    justify-content: flex-start;
+    font-size: xxx-large;
+}
+
+.content {
+    margin-top: 5%;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.input {
+    height: 6vh;
+    width: 22vw;
+    background-color: transparent;
+    border: 1.5px solid #548235;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+}
+
+.lala {
+    height: 6vh;
+    width: 19vw;
+    background-color: transparent;
+    border: 0px solid;
+    padding: 0%;
+    display: block;
+    padding-left: 2px;
+}
+
+.mat-icon-button {
+    height: 6vh;
+    line-height: 6vh;
+}
+
+.lala:focus {
+    outline: none;
+}
+
+.mat-raised-button {
+    background-color: #548235;
+    color: white;
+    font-family: Calibri;
+    font-size: 15px;
+}
