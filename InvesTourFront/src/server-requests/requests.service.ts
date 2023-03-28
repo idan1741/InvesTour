@@ -10,62 +10,62 @@ export class RequestConfigService {
     private httpApi = `http://${this.envConfig.serverUrl}${this.envConfig.httpPort}`;
 
     // Users
-    private addUser(userInfo) {
+    addUser(userInfo) {
         return this.http.post(`${this.httpApi}/user`, userInfo)
     }
-    private deleteUser(userId) {
+    deleteUser(userId) {
         return this.http.delete(`${this.httpApi}/user/${userId}`)
     }
-    private getUserById(userId) {
+    getUserById(userId) {
         return this.http.get(`${this.httpApi}/user/${userId}`)
     }
-    private loginUser(userInfo: {email: string, password: string}) {
-        return this.http.post(`${this.httpApi}/login`, userInfo)
+    loginUser(email: string, password: string) {
+        return this.http.post(`${this.httpApi}/login`, {email, password})
     }
 
     // News
-    private getMainPageArticles() {
+    getMainPageArticles() {
         return this.http.get(`${this.httpApi}/news/articles`)
     }
-    private getMainPageWebsites() {
+    getMainPageWebsites() {
         return this.http.get(`${this.httpApi}/news/websites`)
     }
-    private getArticlesByUser(userId: string) {
+    getArticlesByUser(userId: string) {
         return this.http.get(`${this.httpApi}/news/articles/user/${userId}`)
     }
-    private getWebsitesByUser(userId: string) {
+    getWebsitesByUser(userId: string) {
         return this.http.get(`${this.httpApi}/news/websites/user/${userId}`)
     }
-    private getStockView(userId: string, stockName: string) {
+    getStockView(userId: string, stockName: string) {
         return this.http.get(`${this.httpApi}/articles/user/${userId}/stock/${stockName}`)
     }
-    private addStockToWatchList(userId: string, stockName: string) {
+    addStockToWatchList(userId: string, stockName: string) {
         return this.http.post(`${this.httpApi}/user/stock`, {User: userId, Stock: stockName})
     }
-    private removeStockFromWatchList(userId: string, stockName: string) {
+    removeStockFromWatchList(userId: string, stockName: string) {
         return this.http.delete(`${this.httpApi}/user/${userId}/stock/${stockName}`)
     }
-    private removeWebsiteFromWatchList(userId: string, stockName: string, websiteId: string) {
+    removeWebsiteFromWatchList(userId: string, stockName: string, websiteId: string) {
         return this.http.post(`${this.httpApi}/user/stock/website`, {User: userId, Stock: stockName, Website: websiteId})
     }
-    private removeWebsite(userId: string, stockName: string, websiteId: string) {
+    removeWebsite(userId: string, stockName: string, websiteId: string) {
         return this.http.delete(`${this.httpApi}/user/${userId}/stock/${stockName}/website/${websiteId}`)
     }
 
     // Data
-    private getMainPageGraph() {
+    getMainPageGraph() {
         return this.http.get(`${this.httpApi}/main/graph`)
     }
-    private getGraphByUserId(userId: string) {
+    getGraphByUserId(userId: string) {
         return this.http.get(`${this.httpApi}/graph/user/${userId}`)
     }
-    private getStockGraph(stockName: string) {
+    getStockGraph(stockName: string) {
         return this.http.get(`${this.httpApi}/graph/stock/${stockName}`)
     }
-    private getStockMessages(stockName: string) {
+    getStockMessages(stockName: string) {
         return this.http.get(`${this.httpApi}/messages/stock/${stockName}`)
     }
-    private getStockUpdates(stockName: string) {
+    getStockUpdates(stockName: string) {
         return this.http.get(`${this.httpApi}/updates/stock/${stockName}`)
     }
 }

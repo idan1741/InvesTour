@@ -1,33 +1,22 @@
-import { NgRedux, select } from "@angular-redux/store";
-import { Component } from "@angular/core";
-import { Observable } from "rxjs";
-import { Article } from "src/article/article.class";
-
+import { Component, OnInit } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { getArticlesByUser } from "src/server-requests/news/news.actions";
+import { selectAllNewsByUser } from "src/server-requests/news/news.reducer";
+import { selectUsersFirstName, selectUsersLastName } from "src/server-requests/users/users.reducer";
 
 @Component({
   selector: 'my-wall',
   templateUrl: './myWall.component.html',
   styleUrls: ['./myWall.component.css']
 })
-export class MyWallComponent {
-  @select(state => state.app.user)
-  private user$: Observable<any>;
-  public user;
+export class MyWallComponent implements OnInit {
+  firstName$ = this.store.select(selectUsersFirstName);
+  lastName$ = this.store.select(selectUsersLastName);
+  allNewByUserId$ = this.store.select(selectAllNewsByUser);
 
-  @select(state => state.articles)
-  private articles$: Observable<any>;
-  
-  public newsArticles: Array<Article>;
-  public socialMediaArticles: Array<Article>;
-
-  constructor(){
-    this.user$.subscribe((user)=> this.user = user);
-    this.articles$.subscribe(articles => {
-      console.log(articles);
-      this.newsArticles = articles.news;
-      this.socialMediaArticles = articles.socialMedia;
-    })
+  ngOnInit(): void {
+    this.store.dispatch(getArticlesByUser());
   }
 
-
+  constructor(private store: Store) {}
 }

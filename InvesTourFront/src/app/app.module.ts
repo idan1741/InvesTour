@@ -20,6 +20,13 @@ import { rootReducer, INITIAL_STATE } from './app-reducer';
 import { createLogger } from 'redux-logger';
 import { ArticleComponent } from 'src/article/article.component';
 import { RequestConfigService } from 'src/server-requests/requests.service';
+import { EffectsModule } from '@ngrx/effects';
+import { UsersEffects } from 'src/server-requests/users/users.effects';
+import { StoreModule } from '@ngrx/store';
+import { usersReducer, usersReducerToken } from 'src/server-requests/users/users.reducer';
+import { HttpClientModule } from '@angular/common/http';
+import { NewsEffects } from 'src/server-requests/news/news.effects';
+import { newsReducer, newsReducerToken } from 'src/server-requests/news/news.reducer';
 
 export const store: Store<any> = createStore(
   rootReducer,
@@ -46,7 +53,13 @@ export const store: Store<any> = createStore(
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    NgReduxModule
+    NgReduxModule,
+    HttpClientModule,
+    StoreModule.forRoot({}),
+    StoreModule.forFeature(usersReducerToken, usersReducer),
+    StoreModule.forFeature(newsReducerToken, newsReducer),
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([UsersEffects, NewsEffects]),
   ],
   providers: [RequestConfigService],
   bootstrap: [AppComponent]
