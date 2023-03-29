@@ -23,7 +23,14 @@
 }
 
 .logo {
-    font-size: 70px;
+    display: flex;
+    justify-content: flex-start;
+    font-size: xxx-large;
+    padding: 30px;
+}
+
+.user-name {
+    padding: 30px;
 }
 
 .sections {

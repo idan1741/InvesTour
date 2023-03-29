@@ -6,13 +6,13 @@ export const usersReducerToken = 'users';
 export interface UsersState {
     userId: string;
     firstName: string;
-    lastNAme: string;
+    lastName: string;
 }
 
 export const initialState: UsersState = {
     userId: null,
     firstName: null,
-    lastNAme: null
+    lastName: null
 }
 
 const reducer = createReducer(
@@ -37,7 +37,7 @@ export const selectUsersFirstName = createSelector(
 )
 export const selectUsersLastName = createSelector(
     selectUsersState, 
-    (state: UsersState) => state.lastNAme
+    (state: UsersState) => state.lastName
 )
 
 

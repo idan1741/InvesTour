@@ -27,6 +27,7 @@ import { usersReducer, usersReducerToken } from 'src/server-requests/users/users
 import { HttpClientModule } from '@angular/common/http';
 import { NewsEffects } from 'src/server-requests/news/news.effects';
 import { newsReducer, newsReducerToken } from 'src/server-requests/news/news.reducer';
+import { DateAsAgoPipe } from 'src/assets/pipes/date-as-ago.pipe';
 
 export const store: Store<any> = createStore(
   rootReducer,
@@ -41,7 +42,8 @@ export const store: Store<any> = createStore(
     SignInComponent,
     SignUpComponent,
     MyWallComponent,
-    ArticleComponent
+    ArticleComponent,
+    DateAsAgoPipe
   ],
   imports: [
     BrowserModule,

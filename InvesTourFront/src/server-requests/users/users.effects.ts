@@ -51,7 +51,7 @@ export class UsersEffects {
                 tap(res => {
                     // check response authenticity and retract user info
                     if(true) {
-                        this.store.dispatch(loginSuccess({firstName: 'Tom', lastName: 'Brady'}));
+                        this.store.dispatch(loginSuccess({firstName: email, lastName: ''}));
                         this.router.navigateByUrl('/myWall')
                     } else {
                         alert("could not log in")

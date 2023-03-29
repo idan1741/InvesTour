@@ -4,10 +4,15 @@ import { getArticlesByUserSuccess } from "./news.actions";
 export const newsReducerToken = 'news';
 
 export interface Article {
-    company: string;
-    text: string;
-    extendedText: string;
-    time: string
+    // company: string;
+    // text: string;
+    // extendedText: string;
+    // time: string;
+    description: string;
+    imageUrl: string;
+    newUrl: string;
+    publishedAt: string;
+    title: string;
 }
 
 export interface NewsState {
