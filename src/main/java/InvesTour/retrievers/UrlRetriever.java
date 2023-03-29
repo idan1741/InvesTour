@@ -20,7 +20,7 @@ public class UrlRetriever implements Retriever {
     @Override
     @SneakyThrows
     public JsonNode retrieveDataByKeywords(List<String> keywords) {
-        String url = NEWS_API_URL + "?q=" + String.join(",%20", keywords) + "&apiKey=" + API_KEY;
+        String url = NEWS_API_URL + "?q=" + String.join(",%20", keywords) + "&language=en&apiKey=" + API_KEY;
 
         Request request = new Request.Builder()
                 .url(url)
