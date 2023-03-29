@@ -11,7 +11,7 @@ export class UsersEffects {
     addNewUser = createEffect(() =>
         this.actions$.pipe(
             ofType(addUser),
-            switchMap((userInfo) => this.configService.addUser(userInfo).pipe(
+            switchMap(({ firstName, lastName, email, password }) => this.configService.addUser({ firstName, lastName, email, password, role: "aa" }).pipe(
                 tap((res) => console.log(res))
             ))
         ),
@@ -42,16 +42,16 @@ export class UsersEffects {
         this.actions$.pipe(
             ofType(loginUser),
             // TODO: to be deprecated when working with server
-            tap(() => {
-                this.store.dispatch(loginSuccess({firstName: 'Tom', lastName: 'Brady'}));
-                this.router.navigateByUrl('/myWall')
-            }),
+            // tap(() => {
+            //     this.store.dispatch(loginSuccess({firstName: 'Tom', lastName: 'Brady'}));
+            //     this.router.navigateByUrl('/myWall')
+            // }),
             switchMap(({email, password}) => this.configService.loginUser(email, password).pipe(
                 tap((res) => console.log(res)),
                 tap(res => {
                     // check response authenticity and retract user info
                     if(true) {
-                        this.store.dispatch(loginSuccess({firstName: 'tom', lastName: 'brady'}));
+                        this.store.dispatch(loginSuccess({firstName: 'Tom', lastName: 'Brady'}));
                         this.router.navigateByUrl('/myWall')
                     } else {
                         alert("could not log in")
