@@ -7,12 +7,14 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/news")
 @AllArgsConstructor
+@CrossOrigin(origins = "*")
 public class NewsController {
     private final NewsService service;
 
@@ -30,7 +32,7 @@ public class NewsController {
     }
 
     @GetMapping(value = "/articles/user/{userId}")
-    public void getArticlesByUser(@PathVariable("userId") Long id) {
+    public void getArticlesByUser(@PathVariable("userId") String id) {
 
     }
 
