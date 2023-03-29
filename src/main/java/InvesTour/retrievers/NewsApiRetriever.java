@@ -30,6 +30,7 @@ public class NewsApiRetriever implements Retriever {
     public JsonNode retrieveDataByKeywords(List<String> keywords) {
         Map<String, String> everythingParams = EverythingParams.newBuilder()
                 .setPageSize(100)
+                .setLanguage("en")
                 .setSearchQuery(String.join(",", keywords))
                 .build();
 
