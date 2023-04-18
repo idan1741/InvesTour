@@ -3,12 +3,9 @@ package InvesTour.Controllers;
 import InvesTour.Models.User;
 import InvesTour.Services.UsersService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.Map;
 
 @RestController
@@ -16,6 +13,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class UsersController {
     private final UsersService usersService;
+
     @GetMapping(value = "/{id}")
     public void getUserById(@PathVariable("id") String email) {
         int x = 1;
@@ -33,9 +31,7 @@ public class UsersController {
     }
 
     @PostMapping(value = "/login")
-    public boolean login(@RequestBody Map<String, String> credentials) throws IOException {
+    public boolean login(@RequestBody Map<String, String> credentials) {
         return usersService.login(credentials.get("email"), credentials.get("password"));
     }
-
-
 }

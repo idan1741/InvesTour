@@ -25,6 +25,10 @@ public class Json {
         return mapper.valueToTree(o);
     }
 
+    public static JsonNode newObject() {
+        return mapper.createObjectNode();
+    }
+
     @SneakyThrows
     public static <T> T fromJson(String str, Class<T> clazz) {
         return mapper.readValue(str, clazz);
