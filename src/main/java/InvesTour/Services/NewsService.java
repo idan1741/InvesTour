@@ -1,6 +1,7 @@
 package InvesTour.Services;
 
 import InvesTour.Models.Article;
+import InvesTour.dal.StocksRepository;
 import InvesTour.retrievers.UrlRetriever;
 import InvesTour.utils.Json;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -16,13 +17,27 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class NewsService {
     private final UrlRetriever retriever;
+    private final StocksRepository stocksRepository;
 
     @SneakyThrows
     public Optional<List<Article>> getHotStocksArticles(List<String> hotStocks) {
         JsonNode hotStocksData = this.retriever.retrieveDataByKeywords(hotStocks);
 
-        if (isValidData(hotStocksData)) {
-            return Optional.of(Json.stream(hotStocksData.get("articles"))
+        return getStocksArticles(hotStocksData);
+    }
+
+    public Optional<List<Article>> getStocksArticlesByUser(String email) {
+        List<String> userStocks = stocksRepository.getStocksByUserEmail(email);
+
+        JsonNode userStocksData = this.retriever.retrieveDataByKeywords(userStocks);
+
+        return getStocksArticles(userStocksData);
+    }
+
+    @SneakyThrows
+    private Optional<List<Article>> getStocksArticles(JsonNode stocksData) {
+        if (isValidData(stocksData)) {
+            return Optional.of(Json.stream(stocksData.get("articles"))
                     .map(Article::fromJson)
                     .collect(Collectors.toList()));
         } else {

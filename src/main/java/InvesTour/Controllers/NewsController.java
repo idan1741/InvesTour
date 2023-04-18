@@ -29,9 +29,10 @@ public class NewsController {
 
     }
 
-    @GetMapping(value = "/articles/user/{userId}")
-    public void getArticlesByUser(@PathVariable("userId") Long id) {
-
+    @GetMapping(value = "/articles/user/{userEmail}")
+    public ResponseEntity<List<Article>> getArticlesByUser(@PathVariable("userEmail") String userEmail) {
+        return ResponseEntity.ok().body(this.service.getStocksArticlesByUser(userEmail)
+                .orElseThrow(() -> new ArticlesNotFoundException(List.of())));
     }
 
     @GetMapping(value = "/websites/user/{userId}")
