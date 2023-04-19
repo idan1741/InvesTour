@@ -24,7 +24,7 @@ public class StocksRepository {
                 .fetchInto(String.class);
     }
 
-    public String getStockById(String stockId){
+    public String getStockById(long stockId){
         return dsl.selectFrom(table("investour.tbl_stocks"))
                 .where(field("id").eq(stockId))
                 .fetchOne(field("name"), String.class);

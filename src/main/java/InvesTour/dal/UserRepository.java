@@ -31,10 +31,10 @@ public class UserRepository {
                 .execute();
     }
 
-    public void addStockToUser(String userEmail, String stockId){
+    public void addStockToUser(String userEmail, long stockId){
         this.dsl.insertInto(table("investour.tbl_stocks"))
-                .set(field("first_name"), userEmail)
-                .set(field("last_name"), stockId)
+                .set(field("user_email"), userEmail)
+                .set(field("stock_id"), stockId)
                 .execute();
     }
 
