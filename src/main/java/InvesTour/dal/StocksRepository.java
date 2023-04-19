@@ -23,4 +23,17 @@ public class StocksRepository {
                                 .where(field("user_email").eq(userEmail))))
                 .fetchInto(String.class);
     }
+
+    public boolean isStockExist(long stockId) {
+        return this.dsl.fetchExists(
+                this.dsl.selectFrom(table("investour.tbl_stocks"))
+                        .where(field("id").eq(stockId))
+        );
+    }
+
+    public String getStockById(long stockId) {
+        return this.dsl.selectFrom(table("investour.tbl_stocks"))
+                .where(field("id").eq(stockId))
+                .fetchOne(field("name"), String.class);
+    }
 }

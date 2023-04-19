@@ -30,4 +30,37 @@ public class UserRepository {
                 .set(field("role"), user.getRole())
                 .execute();
     }
+
+    public void addStockToUser(String userEmail, long stockId) {
+        this.dsl.insertInto(table("investour.tbl_stock_preferences"))
+                .set(field("user_email"), userEmail)
+                .set(field("stock_id"), stockId)
+                .execute();
+    }
+
+    public boolean isUserExist(String userEmail) {
+        return this.dsl.fetchExists(
+                this.dsl.selectFrom(table("investour.tbl_users"))
+                        .where(field("email").eq(userEmail)));
+    }
+
+    public String getUserByEmail(String userEmail) {
+        return dsl.selectFrom(table("investour.tbl_users"))
+                .where(field("email").eq(userEmail))
+                .fetchOne(field("first_name"), String.class);
+    }
+
+    public void deleteStockFromUser(String userEmail, long stockId){
+        this.dsl.delete(table("investour.tbl_stock_preferences"))
+                .where(field("user_email").eq(userEmail))
+                .and(field("stock_id").eq(stockId))
+                .execute();
+    }
+
+    public boolean isStockExistForUser(String userEmail, long stockId){
+        return this.dsl.fetchExists(
+                this.dsl.selectFrom(table("investour.tbl_stock_preferences"))
+                        .where(field("user_email").eq(userEmail))
+                        .and(field("stock_id").eq(stockId)));
+    }
 }

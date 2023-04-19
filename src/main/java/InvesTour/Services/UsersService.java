@@ -15,6 +15,8 @@ public class UsersService {
 
     private final UserRepository repository;
 
+    private final StocksService stocksService;
+
     public User getUserById(Long id) {
         return Json.fromJson("", User.class);
     }
@@ -37,4 +39,29 @@ public class UsersService {
         return allUsers.stream()
                 .anyMatch(user -> user.getEmail().equals(email) && user.getPassword().equals(password));
     }
+
+    public void addStockToUser(String userEmail, long stockId) throws Exception {
+        if (isRequestValid(userEmail, stockId)) {
+            this.repository.addStockToUser(userEmail, stockId);
+        } else {
+            throw new Exception("Bad info");
+        }
+    }
+
+    public void deleteStockForUser(String userEmail, long stockId) throws Exception {
+        if (isRequestValid(userEmail, stockId) && this.repository.isStockExistForUser(userEmail,stockId)) {
+            this.repository.deleteStockFromUser(userEmail, stockId);
+        } else {
+            throw new Exception("Bad info");
+        }
+    }
+
+    private boolean isRequestValid(String userEmail, long stockId) {
+        return this.stocksService.isStockExist(stockId) && isUserExist(userEmail);
+    }
+
+    public boolean isUserExist(String userEmail) {
+        return repository.isUserExist(userEmail);
+    }
+
 }
