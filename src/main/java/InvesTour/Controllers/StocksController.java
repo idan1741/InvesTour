@@ -1,6 +1,7 @@
 package InvesTour.Controllers;
 
 import InvesTour.Services.UsersService;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +12,11 @@ import org.springframework.web.bind.annotation.*;
 public class StocksController {
     private final UsersService service;
 
-    @PostMapping(value = "/user")
-    public ResponseEntity<String> addStockToUser(String userEmail, Long stockId) throws Exception {
+    @PostMapping("/user")
+    public ResponseEntity<String> addStockToUser(@RequestBody JsonNode jsonBody) throws Exception {
+        String userEmail = jsonBody.get("userEmail").asText();
+        long stockId = jsonBody.get("stockId").asLong();
+
         this.service.addStockToUser(userEmail, stockId);
 
         String userStockInfo = "User ID: " + userEmail + ", Stock ID: " + stockId;

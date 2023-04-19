@@ -52,8 +52,8 @@ public class UsersService {
         return this.stocksService.isStockExist(stockId) && isUserExist(userEmail);
     }
 
-    public boolean isUserExist(String stockId) {
-        return !repository.getUserById(stockId).isEmpty();
+    public boolean isUserExist(String userEmail) {
+        return repository.isUserExist(userEmail);
     }
 
 }

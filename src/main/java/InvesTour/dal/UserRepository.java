@@ -31,16 +31,22 @@ public class UserRepository {
                 .execute();
     }
 
-    public void addStockToUser(String userEmail, long stockId){
-        this.dsl.insertInto(table("investour.tbl_stocks"))
+    public void addStockToUser(String userEmail, long stockId) {
+        this.dsl.insertInto(table("investour.tbl_stock_preferences"))
                 .set(field("user_email"), userEmail)
                 .set(field("stock_id"), stockId)
                 .execute();
     }
 
-    public String getUserById(String userEmail){
+    public boolean isUserExist(String userEmail) {
+        return this.dsl.fetchExists(
+                this.dsl.selectFrom(table("investour.tbl_users"))
+                        .where(field("email").eq(userEmail)));
+    }
+
+    public String getUserByEmail(String userEmail) {
         return dsl.selectFrom(table("investour.tbl_users"))
-                .where(field("id").eq(userEmail))
-                .fetchOne(field("name"), String.class);
+                .where(field("email").eq(userEmail))
+                .fetchOne(field("first_name"), String.class);
     }
 }

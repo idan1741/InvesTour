@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class StocksService {
 
-    private final StocksRepository stocksRepository;
+    private final StocksRepository repository;
 
     public boolean isStockExist(long stockId) {
-        return !stocksRepository.getStockById(stockId).isEmpty();
+        return this.repository.isStockExist(stockId);
     }
 }
