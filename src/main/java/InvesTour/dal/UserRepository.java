@@ -30,4 +30,17 @@ public class UserRepository {
                 .set(field("role"), user.getRole())
                 .execute();
     }
+
+    public void addStockToUser(String userEmail, String stockId){
+        this.dsl.insertInto(table("investour.tbl_stocks"))
+                .set(field("first_name"), userEmail)
+                .set(field("last_name"), stockId)
+                .execute();
+    }
+
+    public String getUserById(String userEmail){
+        return dsl.selectFrom(table("investour.tbl_users"))
+                .where(field("id").eq(userEmail))
+                .fetchOne(field("name"), String.class);
+    }
 }

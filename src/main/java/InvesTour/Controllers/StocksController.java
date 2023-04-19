@@ -1,7 +1,10 @@
 package InvesTour.Controllers;
 
 import InvesTour.Services.StocksService;
+import InvesTour.Services.UsersService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -9,11 +12,14 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class StocksController {
 
-    private final StocksService service;
+    @Autowired
+    private final UsersService service;
 
     @PostMapping(value = "/user")
-    public void addStockToUser(@RequestBody String userId, @RequestBody String stockName) {
-
+    public ResponseEntity<String> addStockToUser(@PathVariable String userEmail, @PathVariable String stockId) throws Exception {
+        this.service.addStockToUser(userEmail,stockId);
+        String userStockInfo = "User ID: " + userEmail + ", Stock ID: " + stockId;
+        return ResponseEntity.ok(userStockInfo);
     }
 
     @DeleteMapping(value = "/{stockId}/user/{userId}")
