@@ -22,6 +22,13 @@ public class StocksController {
         return ResponseEntity.ok(userStockInfo);
     }
 
+    @PostMapping(value = "/user")
+    public ResponseEntity<String> deleteStockFromUser(@PathVariable String userEmail, @PathVariable String stockId) throws Exception {
+        this.service.deleteStockFromUser(userEmail,stockId);
+        String userStockInfo = "User ID: " + userEmail + ", Stock ID: " + stockId;
+        return ResponseEntity.ok(userStockInfo);
+    }
+
     @DeleteMapping(value = "/{stockId}/user/{userId}")
     public void deleteStockToUser(@PathVariable("stockId") String stockName, @PathVariable("userId") Long id) {
 

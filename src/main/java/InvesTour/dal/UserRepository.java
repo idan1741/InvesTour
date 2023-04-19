@@ -32,10 +32,25 @@ public class UserRepository {
     }
 
     public void addStockToUser(String userEmail, String stockId){
-        this.dsl.insertInto(table("investour.tbl_stocks"))
+        this.dsl.insertInto(table("investour.tbl_stocks_preferences"))
                 .set(field("first_name"), userEmail)
                 .set(field("last_name"), stockId)
                 .execute();
+    }
+
+    public void deleteStockFromUser(String userEmail, String stockId){
+        this.dsl.delete(table("investour.tbl_stocks_preferences"))
+                .where(field("user_email").eq(field("userEmail")))
+                .and(field("stock_id").eq(field("stockId")))
+                .execute();
+    }
+
+    public boolean isStockExistForUser(String userEmail, String stockId){
+        String a = dsl.selectFrom(table("investour.tbl_stocks_preferences"))
+                .where(field("user_email").eq(userEmail))
+                .and(field("stock_id").eq(stockId))
+                .fetchOne(field("user_email"), String.class);
+        return a != null;
     }
 
     public String getUserById(String userEmail){

@@ -49,6 +49,14 @@ public class UsersService {
         }
     }
 
+    public void deleteStockFromUser(String userEmail, String stockId) throws Exception {
+        if(isRequestValid(userEmail,stockId) && this.repository.isStockExistForUser(userEmail,stockId)){
+            repository.deleteStockFromUser(userEmail,stockId);
+        } else {
+            throw new Exception("bad info");
+        }
+    }
+
     private boolean isRequestValid(String userEmail, String stockId){
         return this.stocksService.isStockExist(stockId) && this.isUserExist(userEmail);
     }
