@@ -31,21 +31,21 @@ public class UserRepository {
                 .execute();
     }
 
-    public void addStockToUser(String userEmail, String stockId){
-        this.dsl.insertInto(table("investour.tbl_stocks_preferences"))
-                .set(field("first_name"), userEmail)
-                .set(field("last_name"), stockId)
+    public void addStockToUser(String userEmail, long stockId){
+        this.dsl.insertInto(table("investour.tbl_stocks"))
+                .set(field("user_email"), userEmail)
+                .set(field("stock_id"), stockId)
                 .execute();
     }
 
-    public void deleteStockFromUser(String userEmail, String stockId){
+    public void deleteStockFromUser(String userEmail, long stockId){
         this.dsl.delete(table("investour.tbl_stocks_preferences"))
                 .where(field("user_email").eq(field("userEmail")))
                 .and(field("stock_id").eq(field("stockId")))
                 .execute();
     }
 
-    public boolean isStockExistForUser(String userEmail, String stockId){
+    public boolean isStockExistForUser(String userEmail, long stockId){
         String a = dsl.selectFrom(table("investour.tbl_stocks_preferences"))
                 .where(field("user_email").eq(userEmail))
                 .and(field("stock_id").eq(stockId))

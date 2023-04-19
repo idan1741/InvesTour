@@ -5,7 +5,6 @@ import InvesTour.Models.User;
 import InvesTour.dal.UserRepository;
 import InvesTour.utils.Json;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,29 +40,28 @@ public class UsersService {
                 .anyMatch(user -> user.getEmail().equals(email) && user.getPassword().equals(password));
     }
 
-    public void addStockToUser(String userEmail, String stockId) throws Exception {
-        if(isRequestValid(userEmail,stockId)){
-            repository.addStockToUser(userEmail,stockId);
+    public void addStockToUser(String userEmail, long stockId) throws Exception {
+        if (isRequestValid(userEmail, stockId)) {
+            this.repository.addStockToUser(userEmail, stockId);
         } else {
-            throw new Exception("bad info");
+            throw new Exception("Bad info");
         }
     }
 
-    public void deleteStockFromUser(String userEmail, String stockId) throws Exception {
-        if(isRequestValid(userEmail,stockId) && this.repository.isStockExistForUser(userEmail,stockId)){
-            repository.deleteStockFromUser(userEmail,stockId);
+    public void deleteStockForUser(String userEmail, long stockId) throws Exception {
+        if (isRequestValid(userEmail, stockId) && this.repository.isStockExistForUser(userEmail,stockId)) {
+            this.repository.deleteStockFromUser(userEmail, stockId);
         } else {
-            throw new Exception("bad info");
+            throw new Exception("Bad info");
         }
     }
 
-    private boolean isRequestValid(String userEmail, String stockId){
-        return this.stocksService.isStockExist(stockId) && this.isUserExist(userEmail);
+    private boolean isRequestValid(String userEmail, long stockId) {
+        return this.stocksService.isStockExist(stockId) && isUserExist(userEmail);
     }
 
-    public boolean isUserExist(String stockId){
-        String string = repository.getUserById(stockId);
-        return string.isEmpty();
+    public boolean isUserExist(String stockId) {
+        return !(repository.getUserById(stockId) == null);
     }
 
 }

@@ -10,8 +10,7 @@ public class StocksService {
 
     private final StocksRepository stocksRepository;
 
-    public boolean isStockExist(String stockId){
-        String string = stocksRepository.getStockById(stockId);
-        return string.isEmpty();
+    public boolean isStockExist(long stockId) {
+        return !(stocksRepository.getStockById(stockId) == null);
     }
 }
