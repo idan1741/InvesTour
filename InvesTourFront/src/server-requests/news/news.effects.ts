@@ -15,10 +15,11 @@ export class NewsEffects {
         this.actions$.pipe(
             ofType(getArticlesByUser),
             // TODO: deprecate when server works
-            tap(() =>  this.store.dispatch(getArticlesByUserSuccess({ articles: INITIAL_NEWS_STATE as Article[] }))),
+            // tap(() =>  this.store.dispatch(getArticlesByUserSuccess({ articles: INITIAL_NEWS_STATE as Article[] }))),
             withLatestFrom(this.store.select(selectUserId)),
-            filter(([, userId]) => Boolean(userId)),
-            switchMap(([, userId]) => this.configService.getArticlesByUser(userId).pipe(
+            // filter(([, userId]) => Boolean(userId)),
+            // TODO: change to getArticlesByUser()
+            switchMap(([, userId]) => this.configService.getMainPageArticles().pipe(
                 tap((res) => console.log(res)),
                 map(res => getArticlesByUserSuccess({ 
                     articles: (res as Article[]).length > 50 ? (res as Article[]).slice(50) : (res as Article[])})

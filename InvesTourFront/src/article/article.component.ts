@@ -12,7 +12,7 @@ export class ArticleComponent {
 public isOpen = false;
 
 constructor(){
-  console.log(this.article);
+  // console.log(this.article);
 }
 
 public toggle(){
