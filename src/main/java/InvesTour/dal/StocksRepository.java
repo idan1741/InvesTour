@@ -24,8 +24,15 @@ public class StocksRepository {
                 .fetchInto(String.class);
     }
 
-    public String getStockById(long stockId){
-        return dsl.selectFrom(table("investour.tbl_stocks"))
+    public boolean isStockExist(long stockId) {
+        return this.dsl.fetchExists(
+                this.dsl.selectFrom(table("investour.tbl_stocks"))
+                        .where(field("id").eq(stockId))
+        );
+    }
+
+    public String getStockById(long stockId) {
+        return this.dsl.selectFrom(table("investour.tbl_stocks"))
                 .where(field("id").eq(stockId))
                 .fetchOne(field("name"), String.class);
     }
