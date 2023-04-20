@@ -7,7 +7,10 @@ import {Inject, Injectable} from '@angular/core';
 export class RequestConfigService {
     constructor(private http: HttpClient, @Inject(EnvironmentConfig) private envConfig: EnvConfig) {}
     
-    private httpApi = `http://${this.envConfig.serverUrl}${this.envConfig.httpPort}`;
+    // TODO: erase
+    private ichaiApi = 'https://e747-212-150-86-245.eu.ngrok.io';
+    private httpApi = this.ichaiApi;
+    // private httpApi = `http://${this.envConfig.serverUrl}${this.envConfig.httpPort}`;
 
     // Users
     addUser(userInfo) {
@@ -21,6 +24,17 @@ export class RequestConfigService {
     }
     loginUser(email: string, password: string) {
         return this.http.post(`${this.httpApi}/user/login`, {email, password})
+    }
+
+    // stocks
+    getStocksList() {
+        return this.http.get(`${this.httpApi}/stocks`)
+    }
+    addStockToUserList(userEmail: string, stockId: string) {
+        return this.http.post(`${this.httpApi}/stocks/user/add`, { userEmail, stockId })
+    }
+    removeStockFromUserList(userEmail: string, stockId: string) {
+        return this.http.post(`${this.httpApi}/stocks/user/delete`, { userEmail, stockId })
     }
 
     // News

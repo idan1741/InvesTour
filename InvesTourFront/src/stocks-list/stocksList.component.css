@@ -35,3 +35,15 @@
     height: 6vh;
     width: 5vw;
 }
+
+.stocksList {
+    display: flex;
+}
+
+.stock {
+    height: 6vh;
+    width: 5vw;
+    border: 1.5px solid #548235;
+    border-radius: 5px;
+    text-align: center;
+}
