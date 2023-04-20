@@ -1,8 +1,22 @@
 .addStock
 {
-    width: 20vw;
+    width: 25vw;
     height: 50vh;
-    background-color: #333333;
     font-family: Calibri;
     color: white;
+}
+
+::ng-deep.mat-dialog-container{
+    background-color: #333333;
+
+}
+
+.input {
+    height: 6vh;
+    width: 22vw;
+    background-color: transparent;
+    border: 1.5px solid #548235;
+    border-radius: 5px;
+    color: white;
+    display: flex;
 }

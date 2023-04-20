@@ -1,3 +1,7 @@
 <div class="addStock">
-    <h1>New Stock</h1>
+    <h1>Add New Stock</h1>
+    <input class="input" placeholder="Search" (input)="search($event)">
+    <div *ngFor="let stock of filteredStockList">
+        <label>{{stock.symbol}}</label>
+    </div> 
 </div>
