@@ -21,9 +21,13 @@ export class NewsEffects {
             // TODO: change to getArticlesByUser()
             switchMap(([, userId]) => this.configService.getMainPageArticles().pipe(
                 tap((res) => console.log(res)),
-                map(res => getArticlesByUserSuccess({ 
-                    articles: (res as Article[]).length > 50 ? (res as Article[]).slice(50) : (res as Article[])})
-                )
+                map(res => {
+                    const articlesLimit = 100;
+                    const articles = (res as Article[]).length > articlesLimit ? (res as Article[]).slice(articlesLimit) : (res as Article[]);
+                    const articlesInOrder: Article[] = articles.sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
+
+                    return getArticlesByUserSuccess({ articles: articlesInOrder })
+                })
             ))
         )
     )
