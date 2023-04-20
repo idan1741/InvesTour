@@ -1,11 +1,14 @@
 package InvesTour.Controllers;
 
+import InvesTour.Models.Stock;
 import InvesTour.Services.StocksService;
 import InvesTour.Services.UsersService;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/stocks")
@@ -32,7 +35,7 @@ public class StocksController {
         String userEmail = jsonBody.get("userEmail").asText();
         long stockId = jsonBody.get("stockId").asLong();
 
-        this.service.deleteStockForUser(userEmail,stockId);
+        this.service.deleteStockForUser(userEmail, stockId);
 
         String userStockInfo = "User ID: " + userEmail + ", Stock ID: " + stockId;
         return ResponseEntity.ok(userStockInfo);
@@ -44,7 +47,7 @@ public class StocksController {
     }
 
     @GetMapping(value = "/all")
-    public void getAllStocks() {
-        this.stocksService.getAllStocks();
+    public ResponseEntity<List<Stock>> getAllStocks() {
+        return ResponseEntity.ok(this.stocksService.getAllStocks());
     }
 }

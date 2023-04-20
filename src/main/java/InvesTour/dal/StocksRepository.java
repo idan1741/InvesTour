@@ -32,14 +32,9 @@ public class StocksRepository {
         );
     }
 
-    public String getStockById(long stockId) {
-        return this.dsl.selectFrom(table("investour.tbl_stocks"))
-                .where(field("id").eq(stockId))
-                .fetchOne(field("name"), String.class);
-    }
-
-    public List<Stock> getAllStocks(){
-        return this.dsl.select(field("id"),field("name"),field("symbol"))
+    public List<Stock> getAllStocks() {
+        return this.dsl.select(field("id"), field("name"), field("symbol"))
+                .from(table("investour.tbl_stocks"))
                 .fetchInto(Stock.class);
     }
 }
