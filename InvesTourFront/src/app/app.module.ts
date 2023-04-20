@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
 import { SignInComponent } from 'src/sign-in/signIn.component';
 import { HomeComponent } from 'src/home/home.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -27,6 +28,9 @@ import { usersReducer, usersReducerToken } from 'src/server-requests/users/users
 import { HttpClientModule } from '@angular/common/http';
 import { NewsEffects } from 'src/server-requests/news/news.effects';
 import { newsReducer, newsReducerToken } from 'src/server-requests/news/news.reducer';
+import { StockComponent } from 'src/stock/stock.component';
+import { StocksListComponent } from 'src/stocks-list/stocksList.component';
+import { addStockDialogComponent } from 'src/addStockDialog/addStockDialog.component';
 
 export const store: Store<any> = createStore(
   rootReducer,
@@ -41,7 +45,10 @@ export const store: Store<any> = createStore(
     SignInComponent,
     SignUpComponent,
     MyWallComponent,
-    ArticleComponent
+    ArticleComponent,
+    StockComponent,
+    StocksListComponent,
+    addStockDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +62,7 @@ export const store: Store<any> = createStore(
     FormsModule,
     NgReduxModule,
     HttpClientModule,
+    MatDialogModule,
     StoreModule.forRoot({}),
     StoreModule.forFeature(usersReducerToken, usersReducer),
     StoreModule.forFeature(newsReducerToken, newsReducer),
