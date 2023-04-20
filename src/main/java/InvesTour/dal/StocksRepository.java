@@ -1,5 +1,6 @@
 package InvesTour.dal;
 
+import InvesTour.Models.Stock;
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
@@ -35,5 +36,10 @@ public class StocksRepository {
         return this.dsl.selectFrom(table("investour.tbl_stocks"))
                 .where(field("id").eq(stockId))
                 .fetchOne(field("name"), String.class);
+    }
+
+    public List<Stock> getAllStocks(){
+        return this.dsl.select(field("id"),field("name"),field("symbol"))
+                .fetchInto(Stock.class);
     }
 }

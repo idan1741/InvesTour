@@ -1,5 +1,6 @@
 package InvesTour.Controllers;
 
+import InvesTour.Services.StocksService;
 import InvesTour.Services.UsersService;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class StocksController {
     private final UsersService service;
+
+    private final StocksService stocksService;
 
     @PostMapping("/user/add")
     public ResponseEntity<String> addStockToUser(@RequestBody JsonNode jsonBody) throws Exception {
@@ -38,5 +41,10 @@ public class StocksController {
     @DeleteMapping(value = "/{stockId}/user/{userId}")
     public void deleteStockToUser(@PathVariable("stockId") String stockName, @PathVariable("userId") Long id) {
 
+    }
+
+    @GetMapping(value = "/all")
+    public void getAllStocks() {
+        this.stocksService.getAllStocks();
     }
 }
