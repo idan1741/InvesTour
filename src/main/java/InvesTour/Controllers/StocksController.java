@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class StocksController {
     private final UsersService service;
 
-    @PostMapping("/user")
+    @PostMapping("/user/add")
     public ResponseEntity<String> addStockToUser(@RequestBody JsonNode jsonBody) throws Exception {
         String userEmail = jsonBody.get("userEmail").asText();
         long stockId = jsonBody.get("stockId").asLong();
