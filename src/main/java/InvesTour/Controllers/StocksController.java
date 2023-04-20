@@ -46,7 +46,7 @@ public class StocksController {
 
     }
 
-    @GetMapping(value = "/all")
+    @GetMapping
     public ResponseEntity<List<Stock>> getAllStocks() {
         return ResponseEntity.ok(this.stocksService.getAllStocks());
     }
