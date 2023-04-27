@@ -21,11 +21,18 @@ export class addStockDialogComponent {
   {symbol: "afd", name: "Tesla, Inc", change: 1.17, price: 123.5, isRiseUp: true} as Stock,
   {symbol: "3453ty", name: "s&p 500", change: 0.58, price: 382.91, isRiseUp: false} as Stock];
 
+  userStocklList = [{symbol: "TSLA", name: "Tesla, Inc", change: 1.17, price: 123.5, isRiseUp: true} as Stock];
+
   filteredStockList = this.StockList;
 
   constructor(
     public dialogRef: MatDialogRef<addStockDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data) {}
+    @Inject(MAT_DIALOG_DATA) public data) {
+      this.StockList.map(stock => {
+        this.userStocklList.find(userStock => userStock.symbol === stock.symbol) ? stock.isInUserFav = true: null;
+        return stock;
+      })
+    }
 
 
   onNoClick(): void {
@@ -33,7 +40,20 @@ export class addStockDialogComponent {
   }
 
   search(event){
-    this.filteredStockList = this.StockList.filter(stock => stock.symbol.includes(event.target.value));
+    if(event.target.value == ""){
+      this.filteredStockList = this.StockList;
+    } else {
+      this.filteredStockList = this.StockList.filter(stock => stock.symbol.includes(event.target.value));
+    }
   }
 
+  add(event){
+    let stock = this.StockList.find(stock=> stock.symbol === event.target.innerText);
+    if(stock.isInUserFav) {
+      this.StockList.find(stock=> stock.symbol === event.target.innerText).isInUserFav = false;
+    } else {
+      stock.isInUserFav = !stock.isInUserFav;
+      this.userStocklList.push(stock);
+    }
+  }
 }

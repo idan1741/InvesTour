@@ -4,6 +4,7 @@ export class Stock {
     public change: number;
     public price: number;
     public isRiseUp: boolean;
+    public isInUserFav:boolean = false;
 
     constructor(){}
 }
