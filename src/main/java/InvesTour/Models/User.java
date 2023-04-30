@@ -15,4 +15,5 @@ public class User {
     private final String password;
     @JsonProperty("role")
     private final String role;
+    
 }

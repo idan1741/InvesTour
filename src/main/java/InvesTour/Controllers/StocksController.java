@@ -48,7 +48,47 @@ public class StocksController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Stock>> getAllStocks() {
-        return ResponseEntity.ok(this.stocksService.getAllStocks());
+    public Stock[] getAllStocks() {
+        Stock[] StockList = new Stock[10];
+        Stock a = new Stock(111,"Tesla","TSLA");
+        Stock b = new Stock(222,"s&p 500","SPY");
+        Stock c = new Stock(333,"wow, Inc","adwafs");
+        Stock d = new Stock(444,"damn","3453ty");
+        Stock e = new Stock(555,"lol","svd");
+        Stock f = new Stock(6,"Tesla","TSLA");
+        Stock g = new Stock(7,"s&p 500","SPY");
+        Stock h = new Stock(8,"wow, Inc","adwafs");
+        Stock i = new Stock(9,"damn","3453ty");
+        Stock j = new Stock(10,"lol","svd");
+        StockList[0] = a;
+        StockList[1] = b;
+        StockList[2] = c;
+        StockList[3] = d;
+        StockList[4] = e;
+        StockList[5] = f;
+        StockList[6] = g;
+        StockList[7] = h;
+        StockList[8] = i;
+        StockList[9] = j;
+
+        return  StockList;
+//        return ResponseEntity.ok(this.stocksService.getAllStocks());
+    }
+
+    @GetMapping(value = "/{userId}")
+    public Stock[] getAllUserStocks() {
+        Stock[] StockList = new Stock[5];
+        Stock a = new Stock(1,"Tesla","TSLA");
+        Stock b = new Stock(2,"s&p 500","SPY");
+        Stock c = new Stock(3,"wow, Inc","adwafs");
+        Stock d = new Stock(4,"damn","3453ty");
+        Stock e = new Stock(5,"lol","svd");
+        StockList[0] = a;
+        StockList[1] = b;
+        StockList[2] = c;
+        StockList[3] = d;
+        StockList[4] = e;
+
+        return StockList;
     }
 }

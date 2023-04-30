@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class Stock {
     @JsonProperty("id")
-    private final Long id;
+    private final int id;
     @JsonProperty("name")
     private final String name;
     @JsonProperty("symbol")

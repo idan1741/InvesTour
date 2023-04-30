@@ -7,6 +7,7 @@ import InvesTour.utils.Json;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,7 +35,10 @@ public class UsersService {
     }
 
     public boolean login(String email, String password) {
-        List<User> allUsers = this.repository.getAllUsers();
+//            List<User> allUsers = this.repository.getAllUsers();
+        List<User> allUsers = new ArrayList<>();
+        User mockUser = new User("Joseph","Collins","js@123","123","");
+        allUsers.add(mockUser);
 
         return allUsers.stream()
                 .anyMatch(user -> user.getEmail().equals(email) && user.getPassword().equals(password));

@@ -31,6 +31,8 @@ import { newsReducer, newsReducerToken } from 'src/server-requests/news/news.red
 import { StockComponent } from 'src/stock/stock.component';
 import { StocksListComponent } from 'src/stocks-list/stocksList.component';
 import { addStockDialogComponent } from 'src/addStockDialog/addStockDialog.component';
+import { StocksEffects } from 'src/server-requests/stocks/stocks.effects';
+import { stocksReducer, stocksReducerToken } from 'src/server-requests/stocks/stocks.reducer';
 
 export const store: Store<any> = createStore(
   rootReducer,
@@ -66,8 +68,9 @@ export const store: Store<any> = createStore(
     StoreModule.forRoot({}),
     StoreModule.forFeature(usersReducerToken, usersReducer),
     StoreModule.forFeature(newsReducerToken, newsReducer),
+    StoreModule.forFeature(stocksReducerToken, stocksReducer),
     EffectsModule.forRoot([]),
-    EffectsModule.forFeature([UsersEffects, NewsEffects]),
+    EffectsModule.forFeature([UsersEffects, NewsEffects, StocksEffects]),
   ],
   providers: [RequestConfigService],
   bootstrap: [AppComponent]

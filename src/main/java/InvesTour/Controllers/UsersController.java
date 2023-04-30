@@ -15,9 +15,16 @@ import java.util.Map;
 public class UsersController {
     private final UsersService usersService;
 
-    @GetMapping(value = "/{id}")
-    public void getUserById(@PathVariable("id") String email) {
-        int x = 1;
+//    @GetMapping(value = "/{id}")
+//    public void getUserById(@PathVariable("id") String email) {
+//        int x = 1;
+//    }
+
+    @GetMapping(value = "/{email}")
+    public User getUserByEmail(@PathVariable("email") String email) {
+        User mockUser = new User("Joseph","Collins","js@123","123","");
+
+        return mockUser;
     }
 
     @DeleteMapping(value = "/{id}")
@@ -32,7 +39,8 @@ public class UsersController {
     }
 
     @PostMapping(value = "/login")
-    public boolean login(@RequestBody Map<String, String> credentials) {
-        return usersService.login(credentials.get("email"), credentials.get("password"));
+    public User login(@RequestBody Map<String, String> credentials) {
+//        return usersService.login(credentials.get("email"), credentials.get("password"));
+        return new User("Joseph","Collins",credentials.get("email"),credentials.get("password"),"");
     }
 }

@@ -5,6 +5,7 @@ import { addUser, deleteUser, getUserById, loginSuccess, loginUser } from "./use
 import { RequestConfigService } from "../requests.service";
 import { Store } from "@ngrx/store";
 import { Router } from "@angular/router";
+import { User } from "./users.reducer";
 
 @Injectable()
 export class UsersEffects {
@@ -48,10 +49,13 @@ export class UsersEffects {
             // }),
             switchMap(({email, password}) => this.configService.loginUser(email, password).pipe(
                 tap((res) => console.log(res)),
-                tap(res => {
+                // switchMap(res => this.configService.loginUser(email, password).pipe(
+
+                // )),
+                tap((user: User) => {
                     // check response authenticity and retract user info
                     if(true) {
-                        this.store.dispatch(loginSuccess({firstName: 'Tom', lastName: 'Brady'}));
+                        this.store.dispatch(loginSuccess(user));
                         this.router.navigateByUrl('/myWall')
                     } else {
                         alert("could not log in")

@@ -12,7 +12,7 @@ const routes: Routes = [
     { path: 'signIn', component: SignInComponent },
     { path: 'signUp', component: SignUpComponent },
     { path: 'myWall', component: MyWallComponent },
-    { path: 'stockList', component: StocksListComponent },
+    { path: 'myWall/stockList', component: StocksListComponent },
 
 ];
 
