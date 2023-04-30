@@ -20,4 +20,8 @@ public class StocksService {
     public boolean isStockExist(long stockId) {
         return this.repository.isStockExist(stockId);
     }
+
+    public List<Stock> getAllStocksByUser(String email){
+        return repository.getFullStocksByUserEmail(email);
+    }
 }

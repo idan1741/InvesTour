@@ -1,5 +1,7 @@
 package InvesTour.Controllers;
 
+import InvesTour.Exceptions.ArticlesNotFoundException;
+import InvesTour.Models.Article;
 import InvesTour.Models.Stock;
 import InvesTour.Services.StocksService;
 import InvesTour.Services.UsersService;
@@ -13,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/stocks")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200/")
 public class StocksController {
     private final UsersService service;
 
@@ -44,6 +47,11 @@ public class StocksController {
     @DeleteMapping(value = "/{stockId}/user/{userId}")
     public void deleteStockToUser(@PathVariable("stockId") String stockName, @PathVariable("userId") Long id) {
 
+    }
+
+    @GetMapping(value = "/{userEmail}")
+    public ResponseEntity<List<Stock>> getStocksByUser(@PathVariable("userEmail") String userEmail) {
+        return ResponseEntity.ok().body(this.stocksService.getAllStocksByUser(userEmail));
     }
 
     @GetMapping
