@@ -33,6 +33,7 @@ import { StocksListComponent } from 'src/stocks-list/stocksList.component';
 import { addStockDialogComponent } from 'src/addStockDialog/addStockDialog.component';
 import { StocksEffects } from 'src/server-requests/stocks/stocks.effects';
 import { stocksReducer, stocksReducerToken } from 'src/server-requests/stocks/stocks.reducer';
+import { SearchPipe } from 'src/utils/pipes/search.pipe';
 
 export const store: Store<any> = createStore(
   rootReducer,
@@ -50,7 +51,8 @@ export const store: Store<any> = createStore(
     ArticleComponent,
     StockComponent,
     StocksListComponent,
-    addStockDialogComponent
+    addStockDialogComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

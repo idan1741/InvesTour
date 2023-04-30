@@ -1,15 +1,9 @@
 import { Action, createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store";
 import { getArticlesByUserSuccess, getStocksByUserListSuccess, getStocksListSuccess } from "./news.actions";
 import { state } from "@angular/animations";
+import { Article } from "src/article/article.class";
 
 export const newsReducerToken = 'news';
-
-export interface Article {
-    company: string;
-    text: string;
-    extendedText: string;
-    time: string
-}
 
 export interface NewsState {
     newsByUser: Article[],

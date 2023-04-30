@@ -25,7 +25,7 @@ export class NewsEffects {
                 map(res => {
                     const articlesLimit = 100;
                     const articles = (res as Article[]).length > articlesLimit ? (res as Article[]).slice(articlesLimit) : (res as Article[]);
-                    const articlesInOrder: Article[] = articles.sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
+                    const articlesInOrder: Article[] = articles.sort((a, b) => new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime());
 
                     return getArticlesByUserSuccess({ articles: articlesInOrder })
                 })
