@@ -27,7 +27,7 @@ public class NewsService {
     }
 
     public Optional<List<Article>> getStocksArticlesByUser(String email) {
-        List<String> userStocks = stocksRepository.getStocksByUserEmail(email);
+        List<String> userStocks = stocksRepository.getStockNamesByUserEmail(email);
 
         JsonNode userStocksData = this.retriever.retrieveDataByKeywords(userStocks);
 
