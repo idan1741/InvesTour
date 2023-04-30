@@ -10,7 +10,7 @@
       <div class="section">
         <h2 style="margin: 2%;">Stock Status</h2>
         <div class="articles">
-          <stock *ngFor="let stock of stocks" class="article" [stock]="stock"></stock>
+          <stock *ngFor="let stock of (stocks$ | async)" class="article" [stock]="stock"></stock>
         </div>
       </div>
       <div class="section">
