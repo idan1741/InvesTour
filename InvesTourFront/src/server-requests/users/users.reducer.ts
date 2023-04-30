@@ -7,12 +7,14 @@ export interface UsersState {
     userId: string;
     firstName: string;
     lastNAme: string;
+    email: string 
 }
 
 export const initialState: UsersState = {
     userId: null,
     firstName: null,
-    lastNAme: null
+    lastNAme: null,
+    email: null
 }
 
 const reducer = createReducer(
@@ -38,6 +40,10 @@ export const selectUsersFirstName = createSelector(
 export const selectUsersLastName = createSelector(
     selectUsersState, 
     (state: UsersState) => state.lastNAme
+)
+export const selectUsersEmail = createSelector(
+    selectUsersState, 
+    (state: UsersState) => state.email
 )
 
 

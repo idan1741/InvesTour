@@ -4,8 +4,8 @@ import { Injectable } from "@angular/core";
 import { RequestConfigService } from "../requests.service";
 import { Store } from "@ngrx/store";
 import { Router } from "@angular/router";
-import { getArticlesByUser, getArticlesByUserSuccess } from "./news.actions";
-import { selectUserId } from "../users/users.reducer";
+import { addStockToUserList, getArticlesByUser, getArticlesByUserSuccess, getStocksList, getStocksListSuccess, removeStockFromUserList } from "./news.actions";
+import { selectUserId, selectUsersEmail } from "../users/users.reducer";
 import { Article } from "src/article/article.class";
 import { INITIAL_NEWS_STATE } from "src/my-wall/articles-reducer";
 
@@ -19,13 +19,48 @@ export class NewsEffects {
             withLatestFrom(this.store.select(selectUserId)),
             // filter(([, userId]) => Boolean(userId)),
             // TODO: change to getArticlesByUser()
-            switchMap(([, userId]) => this.configService.getMainPageArticles().pipe(
+            switchMap(([, userId]) => this.configService.getArticlesByUser(userId).pipe(
                 tap((res) => console.log(res)),
-                map(res => getArticlesByUserSuccess({ 
-                    articles: (res as Article[]).length > 50 ? (res as Article[]).slice(50) : (res as Article[])})
-                )
+                map(res => {
+                    const articlesLimit = 100;
+                    const articles = (res as Article[]).length > articlesLimit ? (res as Article[]).slice(articlesLimit) : (res as Article[]);
+                    const articlesInOrder: Article[] = articles.sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
+
+                    return getArticlesByUserSuccess({ articles: articlesInOrder })
+                })
             ))
         )
+    );
+
+    // TODO: move to stocks
+    getAllStocksList = createEffect(() =>
+        this.actions$.pipe(
+            ofType(getStocksList),
+            switchMap(() => this.configService.getStocksList().pipe(
+                tap(res => console.log(res)),
+                map(res => getStocksListSuccess({ stocks: (res as any[])}))
+            ))
+        )
+    )
+    addStock = createEffect(() =>
+        this.actions$.pipe(
+            ofType(addStockToUserList),
+            withLatestFrom(this.store.select(selectUsersEmail)),
+            switchMap(([{stockId}, userEmail]) => this.configService.addStockToUserList(userEmail,stockId).pipe(
+                tap((res) => console.log(res))
+            ))
+        ),
+        { dispatch: false }
+    )
+    removeStock = createEffect(() =>
+        this.actions$.pipe(
+            ofType(removeStockFromUserList),
+            withLatestFrom(this.store.select(selectUsersEmail)),
+            switchMap(([{stockId}, userEmail]) => this.configService.removeStockFromUserList(userEmail, stockId).pipe(
+                tap((res) => console.log(res))
+            ))
+        ),
+        { dispatch: false }
     )
 
     constructor(

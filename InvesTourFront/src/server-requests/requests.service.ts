@@ -26,6 +26,17 @@ export class RequestConfigService {
         return this.http.post(`${this.httpApi}/user/login`, {email, password})
     }
 
+    // stocks
+    getStocksList() {
+        return this.http.get(`${this.httpApi}/stocks`)
+    }
+    addStockToUserList(userEmail: string, stockId: string) {
+        return this.http.post(`${this.httpApi}/stocks/user/add`, { userEmail, stockId })
+    }
+    removeStockFromUserList(userEmail: string, stockId: string) {
+        return this.http.post(`${this.httpApi}/stocks/user/delete`, { userEmail, stockId })
+    }
+
     // News
     getMainPageArticles() {
         return this.http.get(`${this.httpApi}/news/articles`)

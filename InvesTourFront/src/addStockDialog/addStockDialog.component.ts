@@ -1,7 +1,8 @@
 import { Component, Inject, Input} from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Store } from "@ngrx/store";
-import { selectUsersFirstName, selectUsersLastName } from "src/server-requests/users/users.reducer";
+import { addStockToUserList, removeStockFromUserList } from "src/server-requests/news/news.actions";
+import { selectStocksByUserList, selectStocksList } from "src/server-requests/news/news.reducer";
 import { Stock } from "src/stock/stock.class";
 
 
@@ -23,9 +24,14 @@ export class addStockDialogComponent {
 
   userStocklList = [{symbol: "TSLA", name: "Tesla, Inc", change: 1.17, price: 123.5, isRiseUp: true} as Stock];
 
+  stockList$ = this.store.select(selectStocksList);
+  userStocklList$ = this.store.select(selectStocksByUserList);
+
+
   filteredStockList = this.StockList;
 
   constructor(
+    private store: Store,
     public dialogRef: MatDialogRef<addStockDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data) {
       this.StockList.map(stock => {
@@ -51,9 +57,14 @@ export class addStockDialogComponent {
     let stock = this.StockList.find(stock=> stock.symbol === event.target.innerText);
     if(stock.isInUserFav) {
       this.StockList.find(stock=> stock.symbol === event.target.innerText).isInUserFav = false;
+
+
+      this.store.dispatch(removeStockFromUserList(event.target.innerText))
     } else {
       stock.isInUserFav = !stock.isInUserFav;
       this.userStocklList.push(stock);
+
+      this.store.dispatch(addStockToUserList(event.target.innerText))
     }
   }
 }
