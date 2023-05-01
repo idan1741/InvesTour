@@ -1,10 +1,10 @@
 <div class="myWall">
   <div class="bar">
     <div class="menu"><a class="logo" [routerLink]="['/main']"><label style="color: #548235">Inves</label><label style="color: white">tour</label></a>
-    <a *ngIf="name" style="color: #548235;margin-left: 35px; text-decoration: none;" [routerLink]="['/myWall']"> my wall </a>
-    <a *ngIf="name" style="color: #548235;margin-left: 35px; text-decoration: none;" [routerLink]="['/stockList']"> stocks list </a>
+    <a *ngIf="(firstName$ | async)" style="color: #548235;margin-left: 35px; text-decoration: none;" [routerLink]="['/myWall']"> my wall </a>
+    <a *ngIf="(firstName$ | async)" style="color: #548235;margin-left: 35px; text-decoration: none;" [routerLink]="['/stockList']"> stocks list </a>
   </div>
-    <div><label  *ngIf="name"> Hi {{firstName$ | async}} {{lastName$ | async}} </label></div>
+    <div><label> Hi {{firstName$ | async}} {{lastName$ | async}} </label></div>
   </div>
   <div class="content">
     <h1>My Wall</h1>
@@ -12,7 +12,7 @@
       <div class="section">
         <h2 style="margin: 2%;">Stock Status</h2>
         <div class="articles">
-          <stock *ngFor="let stock of (stocks$ | async)" class="article" [stock]="stock"></stock>
+          <stock *ngFor="let stock of (userStocklList$ | async)" class="article" [stock]="stock"></stock>
         </div>
       </div>
       <div class="section">

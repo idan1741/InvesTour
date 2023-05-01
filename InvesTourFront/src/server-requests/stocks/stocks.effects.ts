@@ -28,10 +28,7 @@ export class StocksEffects {
             switchMap(([{stockSymbol}, usersStocks, userEmail]) => {
                 const x = usersStocks.find(s => s.symbol === stockSymbol);
                 return usersStocks.find(s => s.symbol === stockSymbol) ?
-                    this.configService.removeStockFromUserList(userEmail, stockSymbol).pipe(
-                        tap((res) => console.log(res)),
-                        tap(() => this.store.dispatch(getStocksByUser()))
-                        ) :
+                    this.configService.removeStockFromUserList(userEmail, stockSymbol).pipe(tap(() => this.store.dispatch(getStocksByUser()))) :
                     this.configService.addStockToUserList(userEmail, stockSymbol).pipe(tap(() => this.store.dispatch(getStocksByUser())))
             })
         ),

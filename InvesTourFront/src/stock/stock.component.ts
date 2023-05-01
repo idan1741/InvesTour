@@ -1,7 +1,6 @@
 import { Component, Input} from "@angular/core";
 import { Stock } from "./stock.class";
 
-
 @Component({
   selector: 'stock',
   templateUrl: './stock.component.html',
@@ -11,8 +10,7 @@ export class StockComponent {
   @Input() stock: Stock;
   public isOpen = false;
 
-  constructor(){
-  }
+  constructor(){}
 
   public toggle(){
     this.isOpen=!this.isOpen;

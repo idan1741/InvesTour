@@ -7,10 +7,7 @@ import {Inject, Injectable} from '@angular/core';
 export class RequestConfigService {
     constructor(private http: HttpClient, @Inject(EnvironmentConfig) private envConfig: EnvConfig) {}
     
-    // TODO: erase
-    private ichaiApi = 'http://localhost:8080';
-    private httpApi = this.ichaiApi;
-    // private httpApi = `http://${this.envConfig.serverUrl}${this.envConfig.httpPort}`;
+    private httpApi = `http://${this.envConfig.serverUrl}${this.envConfig.httpPort}`;
 
     // Users
     addUser(userInfo) {
