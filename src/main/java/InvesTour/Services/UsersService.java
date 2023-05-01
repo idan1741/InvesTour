@@ -4,10 +4,13 @@ import InvesTour.Exceptions.SignUpException;
 import InvesTour.Models.User;
 import InvesTour.dal.UserRepository;
 import InvesTour.utils.Json;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -33,11 +36,19 @@ public class UsersService {
         this.repository.addUser(user);
     }
 
-    public boolean login(String email, String password) {
+    public ObjectNode login(String email, String password) {
         List<User> allUsers = this.repository.getAllUsers();
 
-        return allUsers.stream()
-                .anyMatch(user -> user.getEmail().equals(email) && user.getPassword().equals(password));
+        User currentUser = allUsers.stream()
+                .filter(user -> user.getEmail().equals(email) &&
+                        user.getPassword().equals(password)).collect(Collectors.toList()).get(0);
+
+        ObjectNode user = Json.newObject();
+        user.put("firstName", currentUser.getFirstName());
+        user.put("lastName", currentUser.getLastName());
+        user.put("role", currentUser.getRole());
+
+        return user;
     }
 
     public void addStockToUser(String userEmail, long stockId) throws Exception {
