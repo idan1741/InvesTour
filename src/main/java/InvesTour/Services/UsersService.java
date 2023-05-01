@@ -46,6 +46,7 @@ public class UsersService {
         ObjectNode user = Json.newObject();
         user.put("firstName", currentUser.getFirstName());
         user.put("lastName", currentUser.getLastName());
+        user.put("email", currentUser.getEmail());
         user.put("role", currentUser.getRole());
 
         return user;
