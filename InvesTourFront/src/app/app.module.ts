@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
 import { SignInComponent } from 'src/sign-in/signIn.component';
 import { HomeComponent } from 'src/home/home.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -19,6 +20,21 @@ import { Store, createStore, applyMiddleware } from 'redux';
 import { rootReducer, INITIAL_STATE } from './app-reducer';
 import { createLogger } from 'redux-logger';
 import { ArticleComponent } from 'src/article/article.component';
+import { RequestConfigService } from 'src/server-requests/requests.service';
+import { EffectsModule } from '@ngrx/effects';
+import { UsersEffects } from 'src/server-requests/users/users.effects';
+import { StoreModule } from '@ngrx/store';
+import { usersReducer, usersReducerToken } from 'src/server-requests/users/users.reducer';
+import { HttpClientModule } from '@angular/common/http';
+import { NewsEffects } from 'src/server-requests/news/news.effects';
+import { newsReducer, newsReducerToken } from 'src/server-requests/news/news.reducer';
+import { StockComponent } from 'src/stock/stock.component';
+import { StocksListComponent } from 'src/stocks-list/stocksList.component';
+import { addStockDialogComponent } from 'src/addStockDialog/addStockDialog.component';
+import { StocksEffects } from 'src/server-requests/stocks/stocks.effects';
+import { stocksReducer, stocksReducerToken } from 'src/server-requests/stocks/stocks.reducer';
+import { MainComponent } from 'src/main/main.component';
+import { SearchPipe } from 'src/utils/pipes/search.pipe';
 
 export const store: Store<any> = createStore(
   rootReducer,
@@ -33,7 +49,12 @@ export const store: Store<any> = createStore(
     SignInComponent,
     SignUpComponent,
     MyWallComponent,
-    ArticleComponent
+    ArticleComponent,
+    StockComponent,
+    StocksListComponent,
+    addStockDialogComponent,
+    MainComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -45,9 +66,17 @@ export const store: Store<any> = createStore(
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    NgReduxModule
+    NgReduxModule,
+    HttpClientModule,
+    MatDialogModule,
+    StoreModule.forRoot({}),
+    StoreModule.forFeature(usersReducerToken, usersReducer),
+    StoreModule.forFeature(newsReducerToken, newsReducer),
+    StoreModule.forFeature(stocksReducerToken, stocksReducer),
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([UsersEffects, NewsEffects, StocksEffects]),
   ],
-  providers: [],
+  providers: [RequestConfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

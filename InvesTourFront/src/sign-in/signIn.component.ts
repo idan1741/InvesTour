@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AppActions } from 'src/app/app-actions';
+import { Store } from '@ngrx/store';
+import { loginUser } from 'src/server-requests/users/users.actions';
 
 @Component({
   selector: 'sign-in',
@@ -12,10 +12,9 @@ export class SignInComponent {
   public email: string = "";
   public password: string = "";
 
-  constructor(private router: Router){}
+  constructor(private store: Store){}
 
   signIn(){
-    alert("signIn");
-    this.router.navigateByUrl('/myWall')
+    this.store.dispatch(loginUser({email: this.email, password: this.password}))
   }
 }

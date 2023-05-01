@@ -1,11 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { EnvironmentConfig } from 'src/environments/env-loader/fetch-env-provider';
+import { EnvConfig } from 'src/environments/environment-config/config.interface';
+import { RequestConfigService } from 'src/server-requests/requests.service';
+import { addUser } from 'src/server-requests/users/users.actions';
 
 @Component({
   selector: 'sign-up',
   templateUrl: './signUp.component.html',
   styleUrls: ['./signUp.component.css']
 })
-export class SignUpComponent {
+export class SignUpComponent implements OnInit {
+  constructor(
+    @Inject(EnvironmentConfig) private envConfig: EnvConfig, 
+    private requestConfigService: RequestConfigService,
+    private store: Store
+  ) {}
+
+  ngOnInit(): void {
+    console.log(`http://${this.envConfig.serverUrl}${this.envConfig.httpPort}`);
+  }
+
   public hide1: boolean = true;
   public hide2: boolean = true;
   public firstName: string = "";
@@ -17,7 +32,13 @@ export class SignUpComponent {
   public disabled: boolean= false;
 
   public signUp(){
-    alert("signUp")
+    if(this.password === this.confirmPassword) {
+      this.store.dispatch(
+        addUser({firstName: this.firstName, lastName: this.lastName, email: this.email, password: this.password})
+      )
+    } else {
+      alert("password must match confirmation")
+    }
   }
 
   public checkPasswords(event){

@@ -24,6 +24,12 @@
 
 .logo {
     font-size: 70px;
+    text-decoration: none;
+}
+
+.menu {
+    width: 60vw;
+    display: flex;
 }
 
 .sections {
