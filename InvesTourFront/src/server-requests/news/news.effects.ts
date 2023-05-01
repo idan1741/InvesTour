@@ -1,11 +1,11 @@
-import { filter, map, switchMap, tap, withLatestFrom } from "rxjs/operators";
+import { map, switchMap, tap, withLatestFrom } from "rxjs/operators";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Injectable } from "@angular/core";
 import { RequestConfigService } from "../requests.service";
 import { Store } from "@ngrx/store";
 import { Router } from "@angular/router";
 import { getArticlesByUser, getArticlesByUserSuccess } from "./news.actions";
-import { selectUserId, selectUsersEmail } from "../users/users.reducer";
+import { selectUsersEmail } from "../users/users.reducer";
 import { Article } from "src/article/article.class";
 
 @Injectable()
@@ -19,7 +19,7 @@ export class NewsEffects {
             // filter(([, userId]) => Boolean(userId)),
             // TODO: change to getArticlesByUser()
             // switchMap(([, userEmail]) => this.configService.getArticlesByUser(userEmail).pipe(
-            switchMap(([, userId]) => this.configService.getMainPageArticles().pipe(
+            switchMap(([, userEmail]) => this.configService.getArticlesByUser(userEmail).pipe(
                 tap((res) => console.log(res)),
                 map(res => {
                     const articlesLimit = 100;
