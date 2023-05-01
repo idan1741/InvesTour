@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,20 +37,21 @@ public class UsersService {
         this.repository.addUser(user);
     }
 
-    public ObjectNode login(String email, String password) {
+    public Map<String, String> login(String email, String password) {
         List<User> allUsers = this.repository.getAllUsers();
 
         User currentUser = allUsers.stream()
                 .filter(user -> user.getEmail().equals(email) &&
                         user.getPassword().equals(password)).collect(Collectors.toList()).get(0);
 
-        ObjectNode user = Json.newObject();
-        user.put("firstName", currentUser.getFirstName());
-        user.put("lastName", currentUser.getLastName());
-        user.put("email", currentUser.getEmail());
-        user.put("role", currentUser.getRole());
+        Map<String, String> userMap = Map.of(
+                "firstName", currentUser.getFirstName(),
+                "lastName", currentUser.getLastName(),
+                "email", currentUser.getEmail(),
+                "role", currentUser.getRole()
+        );
 
-        return user;
+        return userMap;
     }
 
     public void addStockToUser(String userEmail, long stockId) throws Exception {

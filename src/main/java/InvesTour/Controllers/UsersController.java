@@ -33,7 +33,7 @@ public class UsersController {
     }
 
     @PostMapping(value = "/login")
-    public ObjectNode login(@RequestBody Map<String, String> credentials) {
+    public Map<String, String> login(@RequestBody Map<String, String> credentials) {
         return usersService.login(credentials.get("email"), credentials.get("password"));
     }
 }
