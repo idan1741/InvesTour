@@ -34,7 +34,7 @@ public class StocksRepository {
     }
 
     public List<Stock> getAllStocks() {
-        return this.dsl.select(field("id"), field("name"), field("symbol"))
+        return this.dsl.select(field("id"), field("name"), field("symbol"), field("price"), field("change"))
                 .from(table("investour.tbl_stocks"))
                 .fetchInto(Stock.class);
     }
