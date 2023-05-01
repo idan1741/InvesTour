@@ -20,26 +20,31 @@ public class StocksController {
     private final StocksService stocksService;
 
     @PostMapping("/user/add")
-    public ResponseEntity<String> addStockToUser(@RequestBody JsonNode jsonBody) throws Exception {
-        String userEmail = jsonBody.get("userEmail").asText();
-        long stockId = jsonBody.get("stockId").asLong();
+//    public ResponseEntity<String> addStockToUser(@RequestBody JsonNode jsonBody) throws Exception {
+    public String addStockToUser(@RequestBody JsonNode jsonBody) throws Exception {
+//        String userEmail = jsonBody.get("userEmail").asText();
+//        long stockId = jsonBody.get("stockId").asLong();
+//
+//        this.service.addStockToUser(userEmail, stockId);
+//
+//        String userStockInfo = "User ID: " + userEmail + ", Stock ID: " + stockId;
 
-        this.service.addStockToUser(userEmail, stockId);
-
-        String userStockInfo = "User ID: " + userEmail + ", Stock ID: " + stockId;
-
-        return ResponseEntity.ok(userStockInfo);
+        return  "stock deleted";
+//        return ResponseEntity.ok(userStockInfo);
     }
 
     @PostMapping(value = "/user/delete")
-    public ResponseEntity<String> deleteStockFromUser(@RequestBody JsonNode jsonBody) throws Exception {
-        String userEmail = jsonBody.get("userEmail").asText();
-        long stockId = jsonBody.get("stockId").asLong();
+//    public ResponseEntity<String> deleteStockFromUser(@RequestBody JsonNode jsonBody) throws Exception {
+    public String deleteStockFromUser(@RequestBody JsonNode jsonBody) throws Exception {
+//        String userEmail = jsonBody.get("userEmail").asText();
+//        long stockId = jsonBody.get("stockId").asLong();
+//
+//        this.service.deleteStockForUser(userEmail, stockId);
+//
+//        String userStockInfo = "User ID: " + userEmail + ", Stock ID: " + stockId;
+//        return ResponseEntity.ok(userStockInfo);
 
-        this.service.deleteStockForUser(userEmail, stockId);
-
-        String userStockInfo = "User ID: " + userEmail + ", Stock ID: " + stockId;
-        return ResponseEntity.ok(userStockInfo);
+        return  "stock deleted";
     }
 
     @DeleteMapping(value = "/{stockId}/user/{userId}")
@@ -49,7 +54,7 @@ public class StocksController {
 
     @GetMapping
     public Stock[] getAllStocks() {
-        Stock[] StockList = new Stock[10];
+        Stock[] StockList = new Stock[12];
         Stock a = new Stock(111,"Tesla","TSLA");
         Stock b = new Stock(222,"s&p 500","SPY");
         Stock c = new Stock(333,"wow, Inc","adwafs");
@@ -60,6 +65,8 @@ public class StocksController {
         Stock h = new Stock(8,"wow, Inc","adwafs");
         Stock i = new Stock(9,"damn","3453ty");
         Stock j = new Stock(10,"lol","svd");
+        Stock k = new Stock(11,"yoyo","878787");
+        Stock l = new Stock(12,"fsdg","podu");
         StockList[0] = a;
         StockList[1] = b;
         StockList[2] = c;
@@ -70,6 +77,8 @@ public class StocksController {
         StockList[7] = h;
         StockList[8] = i;
         StockList[9] = j;
+        StockList[10] = k;
+        StockList[11] = l;
 
         return  StockList;
 //        return ResponseEntity.ok(this.stocksService.getAllStocks());

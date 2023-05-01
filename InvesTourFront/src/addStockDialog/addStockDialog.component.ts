@@ -1,12 +1,10 @@
 import { Component, Inject, Input, OnInit} from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Store } from "@ngrx/store";
-import { addStockToUserList, getStocksList, removeStockFromUserList } from "src/server-requests/news/news.actions";
-import { selectStocksByUserList, selectStocksList } from "src/server-requests/news/news.reducer";
 import { RequestConfigService } from "src/server-requests/requests.service";
+import { getStocksByUser, toggleStock } from "src/server-requests/stocks/stocks.actions";
 import { selectUserStockList } from "src/server-requests/stocks/stocks.reducer";
-import { selectUsersFirstName, selectUsersLastName } from "src/server-requests/users/users.reducer";
-import { Stock } from "src/stock/stock.class";
+
 
 
 @Component({
@@ -17,8 +15,8 @@ import { Stock } from "src/stock/stock.class";
 export class addStockDialogComponent implements OnInit {
   searchText: string;
 
-  stockList$ = this.store.select(selectStocksList);
-  userStocklList$ = this.store.select(selectStocksByUserList);
+  stockList$ = this.configService.getStocksList();
+  userStocklList$ = this.store.select(selectUserStockList);
 
   constructor(
     private store: Store,
@@ -28,7 +26,7 @@ export class addStockDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(getStocksList());
+    // this.store.dispatch(getStocksByUser());
   }
 
   isStockInUserList(stockSymbol: string): boolean {
@@ -45,17 +43,20 @@ export class addStockDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  // add(event){
-  //   let stock = this.StockList.find(stock=> stock.symbol === event.target.innerText);
-  //   if(stock.isInUserFav) {
-  //     this.StockList.find(stock=> stock.symbol === event.target.innerText).isInUserFav = false;
+  toggleStock(event){
+    this.store.dispatch(toggleStock({stockSymbol: event.target.innerText}))
+    
+    // let stock = this.StockList.find(stock=> stock.symbol === event.target.innerText);
 
-  //     this.store.dispatch(removeStockFromUserList(event.target.innerText))
-  //   } else {
-  //     stock.isInUserFav = !stock.isInUserFav;
-  //     this.userStocklList.push(stock);
+    // if(stock.isInUserFav) {
+    //   this.StockList.find(stock=> stock.symbol === event.target.innerText).isInUserFav = false;
 
-  //     this.store.dispatch(addStockToUserList(event.target.innerText))
-  //   }
-  // }
+    //   this.store.dispatch(removeStockFromUserList(event.target.innerText))
+    // } else {
+    //   stock.isInUserFav = !stock.isInUserFav;
+    //   this.userStocklList.push(stock);
+
+    //   this.store.dispatch(addStockToUserList(event.target.innerText))
+    // }
+  }
 }

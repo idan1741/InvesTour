@@ -8,7 +8,7 @@ import { Article } from "./article.class";
   styleUrls: ['./article.component.css']
 })
 export class ArticleComponent {
-@Input() article: Article;
+@Input() article;
 public isOpen = false;
 
 constructor(){

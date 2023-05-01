@@ -22,7 +22,7 @@ public class UsersController {
 
     @GetMapping(value = "/{email}")
     public User getUserByEmail(@PathVariable("email") String email) {
-        User mockUser = new User("Joseph","Collins","js@123","123","");
+        User mockUser = new User("Joseph","Collins",email,"123","");
 
         return mockUser;
     }

@@ -6,10 +6,19 @@
     color: white;
 }
 
+.bar {
+    display: flex;
+    justify-content: space-between;
+    font-size: x-large;
+    height: 8vh;
+    align-items: center;
+}
+
 .logo {
     display: flex;
     justify-content: flex-start;
-    font-size: xxx-large;
+    font-size: 70px;
+    text-decoration: none;
 }
 
 .content {

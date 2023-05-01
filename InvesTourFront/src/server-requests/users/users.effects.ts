@@ -56,7 +56,7 @@ export class UsersEffects {
                     // check response authenticity and retract user info
                     if(true) {
                         this.store.dispatch(loginSuccess(user));
-                        this.router.navigateByUrl('/myWall')
+                        this.router.navigateByUrl('/main')
                     } else {
                         alert("could not log in")
                     }
