@@ -15,4 +15,6 @@ public class Stock {
     private final long price;
     @JsonProperty("change")
     private final int change;
+    @JsonProperty("key_word")
+    private final String keyWord;
 }

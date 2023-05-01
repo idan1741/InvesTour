@@ -17,7 +17,7 @@ public class StocksRepository {
     private final DSLContext dsl;
 
     public List<String> getStockNamesByUserEmail(String userEmail) {
-        return this.dsl.select(field("name"))
+        return this.dsl.select(field("key_word"))
                 .from(table("investour.tbl_stocks"))
                 .where(field("id")
                         .in(this.dsl.select(field("stock_id"))
