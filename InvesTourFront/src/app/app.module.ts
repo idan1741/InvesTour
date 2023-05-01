@@ -35,6 +35,7 @@ import { StocksEffects } from 'src/server-requests/stocks/stocks.effects';
 import { stocksReducer, stocksReducerToken } from 'src/server-requests/stocks/stocks.reducer';
 import { MainComponent } from 'src/main/main.component';
 import { SearchPipe } from 'src/utils/pipes/search.pipe';
+import { TimeAgoPipe } from 'src/utils/pipes/time-ago.pipe';
 
 export const store: Store<any> = createStore(
   rootReducer,
@@ -54,7 +55,8 @@ export const store: Store<any> = createStore(
     StocksListComponent,
     addStockDialogComponent,
     MainComponent,
-    SearchPipe
+    SearchPipe,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,

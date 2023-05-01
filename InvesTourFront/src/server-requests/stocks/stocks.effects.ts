@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { switchMap, tap, withLatestFrom } from "rxjs/operators";
+import { map, switchMap, tap, withLatestFrom } from "rxjs/operators";
 import { RequestConfigService } from "../requests.service";
 import { Store } from "@ngrx/store";
 import { getStocksByUser, getStocksByUserSuccess, toggleStock } from "./stocks.actions";
@@ -27,15 +27,15 @@ export class StocksEffects {
             withLatestFrom(this.store.select(selectUserStockList), this.store.select(selectUsersEmail)),
             switchMap(([{stockSymbol}, usersStocks, userEmail]) => {
                 const x = usersStocks.find(s => s.symbol === stockSymbol);
+
                 return usersStocks.find(s => s.symbol === stockSymbol) ?
                     this.configService.removeStockFromUserList(userEmail, stockSymbol).pipe(
                         tap((res) => console.log(res)),
-                        tap(() => this.store.dispatch(getStocksByUser()))
+                        map(() => getStocksByUser())
                         ) :
-                    this.configService.addStockToUserList(userEmail, stockSymbol).pipe(tap(() => this.store.dispatch(getStocksByUser())))
+                    this.configService.addStockToUserList(userEmail, stockSymbol).pipe(map(() => getStocksByUser()))
             })
-        ),
-        { dispatch: false }
+        )
     )
 
     constructor(
