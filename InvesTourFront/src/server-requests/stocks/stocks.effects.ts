@@ -26,7 +26,6 @@ export class StocksEffects {
             ofType(toggleStock),
             withLatestFrom(this.store.select(selectUserStockList), this.store.select(selectUsersEmail)),
             switchMap(([{stockSymbol}, usersStocks, userEmail]) => {
-                const x = usersStocks.find(s => s.symbol === stockSymbol);
                 return usersStocks.find(s => s.symbol === stockSymbol) ?
                     this.configService.removeStockFromUserList(userEmail, stockSymbol).pipe(tap(() => this.store.dispatch(getStocksByUser()))) :
                     this.configService.addStockToUserList(userEmail, stockSymbol).pipe(tap(() => this.store.dispatch(getStocksByUser())))
