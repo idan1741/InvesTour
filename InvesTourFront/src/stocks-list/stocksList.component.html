@@ -1,20 +1,10 @@
 <div class="stocksListPage">
-    <div class="bar">
-        <div class="menu">
-        <a class="logo" [routerLink]="['/main']"><label style="color: #548235">Inves</label><label style="color: white">tour</label></a>        <a *ngIf="name" style="color: #548235;margin-left: 35px; text-decoration: none;" [routerLink]="['/myWall']"> my wall </a>
-        <a *ngIf="name" style="color: #548235;margin-left: 35px; text-decoration: none;" [routerLink]="['/stockList']"> stocks list </a>
-        </div>
-        <div><label *ngIf="name" > Hi {{firstName$ | async}} {{lastName$ | async}} </label></div>
-    </div>
-    <div class="content">
-        <h1>Stock List</h1>
+        <h1 style="color:#0374d5; font-family: 'Poppins'">Stock List</h1>
         <div class="stocksList">
             <div [class]="stock" *ngFor="let stock of (UserStockList$ | async)">
                 {{stock.symbol}}
             </div>
-            <!-- <img [src]="stock.isInUserFav ? './assets/filledHeart.png' : './assets/heart.png'" width="20" height="20" [ngClass]="stock.isInUserFav ? '': 'user'"> -->
             <button mat-raised-button color="primary" (click)="addStock()">Add +</button>
         </div>
         <button mat-raised-button color="primary" (click)="addStock()"><mat-icon (click)="toggle()">arrow_right_alt</mat-icon></button>
-    </div>
 </div>

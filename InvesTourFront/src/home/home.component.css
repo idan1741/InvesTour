@@ -1,40 +1,28 @@
 .home {
-    width: 100vw;
-    height: 100vh;
-    background-color: #333333;
-    font-family: Calibri;
-    color: white;
-}
-
-.content {
     display: flex;
     flex-direction: column;
     padding-top: 10vh;
     margin-left: 1vw;
-    height: 50vh;
+    height: 70vh;
     justify-content: space-evenly;
 }
 
-.bar {
+.section {
     display: flex;
-    justify-content: flex-end;
+    height: 60vh;
 }
 
-.logo {
-    font-size: 70px;
+.title {
+    display: flex;
+    flex-direction: column;
+    width: 55vw; 
+    font-size: 70px; 
+    font-family: 'Segoe UI'
 }
 
 .mat-raised-button {
-    background-color: #548235;
+    background-color: #0374d5;
     color: white;
     font-family: Calibri;
     font-size: 15px;
-}
-
-.mat-stroked-button {
-    background-color: transparent;
-    color: white;
-    font-family: Calibri;
-    font-size: 15px;
-    margin: 1% ;
 }

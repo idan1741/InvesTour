@@ -1,29 +1,7 @@
 .signIn {
-    width: 100vw;
-    height: 100vh;
     background-color: #333333;
-    font-family: Calibri;
     color: white;
-}
-
-.bar {
-    display: flex;
-    justify-content: space-between;
-    font-size: x-large;
-    height: 8vh;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    justify-content: flex-start;
-    font-size: 70px;
-    text-decoration: none;
-}
-
-.content {
     margin-top: 5%;
-    height: 40vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
