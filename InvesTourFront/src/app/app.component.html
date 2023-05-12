@@ -12,8 +12,8 @@
                 [routerLink]="['/stockList']"> stocks list </a>
         </div>
         <div style="display: flex" *ngIf="!(firstName$ | async)">
-            <button mat-stroked-button routerLink="signIn">Sign In</button>
-            <button style="margin-left: 7px;" mat-stroked-button routerLink="signUp">Sign Up</button>
+            <button mat-stroked-button (click)="signIn()">Sign In</button>
+            <button style="margin-left: 7px;" mat-stroked-button (click)="signUp()">Sign Up</button>
         </div>
         <div style="display: flex" *ngIf="(firstName$ | async)">
             <span> Hi {{(firstName$ | async)}} {{(lastName$ | async)}} </span>

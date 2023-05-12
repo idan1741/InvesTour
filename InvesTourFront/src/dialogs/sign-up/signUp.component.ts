@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { EnvironmentConfig } from 'src/environments/env-loader/fetch-env-provider';
 import { EnvConfig } from 'src/environments/environment-config/config.interface';
-import { RequestConfigService } from 'src/server-requests/requests.service';
 import { addUser } from 'src/server-requests/users/users.actions';
 
 @Component({
@@ -12,10 +12,10 @@ import { addUser } from 'src/server-requests/users/users.actions';
 })
 export class SignUpComponent implements OnInit {
   constructor(
-    @Inject(EnvironmentConfig) private envConfig: EnvConfig, 
-    private requestConfigService: RequestConfigService,
+    @Inject(EnvironmentConfig) private envConfig: EnvConfig,
+    public dialogRef: MatDialogRef<SignUpComponent>,
     private store: Store
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     console.log(`http://${this.envConfig.serverUrl}${this.envConfig.httpPort}`);
@@ -29,21 +29,22 @@ export class SignUpComponent implements OnInit {
   public password: string = "";
   public confirmPassword: string = "";
   public errorMessage: string = "";
-  public disabled: boolean= false;
+  public disabled: boolean = false;
 
-  public signUp(){
-    if(this.password === this.confirmPassword) {
+  public signUp() {
+    if (this.password === this.confirmPassword) {
       this.store.dispatch(
-        addUser({firstName: this.firstName, lastName: this.lastName, email: this.email, password: this.password})
-      )
+        addUser({ firstName: this.firstName, lastName: this.lastName, email: this.email, password: this.password })
+      );
+      this.dialogRef.close();
     } else {
       alert("password must match confirmation")
     }
   }
 
-  public checkPasswords(event){
+  public checkPasswords(event) {
     console.log(event);
-    if(this.password !== event.target.value) {
+    if (this.password !== event.target.value) {
       this.errorMessage = "The passwords do not match";
       this.disabled = true;
     } else {

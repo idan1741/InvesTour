@@ -1,24 +1,39 @@
-.signIn {
-    background-color: #333333;
+.signIn
+{
+    width: 25vw;
+    height: 50vh;
+    font-family: Calibri;
     color: white;
+}
+.form {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: center;
+    height: 71%;
 }
+
+::ng-deep.mat-dialog-container{
+    background-color: #333333;
+}
+
 .input {
-    height: 6vh;
+    height: 5.5vh;
     width: 22vw;
-    background-color: transparent;
-    border: 1.5px solid #548235;
+    background-color: #423f3f;
+    border: none;
     border-radius: 5px;
     color: white;
     display: flex;
+    padding: 5px;
+}
+
+.input:hover {
+    background-color: #3c3838;
 }
 
 .lala {
     height: 6vh;
-    width: 19vw;
+    width: 22vw;
     background-color: transparent;
     border: 0px solid;
     padding: 0%;
@@ -31,13 +46,19 @@
     line-height: 6vh;
 }
 
-.lala:focus {
-outline: none;
+.input:focus, .lala:focus {
+    outline: none;
 }
 
 .mat-raised-button {
-    background-color: #548235;
+    border:1px solid #f8d24b;
+    background-color: transparent;
     color: white;
     font-family: Calibri;
     font-size: 15px;
+    width: fit-content;
+}
+
+.mat-raised-button:hover {
+    background-color: #f8d24b;
 }
