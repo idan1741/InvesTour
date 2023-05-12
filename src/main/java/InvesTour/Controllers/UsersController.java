@@ -2,7 +2,6 @@ package InvesTour.Controllers;
 
 import InvesTour.Models.User;
 import InvesTour.Services.UsersService;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +27,8 @@ public class UsersController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void addUser(@RequestBody User user) throws Exception {
-        usersService.signUp(user);
+    public Map<String, String> addUser(@RequestBody User user) throws Exception {
+        return usersService.signUp(user);
     }
 
     @PostMapping(value = "/login")

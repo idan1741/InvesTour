@@ -8,7 +8,6 @@ export enum UsersActions {
     GET_USER_BY_ID = '[Users] get user by id',
     LOGIN_USER = '[Users] login user',
     LOGIN_SUCCESS = '[Users] login success',
-    SIGNUP_USER = '[Users] signup user'
 }
 
 export const addUser = createAction(
@@ -34,8 +33,4 @@ export const loginUser = createAction(
 export const loginSuccess = createAction(
     UsersActions.LOGIN_SUCCESS,
     props<User>()
-)
-export const SignUpUser = createAction(
-    UsersActions.SIGNUP_USER,
-    props<{ email: string, password: string }>()
 )

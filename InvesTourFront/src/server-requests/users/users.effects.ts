@@ -7,7 +7,6 @@ import {
   getUserById,
   loginSuccess,
   loginUser,
-  SignUpUser,
 } from './users.actions';
 import { RequestConfigService } from '../requests.service';
 import { Store } from '@ngrx/store';
@@ -29,6 +28,7 @@ export class UsersEffects {
                 // check response authenticity and retract user info
                 if (true) {
                   this.store.dispatch(loginSuccess(user));
+                  console.log(user);
                   this.router.navigateByUrl('/main');
                 } else {
                   alert('could not log in automatically');
@@ -85,6 +85,7 @@ export class UsersEffects {
               // check response authenticity and retract user info
               if (true) {
                 this.store.dispatch(loginSuccess(user));
+                console.log(user);
                 this.router.navigateByUrl('/main');
               } else {
                 alert('could not log in');
