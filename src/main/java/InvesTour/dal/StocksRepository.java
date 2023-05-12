@@ -17,7 +17,7 @@ public class StocksRepository {
     private final DSLContext dsl;
 
     public List<String> getStockNamesByUserEmail(String userEmail) {
-        return this.dsl.select(field("name"))
+        return this.dsl.select(field("key_word"))
                 .from(table("investour.tbl_stocks"))
                 .where(field("id")
                         .in(this.dsl.select(field("stock_id"))
@@ -34,7 +34,7 @@ public class StocksRepository {
     }
 
     public List<Stock> getAllStocks() {
-        return this.dsl.select(field("id"), field("name"), field("symbol"))
+        return this.dsl.select()
                 .from(table("investour.tbl_stocks"))
                 .fetchInto(Stock.class);
     }

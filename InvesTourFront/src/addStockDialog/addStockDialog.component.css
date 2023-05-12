@@ -23,7 +23,7 @@
 
 .section {
     width: 24vw;
-    height: 25%;
+    height: 40px;
     display: flex;
     align-items: center;
 }

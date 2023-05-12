@@ -11,9 +11,14 @@ export class StockComponent {
   @Input() stock: Stock;
   public isOpen = false;
 
-  constructor(){}
+  constructor(){
+  }
 
   public toggle(){
     this.isOpen=!this.isOpen;
+  }
+
+  abs(val){
+    return Math.abs(val);
   }
 }

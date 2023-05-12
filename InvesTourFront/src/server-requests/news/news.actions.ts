@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Article } from "./news.reducer";
+import { Article } from "src/article/article.class";
 
 export enum NewsActions {
     GET_MAIN_PAGE_ARTICLES = '[News] get main page articles',
@@ -34,21 +34,21 @@ export const getArticlesByUserSuccess = createAction(
 
 
 // TODO: move to stocks
-export const getStocksList = createAction(NewsActions.GET_STOCKS_LIST)
-export const getStocksListSuccess = createAction(
-    NewsActions.GET_STOCKS_LIST_SUCCESS,
-    props<{ stocks: any[]}>()
-)
-export const addStockToUserList = createAction(
-    NewsActions.ADD_STOCK_TO_USER_LIST,
-    props<{ stockId: string }>()
-)
-export const removeStockFromUserList = createAction(
-    NewsActions.REMOVE_STOCK_FROM_USER_LIST,
-    props<{ stockId: string }>()
-)
-export const getStocksByUserList = createAction(NewsActions.GET_STOCKS_BY_USER_LIST)
-export const getStocksByUserListSuccess = createAction(
-    NewsActions.GET_STOCKS_BY_USER_LIST_SUCCESS,
-    props<{ stocks: any[]}>()
-)
+// export const getStocksList = createAction(NewsActions.GET_STOCKS_LIST)
+// export const getStocksListSuccess = createAction(
+//     NewsActions.GET_STOCKS_LIST_SUCCESS,
+//     props<{ stocks: any[]}>()
+// )
+// export const addStockToUserList = createAction(
+//     NewsActions.ADD_STOCK_TO_USER_LIST,
+//     props<{ stockId: string }>()
+// )
+// export const removeStockFromUserList = createAction(
+//     NewsActions.REMOVE_STOCK_FROM_USER_LIST,
+//     props<{ stockId: string }>()
+// )
+// export const getStocksByUserList = createAction(NewsActions.GET_STOCKS_BY_USER_LIST)
+// export const getStocksByUserListSuccess = createAction(
+//     NewsActions.GET_STOCKS_BY_USER_LIST_SUCCESS,
+//     props<{ stocks: any[]}>()
+// )

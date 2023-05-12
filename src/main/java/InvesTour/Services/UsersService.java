@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +23,7 @@ public class UsersService {
         return Json.fromJson("", User.class);
     }
 
-    public void signUp(User user) throws Exception {
+    public Map<String, String> signUp(User user) throws Exception {
         List<User> users = this.repository.getAllUsers();
 
         boolean isUserAlreadySignedUp = users.stream().anyMatch(currUser -> currUser.getEmail().equals(user.getEmail()));
@@ -29,15 +31,25 @@ public class UsersService {
         if (isUserAlreadySignedUp) {
             throw new SignUpException("already signed up");
         }
-
         this.repository.addUser(user);
+        return this.login(user.getEmail(), user.getPassword());
     }
 
-    public boolean login(String email, String password) {
+    public Map<String, String> login(String email, String password) {
         List<User> allUsers = this.repository.getAllUsers();
 
-        return allUsers.stream()
-                .anyMatch(user -> user.getEmail().equals(email) && user.getPassword().equals(password));
+        User currentUser = allUsers.stream()
+                .filter(user -> user.getEmail().equals(email) &&
+                        user.getPassword().equals(password)).collect(Collectors.toList()).get(0);
+
+        Map<String, String> userMap = Map.of(
+                "firstName", currentUser.getFirstName(),
+                "lastName", currentUser.getLastName(),
+                "email", currentUser.getEmail(),
+                "role", currentUser.getRole()
+        );
+
+        return userMap;
     }
 
     public void addStockToUser(String userEmail, long stockId) throws Exception {

@@ -25,7 +25,7 @@ public class Json {
         return mapper.valueToTree(o);
     }
 
-    public static JsonNode newObject() {
+    public static ObjectNode newObject() {
         return mapper.createObjectNode();
     }
 

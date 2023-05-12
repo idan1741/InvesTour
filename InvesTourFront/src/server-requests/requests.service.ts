@@ -8,7 +8,7 @@ export class RequestConfigService {
     constructor(private http: HttpClient, @Inject(EnvironmentConfig) private envConfig: EnvConfig) {}
     
     // TODO: erase
-    private ichaiApi = 'https://be1c-77-125-59-106.eu.ngrok.io';
+    private ichaiApi = 'http://localhost:8080';
     private httpApi = this.ichaiApi;
     // private httpApi = `http://${this.envConfig.serverUrl}${this.envConfig.httpPort}`;
 
@@ -30,11 +30,14 @@ export class RequestConfigService {
     getStocksList() {
         return this.http.get(`${this.httpApi}/stocks`)
     }
+    getStockListByUser(userEmail: string) {
+        return this.http.get(`${this.httpApi}/stocks/${userEmail}`)
+    }
     addStockToUserList(userEmail: string, stockId: string) {
         return this.http.post(`${this.httpApi}/stocks/user/add`, { userEmail, stockId })
     }
-    removeStockFromUserList(userEmail: string, stockId: string) {
-        return this.http.post(`${this.httpApi}/stocks/user/delete`, { userEmail, stockId })
+    removeStockFromUserList(userEmail: string, stockSymbol: string) {
+        return this.http.post(`${this.httpApi}/stocks/user/delete`, { userEmail, stockSymbol })
     }
 
     // News

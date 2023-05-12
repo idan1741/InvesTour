@@ -8,11 +8,11 @@ import { Article } from "./article.class";
   styleUrls: ['./article.component.css']
 })
 export class ArticleComponent {
-@Input() article: Article;
+@Input() article;
 public isOpen = false;
 
 constructor(){
-  // console.log(this.article);
+  console.log(this.article);
 }
 
 public toggle(){

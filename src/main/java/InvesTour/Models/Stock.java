@@ -11,4 +11,10 @@ public class Stock {
     private final String name;
     @JsonProperty("symbol")
     private final String symbol;
+    @JsonProperty("price")
+    private final long price;
+    @JsonProperty("change")
+    private final int change;
+    @JsonProperty("key_word")
+    private final String keyWord;
 }

@@ -1,11 +1,13 @@
 import { createAction, props } from "@ngrx/store";
+import { User } from "./users.reducer";
+import { SIGN_IN } from "src/app/app-actions";
 
 export enum UsersActions {
     ADD_USER = '[Users] add user',
     DELETE_USER = '[Users] delete user',
     GET_USER_BY_ID = '[Users] get user by id',
     LOGIN_USER = '[Users] login user',
-    LOGIN_SUCCESS = '[Users] login success'
+    LOGIN_SUCCESS = '[Users] login success',
 }
 
 export const addUser = createAction(
@@ -30,5 +32,5 @@ export const loginUser = createAction(
 
 export const loginSuccess = createAction(
     UsersActions.LOGIN_SUCCESS,
-    props<{ firstName: string, lastName: string }>()
+    props<User>()
 )

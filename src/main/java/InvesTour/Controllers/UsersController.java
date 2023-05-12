@@ -27,12 +27,12 @@ public class UsersController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void addUser(@RequestBody User user) throws Exception {
-        usersService.signUp(user);
+    public Map<String, String> addUser(@RequestBody User user) throws Exception {
+        return usersService.signUp(user);
     }
 
     @PostMapping(value = "/login")
-    public boolean login(@RequestBody Map<String, String> credentials) {
+    public Map<String, String> login(@RequestBody Map<String, String> credentials) {
         return usersService.login(credentials.get("email"), credentials.get("password"));
     }
 }

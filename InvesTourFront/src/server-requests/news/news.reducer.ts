@@ -1,33 +1,27 @@
 import { Action, createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store";
-import { getArticlesByUserSuccess, getStocksByUserListSuccess, getStocksListSuccess } from "./news.actions";
+import { getArticlesByUserSuccess } from "./news.actions";
 import { state } from "@angular/animations";
+import { Article } from "src/article/article.class";
 
 export const newsReducerToken = 'news';
 
-export interface Article {
-    company: string;
-    text: string;
-    extendedText: string;
-    time: string
-}
-
 export interface NewsState {
     newsByUser: Article[],
-    stocksList: any[],
-    stocksListByUser: any[]
+    // stocksList: any[],
+    // stocksListByUser: any[]
 }
 
 export const initialState: NewsState = {
     newsByUser: [],
-    stocksList: [],
-    stocksListByUser: []
+    // stocksList: [],
+    // stocksListByUser: []
 }
 
 const reducer = createReducer(
     initialState,
     on(getArticlesByUserSuccess, (state, {articles}) => ({ ...state, newsByUser: articles})),
-    on(getStocksListSuccess, (state, {stocks}) => ({ ...state, stocksList: stocks})),
-    on(getStocksByUserListSuccess, (state, {stocks}) => ({ ...state, stocksListByUser: stocks})),
+    // on(getStocksListSuccess, (state, {stocks}) => ({ ...state, stocksList: stocks})),
+    // on(getStocksByUserListSuccess, (state, {stocks}) => ({ ...state, stocksListByUser: stocks})),
 )
 
 export function newsReducer(state: NewsState | undefined, action: Action) {
@@ -42,11 +36,11 @@ export const selectAllNewsByUser = createSelector(
 )
 
 // TODO: move to stocks
-export const selectStocksList = createSelector(
-    selectNewsState,
-    (state: NewsState) => state.stocksList
-)
-export const selectStocksByUserList = createSelector(
-    selectNewsState,
-    (state: NewsState) => state.stocksListByUser
-)
+// export const selectStocksList = createSelector(
+//     selectNewsState,
+//     (state: NewsState) => state.stocksList
+// )
+// export const selectStocksByUserList = createSelector(
+//     selectNewsState,
+//     (state: NewsState) => state.stocksListByUser
+// )
