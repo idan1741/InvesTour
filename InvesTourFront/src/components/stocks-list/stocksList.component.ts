@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { addStockDialogComponent } from "src/addStockDialog/addStockDialog.component";
+import { addStockDialogComponent } from "src/dialogs/addStockDialog/addStockDialog.component";
 import { getStocksByUser } from "src/server-requests/stocks/stocks.actions";
 import { selectUserStockList } from "src/server-requests/stocks/stocks.reducer";
 

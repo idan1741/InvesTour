@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from 'src/home/home.component';
-import { MainComponent } from 'src/main/main.component';
-import { MyWallComponent } from 'src/my-wall/myWall.component';
-import { SignInComponent } from 'src/sign-in/signIn.component';
-import { SignUpComponent } from 'src/sign-up/signUp.component';
-import { StocksListComponent } from 'src/stocks-list/stocksList.component';
+import { HomeComponent } from 'src/components/home/home.component';
+import { MainComponent } from 'src/components/main/main.component';
+import { SignInComponent } from 'src/dialogs/sign-in/signIn.component';
+import { StocksListComponent } from 'src/components/stocks-list/stocksList.component';
+import { MyWallComponent } from 'src/components/my-wall/myWall.component';
+import { SignUpComponent } from 'src/dialogs/sign-up/signUp.component';
 
 
 const routes: Routes = [

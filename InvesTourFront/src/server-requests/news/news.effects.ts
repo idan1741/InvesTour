@@ -6,7 +6,7 @@ import { Store } from "@ngrx/store";
 import { Router } from "@angular/router";
 import { getArticlesByUser, getArticlesByUserSuccess } from "./news.actions";
 import { selectUsersEmail } from "../users/users.reducer";
-import { Article } from "src/article/article.class";
+import { Article } from "src/components/article/article.class";
 
 @Injectable()
 export class NewsEffects {

@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { articlesReducer, ARTICLES_INITIAL_STATE } from "src/my-wall/articles-reducer";
 import { AppActions, SIGN_IN } from "./app-actions";
+import { ARTICLES_INITIAL_STATE, articlesReducer } from "src/components/main/articles-reducer";
 
 
 export const INITIAL_APP_STATE = {
