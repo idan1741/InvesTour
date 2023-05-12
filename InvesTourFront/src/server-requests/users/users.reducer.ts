@@ -1,25 +1,40 @@
 import { Action, createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store";
 import { addUser, loginSuccess } from "./users.actions";
 
+export interface User {
+    userId: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    role: string
+} 
+
 export const usersReducerToken = 'users';
 
 export interface UsersState {
     userId: string;
     firstName: string;
-    lastNAme: string;
+    lastName: string;
     email: string 
 }
 
 export const initialState: UsersState = {
     userId: null,
     firstName: null,
-    lastNAme: null,
+    lastName: null,
     email: null
 }
 
 const reducer = createReducer(
     initialState,
-    on(loginSuccess, (state, {firstName, lastName}) => ({ ...state, firstName, lastName}))
+    on(loginSuccess, (state, user) => {
+        return({ 
+        ...state, 
+        firstName: user.firstName, 
+        lastName: user.lastName,
+        email: user.email,
+        userId: user.userId
+    })})
 )
 
 export function usersReducer(state: UsersState | undefined, action: Action) {
@@ -39,7 +54,7 @@ export const selectUsersFirstName = createSelector(
 )
 export const selectUsersLastName = createSelector(
     selectUsersState, 
-    (state: UsersState) => state.lastNAme
+    (state: UsersState) => state.lastName
 )
 export const selectUsersEmail = createSelector(
     selectUsersState, 

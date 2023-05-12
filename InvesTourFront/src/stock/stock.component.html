@@ -1,14 +1,14 @@
 <div class="stock">
     <div class="name">
       <label> {{this.stock.symbol}} </label>
-      <label> {{this.stock.name}} </label>
+      <label style="font-size: small;"> {{this.stock.name}} </label>
     </div>
-    <div style=" display: flex; justify-content: center; width: 45%;">
+    <div style=" display: flex; justify-content: center; width: 30%;">
       {{this.stock.price}} $
     </div>
-    <div [ngClass]="this.stock.isRiseUp ? 'rise' : 'lala'">
-      <mat-icon>{{stock.isRiseUp ? 'trending_up' : 'trending_down'}}</mat-icon>
-      {{ this.stock.change}} %
+    <div [ngClass]="this.stock.change > 0 ? 'rise' : 'lala'">
+      <mat-icon>{{stock.change > 0 ? 'trending_up' : 'trending_down'}}</mat-icon>
+      {{ this.abs(this.stock.change)}} %
     </div>
     <!-- <mat-icon (click)="toggle()">{{isOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</mat-icon> -->
 </div>
