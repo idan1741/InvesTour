@@ -23,26 +23,27 @@
         </div>
       </div>
       <div class="stock-stat-section" #stockSection>
-        <div [ngClass]="this.stock.isRiseUp ? 'rise' : 'lala'">
-          <mat-icon>{{stock.isRiseUp ? 'trending_up' : 'trending_down'}}</mat-icon>
-          {{ this.stock.change}} %
-        </div>
         <div class="stock-stats">
-          <div class="period-toggle"> 
+          <div class="stock-price">{{ stock.price }}$</div>
+          <div [ngClass]="this.stock.isRiseUp ? 'rise' : 'lala'" style="margin-right: 15px; font-size: 1.3rem; direction: ltr;">
+            <mat-icon style="position: relative;top: 5px;">{{stock.isRiseUp ? 'trending_up' : 'trending_down'}}</mat-icon>
+            {{ stock.change}} %
+          </div>
+        </div>
+        <div class="stat-graph">
+          <div class="period-toggle">
             <div (click)="togglePeriod(StatPeriods.Day)" class="period">{{ StatPeriods.Day }}  |</div> 
             <div (click)="togglePeriod(StatPeriods.Week)" class="period">{{ StatPeriods.Week }}  |</div> 
             <div (click)="togglePeriod(StatPeriods.Month)" class="period">{{ StatPeriods.Month }}</div> 
           </div>
-        </div>
-        <div class="stat-graph">
           <ngx-charts-line-chart
             [view]="[stockSection.offsetWidth,300]"
             [scheme]="colorScheme"
-            [xAxis]="xAxis"
-            [yAxis]="yAxis"
+            [xAxis]="false"
+            [yAxis]="true"
             [trimYAxisTicks]="false"
-            [timeline]="timeline"
-            [results]="stock"
+            [timeline]="true"
+            [results]="[stock]"
           >
           </ngx-charts-line-chart>
         </div>

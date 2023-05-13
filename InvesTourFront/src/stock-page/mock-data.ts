@@ -1,7 +1,7 @@
-export const mockStockStatsDay = [
-    {
+export const mockStockStatsDay = {
       isRiseUp: true,
       change: 1.2,
+      price: 251.13,
       name: "TSLA",
       series: [
         {
@@ -129,12 +129,11 @@ export const mockStockStatsDay = [
           "value": 0.5
         }
       ]
-    }
-  ];
-export const mockStockStatsWeek = [
-    {
+    };
+export const mockStockStatsWeek = {
       isRiseUp: false,
       change: -0.3,
+      price: 251,
       name: "One Week",
       series: [
         {
@@ -166,12 +165,11 @@ export const mockStockStatsWeek = [
           "value": 0.5
         }
       ]
-    }
-  ];
-export const mockStockStatsMonth = [
-    {
+    };
+export const mockStockStatsMonth = {
       isRiseUp: false,
       change: -3.5,
+      price: 251,
       name: "One Month",
       series: [
         {
@@ -287,5 +285,4 @@ export const mockStockStatsMonth = [
           "value": 0.5
         }
       ]
-    }
-  ];
+    };

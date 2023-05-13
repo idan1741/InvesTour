@@ -44,7 +44,6 @@ export const store: Store<any> = createStore(
   applyMiddleware(createLogger())
 );
 
-
 @NgModule({
   declarations: [
     AppComponent,

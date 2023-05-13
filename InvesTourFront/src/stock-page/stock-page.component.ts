@@ -10,7 +10,6 @@ import { mockStockStatsDay, mockStockStatsMonth, mockStockStatsWeek } from "./mo
   styleUrls: ['./stock-page.component.css']
 })
 export class StockPageComponent implements OnInit {
-  @ViewChild('stock-stat-section', { static: true }) myElementRef: ElementRef;
   @Input() stock: any;
   
   firstName$ = this.store.select(selectUsersFirstName);
@@ -18,17 +17,13 @@ export class StockPageComponent implements OnInit {
 
   // allNewsByStock$ = this.store.select(selectAllNewsByStock);
 
-  stockIsAscending: boolean;
-  xAxis: boolean = false;
-  yAxis: boolean = true;
-  timeline: boolean = true;
   colorScheme = { domain: [] };
 
   constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.stock = mockStockStatsDay;
-    this.colorScheme.domain.push(this.stock[0].isRiseUp ? '#5AA454' : '#E44D25');
+    this.colorScheme.domain.push(this.stock.isRiseUp ? '#5AA454' : '#E44D25');
   }
 
   StatPeriods = {

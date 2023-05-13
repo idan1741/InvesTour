@@ -41,6 +41,12 @@
     height: 75vh;
     /* overflow: hidden; */
 }
+.stock-price {
+    width: 100%;
+    text-align: right;
+    font-size: 1.8rem;
+    padding-right: 15px;
+ }
 .rise {
     color: green;
 }
@@ -50,13 +56,15 @@
 .stock-stats {
     height: 30%;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    direction: rtl;
 }
 .period-toggle {
     display: flex;
     margin-left: 0.5rem;
     height: auto;
-    position: relative;
-    top: 88%;
     color: #a39c9c;
 }
 .period {
