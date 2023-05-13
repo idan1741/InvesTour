@@ -31,6 +31,8 @@ import { newsReducer, newsReducerToken } from 'src/server-requests/news/news.red
 import { StockComponent } from 'src/stock/stock.component';
 import { StocksListComponent } from 'src/stocks-list/stocksList.component';
 import { addStockDialogComponent } from 'src/addStockDialog/addStockDialog.component';
+import { StockPageComponent } from 'src/stock-page/stock-page.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 export const store: Store<any> = createStore(
   rootReducer,
@@ -45,6 +47,7 @@ export const store: Store<any> = createStore(
     SignInComponent,
     SignUpComponent,
     MyWallComponent,
+    StockPageComponent,
     ArticleComponent,
     StockComponent,
     StocksListComponent,
@@ -62,6 +65,7 @@ export const store: Store<any> = createStore(
     FormsModule,
     NgReduxModule,
     HttpClientModule,
+    NgxChartsModule,
     MatDialogModule,
     StoreModule.forRoot({}),
     StoreModule.forFeature(usersReducerToken, usersReducer),
