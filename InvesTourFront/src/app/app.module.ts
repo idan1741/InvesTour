@@ -33,6 +33,11 @@ import { StocksListComponent } from 'src/stocks-list/stocksList.component';
 import { addStockDialogComponent } from 'src/addStockDialog/addStockDialog.component';
 import { StockPageComponent } from 'src/stock-page/stock-page.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { StocksEffects } from 'src/server-requests/stocks/stocks.effects';
+import { stocksReducer, stocksReducerToken } from 'src/server-requests/stocks/stocks.reducer';
+import { MainComponent } from 'src/main/main.component';
+import { SearchPipe } from 'src/utils/pipes/search.pipe';
+import { TimeAgoPipe } from 'src/utils/pipes/time-ago.pipe';
 
 export const store: Store<any> = createStore(
   rootReducer,
@@ -51,7 +56,10 @@ export const store: Store<any> = createStore(
     ArticleComponent,
     StockComponent,
     StocksListComponent,
-    addStockDialogComponent
+    addStockDialogComponent,
+    MainComponent,
+    SearchPipe,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,
@@ -70,8 +78,9 @@ export const store: Store<any> = createStore(
     StoreModule.forRoot({}),
     StoreModule.forFeature(usersReducerToken, usersReducer),
     StoreModule.forFeature(newsReducerToken, newsReducer),
+    StoreModule.forFeature(stocksReducerToken, stocksReducer),
     EffectsModule.forRoot([]),
-    EffectsModule.forFeature([UsersEffects, NewsEffects]),
+    EffectsModule.forFeature([UsersEffects, NewsEffects, StocksEffects]),
   ],
   providers: [RequestConfigService],
   bootstrap: [AppComponent]

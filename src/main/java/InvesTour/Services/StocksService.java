@@ -1,7 +1,10 @@
 package InvesTour.Services;
 
 import InvesTour.Models.Stock;
+import InvesTour.Models.StockPriceData;
 import InvesTour.dal.StocksRepository;
+import InvesTour.retrievers.StockRetriver;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,8 @@ public class StocksService {
 
     private final StocksRepository repository;
 
+    private final StockRetriver stockRetriver;
+
     public List<Stock> getAllStocks(){
         return repository.getAllStocks();
     }
@@ -23,5 +28,9 @@ public class StocksService {
 
     public List<Stock> getAllStocksByUser(String email){
         return repository.getFullStocksByUserEmail(email);
+    }
+
+    public StockPriceData getStockRealTimeData(String symbol, String timeInterval){
+       return this.stockRetriver.retrieveDataByKeywords(symbol,timeInterval);
     }
 }

@@ -4,8 +4,6 @@ import InvesTour.Exceptions.SignUpException;
 import InvesTour.Models.User;
 import InvesTour.dal.UserRepository;
 import InvesTour.utils.Json;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +23,7 @@ public class UsersService {
         return Json.fromJson("", User.class);
     }
 
-    public void signUp(User user) throws Exception {
+    public Map<String, String> signUp(User user) throws Exception {
         List<User> users = this.repository.getAllUsers();
 
         boolean isUserAlreadySignedUp = users.stream().anyMatch(currUser -> currUser.getEmail().equals(user.getEmail()));
@@ -33,8 +31,8 @@ public class UsersService {
         if (isUserAlreadySignedUp) {
             throw new SignUpException("already signed up");
         }
-
         this.repository.addUser(user);
+        return this.login(user.getEmail(), user.getPassword());
     }
 
     public Map<String, String> login(String email, String password) {

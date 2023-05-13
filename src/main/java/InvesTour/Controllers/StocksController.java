@@ -3,8 +3,10 @@ package InvesTour.Controllers;
 import InvesTour.Exceptions.ArticlesNotFoundException;
 import InvesTour.Models.Article;
 import InvesTour.Models.Stock;
+import InvesTour.Models.StockPriceData;
 import InvesTour.Services.StocksService;
 import InvesTour.Services.UsersService;
+import InvesTour.utils.Json;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -52,6 +54,11 @@ public class StocksController {
     @GetMapping(value = "/{userEmail}")
     public ResponseEntity<List<Stock>> getStocksByUser(@PathVariable("userEmail") String userEmail) {
         return ResponseEntity.ok().body(this.stocksService.getAllStocksByUser(userEmail));
+    }
+
+    @GetMapping(value = "/data/{symbol}/{timeInterval}")
+    public ResponseEntity<StockPriceData> getStockRealTimeData(@PathVariable("symbol") String symbol, @PathVariable("timeInterval") String timeInterval) {
+        return ResponseEntity.ok().body(this.stocksService.getStockRealTimeData(symbol,timeInterval));
     }
 
     @GetMapping

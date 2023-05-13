@@ -1,4 +1,4 @@
-.stocksList
+.stocksListPage
 {
     width: 100vw;
     height: 100vh;
@@ -12,7 +12,7 @@
     flex-direction: column;
     height: 92vh;
     justify-content: space-evenly;
-    text-align: center;
+    align-items: center;
 }
 
 .bar {
@@ -25,6 +25,7 @@
 
 .logo {
     font-size: 70px;
+    text-decoration: none;
 }
 
 .mat-raised-button {
@@ -38,6 +39,14 @@
 
 .stocksList {
     display: flex;
+    height: 50vh;
+    width: 50vw;
+    justify-content: space-evenly;
+}
+
+.menu {
+    width: 60vw;
+    display: flex;
 }
 
 .stock {
@@ -45,5 +54,11 @@
     width: 5vw;
     border: 1.5px solid #548235;
     border-radius: 5px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.user {
+    filter: invert(100%);
+  }
