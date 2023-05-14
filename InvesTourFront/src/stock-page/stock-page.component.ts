@@ -1,8 +1,8 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { selectUsersFirstName, selectUsersLastName } from "src/server-requests/users/users.reducer";
-import { Stock } from "src/stock/stock.class";
 import { mockStockStatsDay, mockStockStatsMonth, mockStockStatsWeek } from "./mock-data";
+import { RequestConfigService } from "src/server-requests/requests.service";
 
 @Component({
   selector: 'stock-page',
@@ -15,11 +15,11 @@ export class StockPageComponent implements OnInit {
   firstName$ = this.store.select(selectUsersFirstName);
   lastName$ = this.store.select(selectUsersLastName);
 
-  // allNewsByStock$ = this.store.select(selectAllNewsByStock);
+  // allNewsByStock$ = this.store.select(selectAllNewsByStock());
 
   colorScheme = { domain: [] };
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private requestConfigService: RequestConfigService) {}
 
   ngOnInit(): void {
     this.stock = mockStockStatsDay;
@@ -32,16 +32,22 @@ export class StockPageComponent implements OnInit {
     Month: "Month"
   }
 
-  togglePeriod(period) {
+  async togglePeriod(period) {
     switch(period) {
       case this.StatPeriods.Day:
-        this.stock = mockStockStatsDay;
+        this.stock = mockStockStatsDay
+        // this.stock = await this.requestConfigService.getStockInfoOneDay(this.stock.symbol).toPromise();
+        console.log(this.stock)
         break;
       case this.StatPeriods.Week:
-        this.stock = mockStockStatsWeek;
+        this.stock = mockStockStatsWeek
+        // this.stock = await this.requestConfigService.getStockInfoOneWeek(this.stock.symbol).toPromise();
+        console.log(this.stock)
         break;
       case this.StatPeriods.Month:
-        this.stock = mockStockStatsMonth;
+        this.stock = mockStockStatsMonth
+        // this.stock = await this.requestConfigService.getStockInfoOneMonth(this.stock.symbol).toPromise();
+        console.log(this.stock)
         break;
     }
   }

@@ -12,6 +12,7 @@ import { HomeComponent } from 'src/home/home.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms';
 import { SignUpComponent } from 'src/sign-up/signUp.component';
 import { MyWallComponent } from 'src/my-wall/myWall.component';
@@ -69,6 +70,7 @@ export const store: Store<any> = createStore(
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatExpansionModule,
     FormsModule,
     NgReduxModule,
     HttpClientModule,

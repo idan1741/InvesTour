@@ -39,6 +39,18 @@ export class RequestConfigService {
     removeStockFromUserList(userEmail: string, stockSymbol: string) {
         return this.http.post(`${this.httpApi}/stocks/user/delete`, { userEmail, stockSymbol })
     }
+    selectAllNewsByStock(stockSymbol: string) {
+        return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}`)
+    }
+    getStockInfoOneDay(stockSymbol: string) {
+        return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/60min`)
+    }
+    getStockInfoOneWeek(stockSymbol: string) {
+        return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/week`)
+    }
+    getStockInfoOneMonth(stockSymbol: string) {
+        return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/month`)
+    }
 
     // News
     getMainPageArticles() {

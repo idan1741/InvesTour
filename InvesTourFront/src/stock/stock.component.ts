@@ -10,9 +10,9 @@ import { Stock } from "./stock.class";
 export class StockComponent {
   @Input() stock: Stock;
   public isOpen = false;
+  panelOpenState: boolean = false;
 
-  constructor(){
-  }
+  constructor(){}
 
   public toggle(){
     this.isOpen=!this.isOpen;
