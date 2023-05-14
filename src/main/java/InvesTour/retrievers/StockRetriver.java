@@ -2,7 +2,6 @@ package InvesTour.retrievers;
 
 import InvesTour.Models.StockPriceData;
 import InvesTour.utils.Json;
-import com.fasterxml.jackson.databind.JsonNode;
 import lombok.SneakyThrows;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
