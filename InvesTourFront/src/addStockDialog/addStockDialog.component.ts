@@ -50,28 +50,12 @@ export class addStockDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async toggleStock(event) {
-    let stockId = await this.getStockId(event.target.innerText);
-
+  toggleStock(stockSymbol, stockId) {
     this.store.dispatch(
       toggleStock({
-        stockSymbol: event.target.innerText,
-        stockId: stockId,
+        stockSymbol,
+        stockId,
       })
     );
-  }
-
-  async getStockId(stockSign: string): Promise<number> {
-    const stocks: Promise<Stock[]> = (await this.configService
-      .getStocksList()
-      .toPromise()) as Promise<Stock[]>;
-    const foundStock = (await stocks).find(
-      (userStock) => userStock.symbol === stockSign
-    );
-    if (foundStock) {
-      return foundStock.id;
-    } else {
-      return -1;
-    }
   }
 }

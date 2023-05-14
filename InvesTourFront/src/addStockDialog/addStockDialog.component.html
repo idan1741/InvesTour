@@ -3,7 +3,7 @@
     <input class="input" placeholder="Search" [(ngModel)]="searchText">
     <div class="list">
         <div *ngIf="(stockList$ | async) as stockList">
-            <div class="section" *ngFor="let stock of stockList | searchBySymbolPipe : searchText" (click)="toggleStock($event)">
+            <div class="section" *ngFor="let stock of stockList | searchBySymbolPipe : searchText" (click)="toggleStock(stock.symbol, stock.id )">
                 <img [src]="isStockInUserList(stock.symbol) ? './assets/filledHeart.png' : './assets/heart.png'" width="20" height="20" [ngClass]="isStockInUserList(stock.symbol) ? '': 'user'">
                 <label style="margin-left: 3%">{{stock.symbol}}</label>
             </div>

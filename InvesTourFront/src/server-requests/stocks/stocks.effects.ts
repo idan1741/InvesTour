@@ -40,9 +40,7 @@ export class StocksEffects {
         this.store.select(selectUsersEmail)
       ),
       switchMap(([{ stockSymbol, stockId }, usersStocks, userEmail]) => {
-        console.log('req', stockId);
-
-        return usersStocks.find((s) => s.symbol === stockSymbol)
+        return !!usersStocks.find((s) => s.symbol === stockSymbol)
           ? this.configService.removeStockFromUserList(userEmail, stockId).pipe(
               tap((res) => console.log(res)),
               map(() => getStocksByUser())
