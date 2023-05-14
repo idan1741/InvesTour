@@ -25,6 +25,11 @@ public class NewsService {
 
         return getStocksArticles(hotStocksData);
     }
+    @SneakyThrows
+    public JsonNode getAvailableWebSite() {
+        JsonNode availableWebSite = this.retriever.retrieveNewsWebsite();
+        return availableWebSite;
+    }
 
     public Optional<List<Article>> getStocksArticlesByUser(String email) {
         List<String> userStocks = stocksRepository.getStockNamesByUserEmail(email);

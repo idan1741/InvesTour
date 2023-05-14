@@ -3,6 +3,7 @@ package InvesTour.Controllers;
 import InvesTour.Exceptions.ArticlesNotFoundException;
 import InvesTour.Models.Article;
 import InvesTour.Services.NewsService;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +27,8 @@ public class NewsController {
     }
 
     @GetMapping(value = "/websites")
-    public void getAllWebsites() {
-
+    public ResponseEntity<JsonNode> getAllWebsites() {
+        return ResponseEntity.ok().body(service.getAvailableWebSite());
     }
 
     @GetMapping(value = "/articles/user/{userEmail}")
