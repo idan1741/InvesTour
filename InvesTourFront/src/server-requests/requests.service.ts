@@ -46,6 +46,23 @@ export class RequestConfigService {
   getStockInfoOneMonth(stockSymbol: string) {
     return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/month`);
   }
+  getStockView(userId: string, stockName: string) {
+    return this.http.get(
+      `${this.httpApi}/articles/user/${userId}/stock/${stockName}`
+    );
+  }
+  addStockToWatchList(userId: string, stockName: string) {
+    return this.http.post(`${this.httpApi}/user/stock`, {
+      User: userId,
+      Stock: stockName,
+    });
+  }
+  removeStockFromWatchList(userId: string, stockName: string) {
+    return this.http.delete(
+      `${this.httpApi}/user/${userId}/stock/${stockName}`
+    );
+  }
+
   // Users
   addUser(userInfo) {
     return this.http.post(`${this.httpApi}/user`, userInfo);
@@ -64,61 +81,31 @@ export class RequestConfigService {
   getMainPageArticles() {
     return this.http.get(`${this.httpApi}/news/articles`);
   }
-  getMainPageWebsites() {
-    return this.http.get(`${this.httpApi}/news/websites`);
-  }
   getArticlesByUser(userId: string) {
     return this.http.get(`${this.httpApi}/news/articles/user/${userId}`);
   }
-
-  // -START-
-  // Works - 15/05
-  // gets all the user preference articales by the stocks like and website likes
   getPreferredWebsiteArticlesByUser(userId: string) {
     return this.http.get(
       `${this.httpApi}/news/articles/user/website/${userId}`
     );
   }
-  // gets all the user preference website
   getWebsitesByUser(userId: string) {
     return this.http.get(`${this.httpApi}/news/websites/user/${userId}`);
   }
-  // add new website 
   addWebsiteToWatchList(userId: string, websiteId: string) {
     return this.http.post(`${this.httpApi}/news/user/add`, {
       userEmail: userId,
       websiteId,
     });
   }
-  // remove website 
   removeWebsiteFromWatchList(userId: string, websiteId: string) {
     return this.http.post(`${this.httpApi}/news/user/delete`, {
       userEmail: userId,
       websiteId,
     });
   }
-  // -END-
-
-  getStockView(userId: string, stockName: string) {
-    return this.http.get(
-      `${this.httpApi}/articles/user/${userId}/stock/${stockName}`
-    );
-  }
-  addStockToWatchList(userId: string, stockName: string) {
-    return this.http.post(`${this.httpApi}/user/stock`, {
-      User: userId,
-      Stock: stockName,
-    });
-  }
-  removeStockFromWatchList(userId: string, stockName: string) {
-    return this.http.delete(
-      `${this.httpApi}/user/${userId}/stock/${stockName}`
-    );
-  }
-  removeWebsite(userId: string, stockName: string, websiteId: string) {
-    return this.http.delete(
-      `${this.httpApi}/user/${userId}/stock/${stockName}/website/${websiteId}`
-    );
+  getAvailableWebsites() {
+    return this.http.get(`${this.httpApi}/news/websites`);
   }
 
   // Data
