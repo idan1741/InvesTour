@@ -2,6 +2,7 @@ package InvesTour.Services;
 
 import InvesTour.Models.Article;
 import InvesTour.dal.StocksRepository;
+import InvesTour.dal.UserRepository;
 import InvesTour.retrievers.UrlRetriever;
 import InvesTour.utils.Json;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -18,6 +19,8 @@ import java.util.stream.Collectors;
 public class NewsService {
     private final UrlRetriever retriever;
     private final StocksRepository stocksRepository;
+    private final UserRepository userRepository;
+
 
     @SneakyThrows
     public Optional<List<Article>> getHotStocksArticles(List<String> hotStocks) {
@@ -58,5 +61,14 @@ public class NewsService {
                 data.has(articlesField) &&
                 data.get(articlesField).isArray() &&
                 !data.get(articlesField).isEmpty();
+    }
+
+    public void addStockToUser(String userEmail, String NewsSite) throws Exception {
+            this.userRepository.addNewsSiteToUser(userEmail, NewsSite);
+    }
+
+    public void deleteStockForUser(String userEmail, String NewsSite) throws Exception {
+            this.userRepository.deleteNewsSiteFromUser(userEmail, NewsSite);
+
     }
 }

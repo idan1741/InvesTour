@@ -46,6 +46,22 @@ public class NewsController {
     public void getArticlesByUserAndStock(@PathVariable("userId") Long id, @PathVariable("stockName") String stockName) {
 
     }
+    @PostMapping("/user/add")
+    public ResponseEntity<String> addSNewsSiteToUser(@RequestBody JsonNode jsonBody) throws Exception {
+        String userEmail = jsonBody.get("userEmail").asText();
+        String NewsSite = jsonBody.get("NewsSite").asText();
+        this.service.addStockToUser(userEmail, NewsSite);
+        String userStockInfo = "User ID: " + userEmail + ", Stock ID: " + NewsSite;
+        return ResponseEntity.ok(userStockInfo);
+    }
+    @PostMapping(value = "/user/delete")
+    public ResponseEntity<String> deleteNewsSiteFromUser(@RequestBody JsonNode jsonBody) throws Exception {
+        String userEmail = jsonBody.get("userEmail").asText();
+        String NewsSite = jsonBody.get("NewsSite").asText();
+        this.service.deleteStockForUser(userEmail, NewsSite);
+        String userStockInfo = "User ID: " + userEmail + ", NewsSite: " + NewsSite;
+        return ResponseEntity.ok(userStockInfo);
+    }
 
     @ExceptionHandler(ArticlesNotFoundException.class)
     public ResponseEntity<String> errorHandler(ArticlesNotFoundException e) {
