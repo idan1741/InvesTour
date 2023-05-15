@@ -51,49 +51,17 @@ public class UserRepository {
                 .fetchOne(field("first_name"), String.class);
     }
 
-    public void deleteStockFromUser(String userEmail, long stockId){
+    public void deleteStockFromUser(String userEmail, long stockId) {
         this.dsl.delete(table("investour.tbl_stock_preferences"))
                 .where(field("user_email").eq(userEmail))
                 .and(field("stock_id").eq(stockId))
                 .execute();
     }
 
-    public boolean isStockExistForUser(String userEmail, long stockId){
+    public boolean isStockExistForUser(String userEmail, long stockId) {
         return this.dsl.fetchExists(
                 this.dsl.selectFrom(table("investour.tbl_stock_preferences"))
                         .where(field("user_email").eq(userEmail))
                         .and(field("stock_id").eq(stockId)));
-    }
-
-
-    public void addNewsSiteToUser(String userEmail, String NewsSite) {
-        this.dsl.insertInto(table("investour.tbl_stock_preferences"))
-                .set(field("user_email"), userEmail)
-                .set(field("NewsSite"), NewsSite)
-                .execute();
-    }
-
-    public void deleteNewsSiteFromUser(String userEmail, String NewsSite){
-        this.dsl.delete(table("investour.tbl_NewsSite_preferences"))
-                .where(field("user_email").eq(userEmail))
-                .and(field("news_site").eq(NewsSite))
-                .execute();
-    }
-
-    public boolean isNewsSiteExistForUser(String userEmail, String NewsSite){
-        return this.dsl.fetchExists(
-                this.dsl.selectFrom(table("investour.tbl_NewsSite_preferences"))
-                        .where(field("user_email").eq(userEmail))
-                        .and(field("news_site").eq(NewsSite)));
-    }
-
-    public List<Stock> getFullNewsSiteByUserEmail(String userEmail) {
-        return this.dsl.select()
-                .from(table("investour.tbl_NewsSite"))
-                .where(field("id")
-                        .in(this.dsl.select(field("news_site"))
-                                .from("investour.tbl_NewsSite_preferences")
-                                .where(field("user_email").eq(userEmail))))
-                .fetchInto(Stock.class);
     }
 }
