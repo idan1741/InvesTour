@@ -15,59 +15,30 @@ export class RequestConfigService {
   private httpApi = this.ichaiApi;
   // private httpApi = `http://${this.envConfig.serverUrl}${this.envConfig.httpPort}`;
 
-    // stocks
-    getStocksList() {
-        return this.http.get(`${this.httpApi}/stocks`)
-    }
-    getStockListByUser(userEmail: string) {
-        return this.http.get(`${this.httpApi}/stocks/${userEmail}`)
-    }
-    addStockToUserList(userEmail: string, stockId: number) {
-        return this.http.post(`${this.httpApi}/stocks/user/add`, { userEmail, stockId })
-    }
-    removeStockFromUserList(userEmail: string, stockId: number) {
-        return this.http.post(`${this.httpApi}/stocks/user/delete`, { userEmail, stockId })
-    }
-    selectAllNewsByStock(stockSymbol: string) {
-        return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}`)
-    }
-    getStockInfoOneDay(stockSymbol: string) {
-        return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/day`)
-    }
-    getStockInfoOneWeek(stockSymbol: string) {
-        return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/week`)
-    }
-    getStockInfoOneMonth(stockSymbol: string) {
-        return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/month`)
-    }
-
-  // Users
-  addUser(userInfo) {
-    return this.http.post(`${this.httpApi}/user`, userInfo);
+  // stocks
+  getStocksList() {
+      return this.http.get(`${this.httpApi}/stocks`)
   }
-  deleteUser(userId) {
-    return this.http.delete(`${this.httpApi}/user/${userId}`);
+  getStockListByUser(userEmail: string) {
+      return this.http.get(`${this.httpApi}/stocks/${userEmail}`)
   }
-  getUserById(userId) {
-    return this.http.get(`${this.httpApi}/user/${userId}`);
+  addStockToUserList(userEmail: string, stockId: number) {
+      return this.http.post(`${this.httpApi}/stocks/user/add`, { userEmail, stockId })
   }
-  loginUser(email: string, password: string) {
-    return this.http.post(`${this.httpApi}/user/login`, { email, password });
+  removeStockFromUserList(userEmail: string, stockId: number) {
+      return this.http.post(`${this.httpApi}/stocks/user/delete`, { userEmail, stockId })
   }
-
-
-  // News
-  getMainPageArticles() {
-    return this.http.get(`${this.httpApi}/news/articles`);
+  selectAllNewsByStock(stockSymbol: string) {
+      return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}`)
   }
-  getMainPageWebsites() {
-    return this.http.get(`${this.httpApi}/news/websites`);
+  getStockInfoOneDay(stockSymbol: string) {
+      return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/day`)
   }
-  getArticlesByUser(userId: string) {
-    return this.http.get(`${this.httpApi}/news/articles/user/${userId}`);
+  getStockInfoOneWeek(stockSymbol: string) {
+      return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/week`)
   }
-  getWebsitesByUser(userId: string) {
-    return this.http.get(`${this.httpApi}/news/websites/user/${userId}`);
+  getStockInfoOneMonth(stockSymbol: string) {
+      return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/month`)
   }
   getStockView(userId: string, stockName: string) {
     return this.http.get(
@@ -85,21 +56,50 @@ export class RequestConfigService {
       `${this.httpApi}/user/${userId}/stock/${stockName}`
     );
   }
-  removeWebsiteFromWatchList(
-    userId: string,
-    stockName: string,
-    websiteId: string
-  ) {
-    return this.http.post(`${this.httpApi}/user/stock/website`, {
-      User: userId,
-      Stock: stockName,
-      Website: websiteId,
+
+  // Users
+  addUser(userInfo) {
+    return this.http.post(`${this.httpApi}/user`, userInfo);
+  }
+  deleteUser(userId) {
+    return this.http.delete(`${this.httpApi}/user/${userId}`);
+  }
+  getUserById(userId) {
+    return this.http.get(`${this.httpApi}/user/${userId}`);
+  }
+  loginUser(email: string, password: string) {
+    return this.http.post(`${this.httpApi}/user/login`, { email, password });
+  }
+
+  // News
+  getMainPageArticles() {
+    return this.http.get(`${this.httpApi}/news/articles`);
+  }
+  getArticlesByUser(userId: string) {
+    return this.http.get(`${this.httpApi}/news/articles/user/${userId}`);
+  }
+  getPreferredWebsiteArticlesByUser(userId: string) {
+    return this.http.get(
+      `${this.httpApi}/news/articles/user/website/${userId}`
+    );
+  }
+  getWebsitesByUser(userId: string) {
+    return this.http.get(`${this.httpApi}/news/websites/user/${userId}`);
+  }
+  addWebsiteToWatchList(userId: string, websiteId: string) {
+    return this.http.post(`${this.httpApi}/news/user/add`, {
+      userEmail: userId,
+      websiteId,
     });
   }
-  removeWebsite(userId: string, stockName: string, websiteId: string) {
-    return this.http.delete(
-      `${this.httpApi}/user/${userId}/stock/${stockName}/website/${websiteId}`
-    );
+  removeWebsiteFromWatchList(userId: string, websiteId: string) {
+    return this.http.post(`${this.httpApi}/news/user/delete`, {
+      userEmail: userId,
+      websiteId,
+    });
+  }
+  getAvailableWebsites() {
+    return this.http.get(`${this.httpApi}/news/websites`);
   }
 
   // Data

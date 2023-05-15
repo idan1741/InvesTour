@@ -1,5 +1,6 @@
 package InvesTour.dal;
 
+import InvesTour.Models.Stock;
 import InvesTour.Models.User;
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
@@ -50,14 +51,14 @@ public class UserRepository {
                 .fetchOne(field("first_name"), String.class);
     }
 
-    public void deleteStockFromUser(String userEmail, long stockId){
+    public void deleteStockFromUser(String userEmail, long stockId) {
         this.dsl.delete(table("investour.tbl_stock_preferences"))
                 .where(field("user_email").eq(userEmail))
                 .and(field("stock_id").eq(stockId))
                 .execute();
     }
 
-    public boolean isStockExistForUser(String userEmail, long stockId){
+    public boolean isStockExistForUser(String userEmail, long stockId) {
         return this.dsl.fetchExists(
                 this.dsl.selectFrom(table("investour.tbl_stock_preferences"))
                         .where(field("user_email").eq(userEmail))

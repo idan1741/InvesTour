@@ -20,24 +20,27 @@ public class UrlRetriever implements Retriever {
     @Override
     @SneakyThrows
     public JsonNode retrieveDataByKeywords(List<String> keywords) {
-        String url = NEWS_API_URL + "/everything?q=" + String.join(",%20", keywords) + "&language=en&apiKey=" + API_KEY;
-
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-
-        try (Response response = client.newCall(request).execute()) {
-            if (!response.isSuccessful()) {
-                throw new RuntimeException("Failed to fetch data from URL: " + response.code());
-            }
-
-            return Json.parse(response.body().string());
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to fetch data from URL: " + url);
-        }
+        String url = NEWS_API_URL + "/everything?q=" + joinString(keywords, "|") + "&language=en&apiKey=" + API_KEY;
+        return getJsonBodyByUrl(url);
     }
-    public JsonNode retrieveNewsWebsite() {
+
+    @SneakyThrows
+    public JsonNode retrieveDataByStocksKeywordsAndWebsites(List<String> stocks, List<String> websites) {
+        String url = NEWS_API_URL + "/everything?q=" + joinString(stocks, "|") +
+                "&sources=" + joinString(websites, ",") + "&language=en&apiKey=" + API_KEY;
+        return getJsonBodyByUrl(url);
+    }
+
+    private String joinString(List<String> strings, String delimiter) {
+        return String.join(delimiter, strings);
+    }
+
+    public JsonNode retrieveAllAvailableWebsites() {
         String url = NEWS_API_URL + "/top-headlines/sources?apiKey=" + API_KEY;
+        return getJsonBodyByUrl(url);
+    }
+
+    private JsonNode getJsonBodyByUrl(String url) {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
