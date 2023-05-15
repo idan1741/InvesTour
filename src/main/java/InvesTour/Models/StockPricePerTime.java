@@ -11,15 +11,15 @@ import java.time.format.DateTimeFormatter;
 
 @Data
 public class StockPricePerTime {
-    @JsonProperty("time")
-    private ZonedDateTime time;
+    @JsonProperty("name")
+    private ZonedDateTime name;
     @JsonProperty("value")
     private double price;
 
     private static final ZoneId ZONE_ID = ZoneId.of("Asia/Jerusalem");
 
     public StockPricePerTime(String date, JsonNode jsonNode) {
-        this.time = ZonedDateTime.of(LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")), ZONE_ID);
+        this.name = ZonedDateTime.of(LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")), ZONE_ID);
         this.price = jsonNode.path("1. open").asDouble();
     }
 }

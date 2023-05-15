@@ -5,6 +5,7 @@ import { selectAllNewsByUser, selectNewsState } from "src/server-requests/news/n
 import { selectUsersFirstName, selectUsersLastName } from "src/server-requests/users/users.reducer";
 import { Observable } from "rxjs";
 import { RequestConfigService } from "src/server-requests/requests.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'main',
@@ -16,8 +17,6 @@ export class MainComponent implements OnInit {
   lastName$ = this.store.select(selectUsersLastName);
   allNewByUserId$: Observable<any>;
   stocks$: Observable<any>;
-  // stocks = [{symbol: "APPL", name: "Tesla, Inc", change: 1.17, price: 123.5, isRiseUp: true} as Stock,
-  // {symbol: "SPY", name: "s&p 500", change: 0.58, price: 382.91, isRiseUp: false} as Stock]
   name;
 
   ngOnInit(): void {
@@ -27,7 +26,11 @@ export class MainComponent implements OnInit {
     // this.store.dispatch(getMainPageArticles());
   }
 
-  constructor(private store: Store,  private configService: RequestConfigService) {
+  gotoStockPage(stockSymbol) {
+    this.router.navigateByUrl('/stockPage', { state: { stockSymbol } })
+  }
+
+  constructor(private store: Store,  private configService: RequestConfigService, private router: Router) {
     this.firstName$.subscribe(name => this.name = name);
   }
 }

@@ -27,7 +27,7 @@
           <div class="stock-price">{{ stock.price }}$</div>
           <div [ngClass]="this.stock.isRiseUp ? 'rise' : 'lala'" style="margin-right: 15px; font-size: 1.3rem; direction: ltr;">
             <mat-icon style="position: relative;top: 5px;">{{stock.isRiseUp ? 'trending_up' : 'trending_down'}}</mat-icon>
-            {{ stock.change}} %
+          {{ stock.change | changeDisplay}} %
           </div>
         </div>
         <div class="stat-graph">
@@ -41,6 +41,7 @@
             [scheme]="colorScheme"
             [xAxis]="false"
             [yAxis]="true"
+            [yScaleMin]="yScaleMin"
             [trimYAxisTicks]="false"
             [timeline]="true"
             [results]="[stock]"

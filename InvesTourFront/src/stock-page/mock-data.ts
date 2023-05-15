@@ -5,127 +5,127 @@ export const mockStockStatsDay = {
       name: "TSLA",
       series: [
         {
-          "name": "1",
+          name: "1",
           "value": 2
         },
         {
-          "name": "2",
+          name: "2",
           "value": 2.5
         },
         {
-          "name": "3",
+          name: "3",
           "value": 3.5
         },
         {
-          "name": "4",
+          name: "4",
           "value": 2
         },
         {
-          "name": "5",
+          name: "5",
           "value": 1.5
         },
         {
-          "name": "6",
+          name: "6",
           "value": 5
         },
         {
-          "name": "7",
+          name: "7",
           "value": 0.5
         },
         {
-          "name": "8",
+          name: "8",
           "value": 4.5
         },
         {
-          "name": "9",
+          name: "9",
           "value": 2.5
         },
         {
-          "name": "10",
+          name: "10",
           "value": 3.5
         },
         {
-          "name": "11",
+          name: "11",
           "value": 2
         },
         {
-          "name": "12",
+          name: "12",
           "value": 1.5
         },
         {
-          "name": "13",
+          name: "13",
           "value": 5
         },
         {
-          "name": "14",
+          name: "14",
           "value": 0.5
         },
         {
-          "name": "15",
+          name: "15",
           "value": 4.5
         },
         {
-          "name": "16",
+          name: "16",
           "value": 2.5
         },
         {
-          "name": "17",
+          name: "17",
           "value": 3.5
         },
         {
-          "name": "18",
+          name: "18",
           "value": 2
         },
         {
-          "name": "19",
+          name: "19",
           "value": 1.5
         },
         {
-          "name": "20",
+          name: "20",
           "value": 5
         },
         {
-          "name": "21",
+          name: "21",
           "value": 0.5
         },
         {
-          "name": "22",
+          name: "22",
           "value": 4.5
         },
         {
-          "name": "23",
+          name: "23",
           "value": 2.5
         },
         {
-          "name": "24",
+          name: "24",
           "value": 3.5
         },
         {
-          "name": "19",
+          name: "19",
           "value": 2
         },
         {
-          "name": "20",
+          name: "20",
           "value": 1.5
         },
         {
-          "name": "21",
+          name: "21",
           "value": 5
         },
         {
-          "name": "22",
+          name: "22",
           "value": 0.5
         },
         {
-          "name": "20",
+          name: "20",
           "value": 1.5
         },
         {
-          "name": "21",
+          name: "21",
           "value": 5
         },
         {
-          "name": "22",
+          name: "22",
           "value": 0.5
         }
       ]
@@ -137,31 +137,31 @@ export const mockStockStatsWeek = {
       name: "One Week",
       series: [
         {
-          "name": "16",
+          name: "16",
           "value": 4.5
         },
         {
-          "name": "17",
+          name: "17",
           "value": 2.5
         },
         {
-          "name": "18",
+          name: "18",
           "value": 3.5
         },
         {
-          "name": "19",
+          name: "19",
           "value": 2
         },
         {
-          "name": "20",
+          name: "20",
           "value": 1.5
         },
         {
-          "name": "21",
+          name: "21",
           "value": 5
         },
         {
-          "name": "22",
+          name: "22",
           "value": 0.5
         }
       ]
@@ -173,115 +173,115 @@ export const mockStockStatsMonth = {
       name: "One Month",
       series: [
         {
-          "name": "1",
+          name: "1",
           "value": 4.5
         },
         {
-          "name": "2",
+          name: "2",
           "value": 2.5
         },
         {
-          "name": "3",
+          name: "3",
           "value": 3.5
         },
         {
-          "name": "4",
+          name: "4",
           "value": 2
         },
         {
-          "name": "5",
+          name: "5",
           "value": 1.5
         },
         {
-          "name": "6",
+          name: "6",
           "value": 5
         },
         {
-          "name": "7",
+          name: "7",
           "value": 0.5
         },
         {
-          "name": "8",
+          name: "8",
           "value": 4.5
         },
         {
-          "name": "9",
+          name: "9",
           "value": 2.5
         },
         {
-          "name": "10",
+          name: "10",
           "value": 3.5
         },
         {
-          "name": "11",
+          name: "11",
           "value": 2
         },
         {
-          "name": "12",
+          name: "12",
           "value": 1.5
         },
         {
-          "name": "21",
+          name: "21",
           "value": 5
         },
         {
-          "name": "22",
+          name: "22",
           "value": 0.5
         },
         {
-          "name": "16",
+          name: "16",
           "value": 4.5
         },
         {
-          "name": "17",
+          name: "17",
           "value": 2.5
         },
         {
-          "name": "18",
+          name: "18",
           "value": 3.5
         },
         {
-          "name": "19",
+          name: "19",
           "value": 2
         },
         {
-          "name": "20",
+          name: "20",
           "value": 1.5
         },
         {
-          "name": "21",
+          name: "21",
           "value": 5
         },
         {
-          "name": "22",
+          name: "22",
           "value": 0.5
         },
         {
-          "name": "16",
+          name: "16",
           "value": 4.5
         },
         {
-          "name": "17",
+          name: "17",
           "value": 2.5
         },
         {
-          "name": "18",
+          name: "18",
           "value": 3.5
         },
         {
-          "name": "19",
+          name: "19",
           "value": 2
         },
         {
-          "name": "20",
+          name: "20",
           "value": 1.5
         },
         {
-          "name": "21",
+          name: "21",
           "value": 5
         },
         {
-          "name": "22",
+          name: "22",
           "value": 0.5
         }
       ]

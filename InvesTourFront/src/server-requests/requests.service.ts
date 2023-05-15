@@ -32,7 +32,7 @@ export class RequestConfigService {
         return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}`)
     }
     getStockInfoOneDay(stockSymbol: string) {
-        return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/60min`)
+        return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/day`)
     }
     getStockInfoOneWeek(stockSymbol: string) {
         return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/week`)
@@ -40,6 +40,7 @@ export class RequestConfigService {
     getStockInfoOneMonth(stockSymbol: string) {
         return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/month`)
     }
+
   // Users
   addUser(userInfo) {
     return this.http.post(`${this.httpApi}/user`, userInfo);

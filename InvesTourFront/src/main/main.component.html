@@ -12,7 +12,7 @@
         <h2 style="margin: 2%;">Stock Status</h2>
         <div class="articles">
           <!-- <mat-accordion> -->
-            <stock *ngFor="let stock of (stocks$ | async)" class="article" [stock]="stock"></stock>
+            <stock *ngFor="let stock of (stocks$ | async)" class="article" [stock]="stock" (click)="gotoStockPage(stock.symbol)"></stock>
           <!-- </mat-accordion> -->
         </div>
       </div>
