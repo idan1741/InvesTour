@@ -30,24 +30,28 @@
           {{ stock.change | changeDisplay}} %
           </div>
         </div>
-        <div class="stat-graph">
-          <div class="period-toggle">
-            <div (click)="togglePeriod(StatPeriods.Day)" class="period">{{ StatPeriods.Day }}  |</div> 
-            <div (click)="togglePeriod(StatPeriods.Week)" class="period">{{ StatPeriods.Week }}  |</div> 
-            <div (click)="togglePeriod(StatPeriods.Month)" class="period">{{ StatPeriods.Month }}</div> 
-          </div>
-          <ngx-charts-line-chart
-            [view]="[stockSection.offsetWidth,300]"
-            [scheme]="colorScheme"
-            [xAxis]="false"
-            [yAxis]="true"
-            [yScaleMin]="yScaleMin"
-            [trimYAxisTicks]="false"
-            [timeline]="true"
-            [results]="[stock]"
-          >
-          </ngx-charts-line-chart>
+        <div class="period-toggle">
+          <div (click)="togglePeriod(StatPeriods.Day)" [style.background-color]="currentPeriod == StatPeriods.Day ? '#635d5d' : ''" class="period">
+            {{ StatPeriods.Day }}
+          </div> |
+          <div (click)="togglePeriod(StatPeriods.Week)" [style.background-color]="currentPeriod == StatPeriods.Week ? '#635d5d' : ''" class="period">
+            {{ StatPeriods.Week }}
+          </div> |
+          <div (click)="togglePeriod(StatPeriods.Month)" [style.background-color]="currentPeriod == StatPeriods.Month ? '#635d5d' : ''" class="period">
+            {{ StatPeriods.Month }}
+          </div> 
         </div>
+        <ngx-charts-line-chart
+          [view]="[stockSection.offsetWidth,300]"
+          [scheme]="colorScheme"
+          [xAxis]="false"
+          [yAxis]="true"
+          [yScaleMin]="yScaleMin"
+          [trimYAxisTicks]="false"
+          [timeline]="true"
+          [results]="[stock]"
+        >
+        </ngx-charts-line-chart>
       </div>
     </div>
   </div>
