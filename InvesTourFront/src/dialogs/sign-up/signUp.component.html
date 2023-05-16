@@ -1,0 +1,33 @@
+<div class="signUp">
+  <h1 style="color:#0374d5; font-family: 'Poppins'">Sign Up</h1>
+
+  <div class="form">
+    <input class="input" [(ngModel)]="firstName" placeholder="First Name">
+
+    <input class="input" [(ngModel)]="lastName" placeholder="Last Name">
+
+    <input class="input" [(ngModel)]="email" placeholder="Email Adress">
+
+    <div class="input">
+      <input class="lala" [type]="hide1 ? 'password' : 'text'" [(ngModel)]="password" placeholder="Password">
+      <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide1">
+        <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </div>
+
+    <div class="input">
+      <input class="lala" [type]="hide2 ? 'password' : 'text'" [ngModel]="confirmPassword"
+        (change)="checkPasswords($event)" placeholder="Confirmation Password">
+      <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide2">
+        <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </div>
+
+    {{this.errorMessage}}
+
+    <button mat-raised-button color="primary" [disabled]="disabled" (click)="signUp()">Sign Up</button>
+
+  </div>
+</div>

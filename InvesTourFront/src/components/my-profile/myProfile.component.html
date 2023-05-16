@@ -1,0 +1,28 @@
+<div class="myProfilePage">
+    <h1 style="color:#0374d5; font-family: 'Poppins'">My Profile</h1>
+    <ul class="stocksList">
+        <li class="stock" *ngFor="let stock of (UserStockList$)">
+            {{stock.symbol}}
+            <mat-icon class="icon" (click)="remove(stock)">close</mat-icon>
+        </li>
+    </ul>
+        <button mat-raised-button color="primary" (click)="addStock()">Add +</button>
+    <!-- <form>
+            <mat-chip-listbox aria-label="Dog selection">
+                <mat-chip *ngFor="let stock of (UserStockList$)" (removed)="remove(stock)">
+                  {{stock.symbol}}
+                  <button matChipRemove [attr.aria-label]="'remove ' + stock.symbol">
+                    <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-chip>
+                </mat-chip-listbox> -->
+    <!-- <mat-chip-grid #chipGrid aria-label="Stocks">
+                <mat-chip-row *ngFor="let stock of (UserStockList$)" (removed)="remove(stock)">
+                  {{stock.symbol}}
+                  <button matChipRemove [attr.aria-label]="'remove ' + stock.symbol">
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-chip-row>
+              </mat-chip-grid> -->
+    <!-- </form> -->
+</div>

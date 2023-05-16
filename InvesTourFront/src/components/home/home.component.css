@@ -1,0 +1,28 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10vh;
+    margin-left: 1vw;
+    height: 70vh;
+    justify-content: space-evenly;
+}
+
+.section {
+    display: flex;
+    height: 60vh;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    width: 55vw; 
+    font-size: 70px; 
+    font-family: 'Segoe UI'
+}
+
+.mat-raised-button {
+    background-color: #0374d5;
+    color: white;
+    font-family: Calibri;
+    font-size: 15px;
+}

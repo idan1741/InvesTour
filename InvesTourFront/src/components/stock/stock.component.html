@@ -1,0 +1,16 @@
+<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+  <mat-expansion-panel-header [collapsedHeight]="'70px'" [expandedHeight]="'90px'">
+    <mat-panel-title [style.width]="'13rem'">
+      <label> {{this.stock.symbol}} </label>
+      <label style="font-size: small; white-space: nowrap;"> {{this.stock.name}} </label>
+    </mat-panel-title>
+    <mat-panel-description>
+      <div class="stock-price">{{this.stock.price}} $</div>
+    </mat-panel-description>
+    <mat-panel-description [style.color]="stock.change > 0 ? 'green' : 'red'">
+      <mat-icon [style.margin-right]="'5px'">{{stock.change > 0 ? 'trending_up' : 'trending_down'}}</mat-icon>
+      {{ this.abs(this.stock.change)}} %
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <p (click)="gotoStockPage(stock.symbol)">go to stock page</p>
+</mat-expansion-panel>

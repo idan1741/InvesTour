@@ -1,5 +1,5 @@
-import { createAction, props } from '@ngrx/store';
-import { Article } from 'src/article/article.class';
+import { createAction, props } from "@ngrx/store";
+import { Article } from "src/components/article/article.class";
 
 export enum NewsActions {
   GET_MAIN_PAGE_ARTICLES = '[News] get main page articles',

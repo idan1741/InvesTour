@@ -1,0 +1,20 @@
+import { Component, Input} from "@angular/core";
+import { Article } from "./article.class";
+
+
+@Component({
+  selector: 'article',
+  templateUrl: './article.component.html',
+  styleUrls: ['./article.component.css']
+})
+export class ArticleComponent {
+  @Input() article;
+  public isOpen = false;
+  panelOpenState: boolean = false;
+
+  constructor(){}
+
+  public toggle(){
+    this.isOpen=!this.isOpen;
+  }
+}

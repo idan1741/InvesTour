@@ -1,0 +1,16 @@
+<div class="signIn">
+    <h1 style="color:#0374d5; font-family: 'Poppins'">Sign In</h1>
+
+    <div class="form">
+    <input class="input" [(ngModel)]="email" placeholder="Email Adress">
+
+    <div class="input">
+        <input class="lala" [type]="hide ? 'password' : 'text'" [(ngModel)]="password" placeholder="Password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </div>
+      
+     <button mat-raised-button color="primary" (click)="signIn()">Sign In</button>
+     </div>
+</div>

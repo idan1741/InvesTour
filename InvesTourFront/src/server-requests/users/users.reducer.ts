@@ -1,5 +1,5 @@
 import { Action, createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store";
-import { addUser, loginSuccess } from "./users.actions";
+import { loginSuccess } from "./users.actions";
 
 export interface User {
     userId: string;

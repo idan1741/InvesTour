@@ -1,0 +1,51 @@
+.myWall {
+    background-color: #333333;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.sections {
+    display: flex;
+    justify-content: space-evenly;
+}
+.section {
+    width: 30vw;
+    height: 75vh;
+    background-color: #635d5d;
+    border-radius: 20px;
+}
+
+.article {
+    width: 28vw;
+}
+
+.articles {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    height: 86%;
+    align-items: center;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #635d5d; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #504b4b; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3b3838; 
+  }

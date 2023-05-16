@@ -1,25 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from 'src/home/home.component';
-import { MainComponent } from 'src/main/main.component';
-import { MyWallComponent } from 'src/my-wall/myWall.component';
-import { SignInComponent } from 'src/sign-in/signIn.component';
-import { SignUpComponent } from 'src/sign-up/signUp.component';
-import { StockPageComponent } from 'src/stock-page/stock-page.component';
-import { StocksListComponent } from 'src/stocks-list/stocksList.component';
-
+import { HomeComponent } from 'src/components/home/home.component';
+import { MainComponent } from 'src/components/main/main.component';
+import { MyProfileComponent } from 'src/components/my-profile/myProfile.component';
+import { MyWallComponent } from 'src/components/my-wall/myWall.component';
+import { StockPageComponent } from 'src/components/stock-page/stock-page.component';
 
 const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'signIn', component: SignInComponent },
-    { path: 'signUp', component: SignUpComponent },
-    { path: 'myWall', component: MyWallComponent },
-    { path: 'stockPage', component: StockPageComponent },
-    { path: 'myWall/stockList', component: StocksListComponent },
-    { path: 'main', component: MainComponent },
-    { path: 'stockList', component: StocksListComponent },
-
+  { path: '', component: HomeComponent },
+  { path: 'myWall', component: MyWallComponent },
+  { path: 'main', component: MainComponent },
+  { path: 'myProfile', component: MyProfileComponent },
+  { path: 'stockPage', component: StockPageComponent }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

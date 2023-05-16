@@ -1,0 +1,56 @@
+.myProfilePage
+{
+    background-color: #333333;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.mat-raised-button {
+    background-color: #548235;
+    color: white;
+    font-family: Calibri;
+    font-size: 15px;
+    height: 6vh;
+    width: 5vw;
+}
+
+.stocksList {
+    display: flex;
+    height: 50vh;
+    width: 33vw;
+    justify-content: space-evenly;
+}
+
+.stock {
+    height: 6vh;
+    width: 5vw;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #423f3f;
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+.user {
+    filter: invert(100%);
+  }
+
+.icon {
+    font-size: small;
+    height: 15px;
+    width: auto;
+}
+
+ul {
+    list-style-type: none;
+  }
+  
+  ul li:nth-child(4n):after {
+    content: ' ';
+    display: block;
+}
