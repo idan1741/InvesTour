@@ -1,9 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { getMainPageArticles } from "src/server-requests/news/news.actions";
-import { selectAllNewsByUser } from "src/server-requests/news/news.reducer";
 import { Observable } from "rxjs";
 import { RequestConfigService } from "src/server-requests/requests.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'main',
@@ -11,15 +9,20 @@ import { RequestConfigService } from "src/server-requests/requests.service";
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  public news$: Observable<any>;
-  public stocks$: Observable<any>;
-  // stocks = [{symbol: "APPL", name: "Tesla, Inc", change: 1.17, price: 123.5, isRiseUp: true} as Stock,
-  // {symbol: "SPY", name: "s&p 500", change: 0.58, price: 382.91, isRiseUp: false} as Stock]
+  allNewByUserId$: Observable<any>;
+  stocks$: Observable<any>;
 
   ngOnInit(): void {
     this.stocks$ = this.configService.getStocksList();
-    this.news$ = this.configService.getMainPageArticles();
+    // this.store.dispatch(getArticlesByUser());
+    this.allNewByUserId$ = this.configService.getMainPageArticles();
+    // this.store.dispatch(getMainPageArticles());
   }
 
-  constructor(private store: Store, private configService: RequestConfigService) { }
+  gotoStockPage(stockSymbol) {
+    this.router.navigateByUrl('/stockPage', { state: { stockSymbol } })
+  }
+
+  constructor(private configService: RequestConfigService, private router: Router) {
+  }
 }

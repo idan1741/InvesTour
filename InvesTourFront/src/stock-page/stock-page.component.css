@@ -1,0 +1,114 @@
+.myWall {
+    width: 100vw;
+    height: 100vh;
+    background-color: #333333;
+    font-family: Calibri;
+    color: white;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    height: 92vh;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+.bar {
+    display: flex;
+    justify-content: space-between;
+    font-size: x-large;
+    height: 8vh;
+    align-items: center;
+}
+
+.logo {
+    font-size: 70px;
+}
+
+.sections {
+    display: flex;
+    justify-content: space-evenly;
+}
+.section {
+    width: 30vw;
+    height: 75vh;
+    background-color: #635d5d;
+    border-radius: 20px;
+}
+.stock-stat-section {
+    width: 30vw;
+    height: 75vh;
+    /* overflow: hidden; */
+}
+.stock-price {
+    width: 100%;
+    text-align: right;
+    font-size: 1.8rem;
+    padding-right: 15px;
+ }
+.rise {
+    color: green;
+}
+.lala {
+    color: red;
+}
+.stock-stats {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    direction: rtl;
+}
+.period-toggle {
+    display: flex;
+    margin-left: 0.5rem;
+    height: auto;
+    color: #a39c9c;
+}
+.period {
+    padding-left: 5px;
+    cursor: pointer;
+}
+.stat-graph {
+    /* position: relative;
+    left: -2rem; */
+}
+ngx-charts-line-chart {
+    fill: #a39c9c;
+}
+
+.article {
+    width: 28vw;
+    height: 10vh;
+    margin: 5px;
+}
+
+.articles {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    height: 86%;
+    align-items: center;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #635d5d; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #504b4b; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3b3838; 
+  }

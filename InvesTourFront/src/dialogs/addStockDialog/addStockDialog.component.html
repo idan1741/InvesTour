@@ -1,10 +1,10 @@
 <div class="addStock">
     <h1 style="color:#0374d5; font-family: 'Poppins'">Add New Stocks...</h1>
-    <div><input class="input" placeholder="Search" [(ngModel)]="searchText"></div>
+    <input class="input" placeholder="Search" [(ngModel)]="searchText">
     <div class="list">
         <div *ngIf="(stockList$ | async) as stockList">
             <div class="section" *ngFor="let stock of stockList | searchBySymbolPipe : searchText"
-                (click)="toggleStock($event)">
+                (click)="toggleStock(stock.symbol, stock.id )">
                 <img [src]="isStockInUserList(stock.symbol) ? './assets/filledHeart.png' : './assets/heart.png'"
                     width="20" height="20" [ngClass]="isStockInUserList(stock.symbol) ? '': 'user'">
                 <label style="margin-left: 3%">{{stock.symbol}}</label>

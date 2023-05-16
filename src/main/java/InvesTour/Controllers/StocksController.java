@@ -1,8 +1,7 @@
 package InvesTour.Controllers;
 
-import InvesTour.Exceptions.ArticlesNotFoundException;
-import InvesTour.Models.Article;
 import InvesTour.Models.Stock;
+import InvesTour.Models.StockPriceData;
 import InvesTour.Services.StocksService;
 import InvesTour.Services.UsersService;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -11,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/stocks")
@@ -22,7 +22,7 @@ public class StocksController {
     private final StocksService stocksService;
 
     @PostMapping("/user/add")
-    public ResponseEntity<String> addStockToUser(@RequestBody JsonNode jsonBody) throws Exception {
+    public Map<String, String> addStockToUser(@RequestBody JsonNode jsonBody) throws Exception {
         String userEmail = jsonBody.get("userEmail").asText();
         long stockId = jsonBody.get("stockId").asLong();
 
@@ -30,18 +30,21 @@ public class StocksController {
 
         String userStockInfo = "User ID: " + userEmail + ", Stock ID: " + stockId;
 
-        return ResponseEntity.ok(userStockInfo);
+        Map<String, String> userMap = Map.of("userStockInfo", userStockInfo);
+        return userMap;
     }
 
     @PostMapping(value = "/user/delete")
-    public ResponseEntity<String> deleteStockFromUser(@RequestBody JsonNode jsonBody) throws Exception {
+    public Map<String, String> deleteStockFromUser(@RequestBody JsonNode jsonBody) throws Exception {
         String userEmail = jsonBody.get("userEmail").asText();
         long stockId = jsonBody.get("stockId").asLong();
 
         this.service.deleteStockForUser(userEmail, stockId);
 
         String userStockInfo = "User ID: " + userEmail + ", Stock ID: " + stockId;
-        return ResponseEntity.ok(userStockInfo);
+
+        Map<String, String> userMap = Map.of("userStockInfo", userStockInfo);
+        return userMap;
     }
 
     @DeleteMapping(value = "/{stockId}/user/{userId}")
@@ -52,6 +55,11 @@ public class StocksController {
     @GetMapping(value = "/{userEmail}")
     public ResponseEntity<List<Stock>> getStocksByUser(@PathVariable("userEmail") String userEmail) {
         return ResponseEntity.ok().body(this.stocksService.getAllStocksByUser(userEmail));
+    }
+
+    @GetMapping(value = "/data/{symbol}/{timeInterval}")
+    public ResponseEntity<StockPriceData> getStockRealTimeData(@PathVariable("symbol") String symbol, @PathVariable("timeInterval") String timeInterval) {
+        return ResponseEntity.ok().body(this.stocksService.getStockRealTimeData(symbol,timeInterval));
     }
 
     @GetMapping

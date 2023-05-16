@@ -1,23 +1,26 @@
 <div class="myWall">
-    <h1 style="color:#0374d5; font-family: 'Poppins'">Market</h1>
-    <div class="sections">
-      <div class="section">
-        <h3 style="margin: 2%; font-family: 'Poppins'">Stock Status</h3>
-        <div class="articles">
-          <stock *ngFor="let stock of (stocks$ | async)" class="article" [stock]="stock"></stock>
-        </div>
-      </div>
-      <div class="section">
-        <h3 style="margin: 2%; font-family: 'Poppins'">News</h3>
-        <div class="articles">
-          <article *ngFor="let article of (news$ | async)" class="article" [article]="article"></article>
-        </div>
-      </div>
-      <div class="section">
-        <h3 style="margin: 2%; font-family: 'Poppins'">Social Media</h3>
-        <div class="articles">
-          <article *ngFor="let article of []" class="article" [article]="article"></article>
-        </div>
+  <h1 style="color:#0374d5; font-family: 'Poppins'">Market</h1>
+  <div class="sections">
+    <div class="section">
+      <h3 style="margin: 2%; font-family: 'Poppins'">Stock Status</h3>
+      <div class="articles">
+        <!-- <mat-accordion> -->
+        <stock *ngFor="let stock of (stocks$ | async)" class="article" [stock]="stock"
+          (click)="gotoStockPage(stock.symbol)"></stock>
+        <!-- </mat-accordion> -->
       </div>
     </div>
+    <div class="section">
+      <h3 style="margin: 2%; font-family: 'Poppins'">News</h3>
+      <div class="articles">
+        <article *ngFor="let article of (news$ | async)" class="article" [article]="article"></article>
+      </div>
+    </div>
+    <div class="section">
+      <h3 style="margin: 2%; font-family: 'Poppins'">Social Media</h3>
+      <div class="articles">
+        <article *ngFor="let article of []" class="article" [article]="article"></article>
+      </div>
+    </div>
+  </div>
 </div>

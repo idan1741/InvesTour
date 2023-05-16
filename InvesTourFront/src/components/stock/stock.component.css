@@ -27,3 +27,9 @@
 .lala {
     color: red;
 }
+
+mat-expansion-panel {
+    width: 96%;
+    margin-left: 6px;
+    background-color: #333;
+}

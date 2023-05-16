@@ -12,6 +12,7 @@ import { HomeComponent } from 'src/components/home/home.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms';
 
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
@@ -29,6 +30,8 @@ import { NewsEffects } from 'src/server-requests/news/news.effects';
 import { newsReducer, newsReducerToken } from 'src/server-requests/news/news.reducer';
 import { MyProfileComponent } from 'src/components/my-profile/myProfile.component';
 import { addStockDialogComponent } from 'src/dialogs/addStockDialog/addStockDialog.component';
+import { StockPageComponent } from 'src/stock-page/stock-page.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { StocksEffects } from 'src/server-requests/stocks/stocks.effects';
 import { stocksReducer, stocksReducerToken } from 'src/server-requests/stocks/stocks.reducer';
 import { MainComponent } from 'src/components/main/main.component';
@@ -38,7 +41,7 @@ import { MyWallComponent } from 'src/components/my-wall/myWall.component';
 import { StockComponent } from 'src/components/stock/stock.component';
 import { SignUpComponent } from 'src/dialogs/sign-up/signUp.component';
 import { MatChipsModule } from '@angular/material/chips';
-
+import { ChangeDisplayPipe } from 'src/utils/pipes/present-change.pipe';
 
 export const store: Store<any> = createStore(
   rootReducer,
@@ -52,13 +55,15 @@ export const store: Store<any> = createStore(
     SignInComponent,
     SignUpComponent,
     MyWallComponent,
+    StockPageComponent,
     ArticleComponent,
     StockComponent,
     MyProfileComponent,
     addStockDialogComponent,
     MainComponent,
     SearchPipe,
-    TimeAgoPipe
+    TimeAgoPipe,
+    ChangeDisplayPipe
   ],
   imports: [
     BrowserModule,
@@ -69,9 +74,11 @@ export const store: Store<any> = createStore(
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatExpansionModule,
     FormsModule,
     NgReduxModule,
     HttpClientModule,
+    NgxChartsModule,
     MatDialogModule,
     MatChipsModule,
     StoreModule.forRoot({}),

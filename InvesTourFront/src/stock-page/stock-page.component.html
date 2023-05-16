@@ -1,0 +1,54 @@
+<div class="myWall">
+  <div class="bar">
+    <div class="logo"><label style="color: #548235">Inves</label><label>tour</label></div>
+    <div><label> Hi {{firstName$ | async}} {{lastName$ | async}} </label></div>
+  </div>
+  <div class="content">
+    <!-- <h1>
+      <img [src]="stock.company" width="60" height="60">
+    </h1>
+    <h1>{{ stock.name }}</h1> -->
+    <h1>{{ stock.name }}</h1>
+    <div class="sections">
+      <div class="section">
+        <h2 style="margin: 2%;">News</h2>
+        <div class="articles">
+          <!-- <article *ngFor="let article of (allNewsByStock$ | async)" class="article" [article]="article"></article> -->
+        </div>
+      </div>
+      <div class="section">
+        <h2 style="margin: 2%;">Social Media</h2>
+        <div class="articles">
+          <article *ngFor="let article of []" class="article" [article]="article"></article>
+        </div>
+      </div>
+      <div class="stock-stat-section" #stockSection>
+        <div class="stock-stats">
+          <div class="stock-price">{{ stock.price }}$</div>
+          <div [ngClass]="this.stock.isRiseUp ? 'rise' : 'lala'" style="margin-right: 15px; font-size: 1.3rem; direction: ltr;">
+            <mat-icon style="position: relative;top: 5px;">{{stock.isRiseUp ? 'trending_up' : 'trending_down'}}</mat-icon>
+          {{ stock.change | changeDisplay}} %
+          </div>
+        </div>
+        <div class="stat-graph">
+          <div class="period-toggle">
+            <div (click)="togglePeriod(StatPeriods.Day)" class="period">{{ StatPeriods.Day }}  |</div> 
+            <div (click)="togglePeriod(StatPeriods.Week)" class="period">{{ StatPeriods.Week }}  |</div> 
+            <div (click)="togglePeriod(StatPeriods.Month)" class="period">{{ StatPeriods.Month }}</div> 
+          </div>
+          <ngx-charts-line-chart
+            [view]="[stockSection.offsetWidth,300]"
+            [scheme]="colorScheme"
+            [xAxis]="false"
+            [yAxis]="true"
+            [yScaleMin]="yScaleMin"
+            [trimYAxisTicks]="false"
+            [timeline]="true"
+            [results]="[stock]"
+          >
+          </ngx-charts-line-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
