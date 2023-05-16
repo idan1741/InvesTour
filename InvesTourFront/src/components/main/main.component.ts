@@ -9,20 +9,17 @@ import { Router } from "@angular/router";
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  allNewByUserId$: Observable<any>;
-  stocks$: Observable<any>;
+  public news$: Observable<any>;
+  public stocks$: Observable<any>;
 
   ngOnInit(): void {
     this.stocks$ = this.configService.getStocksList();
-    // this.store.dispatch(getArticlesByUser());
-    this.allNewByUserId$ = this.configService.getMainPageArticles();
-    // this.store.dispatch(getMainPageArticles());
+    this.news$ = this.configService.getMainPageArticles();
   }
+
+  constructor(private router: Router, private configService: RequestConfigService) { }
 
   gotoStockPage(stockSymbol) {
     this.router.navigateByUrl('/stockPage', { state: { stockSymbol } })
-  }
-
-  constructor(private configService: RequestConfigService, private router: Router) {
   }
 }
