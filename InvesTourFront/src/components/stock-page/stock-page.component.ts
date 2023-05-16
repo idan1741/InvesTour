@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { selectUsersFirstName, selectUsersLastName } from "src/server-requests/users/users.reducer";
-import { mockStockStatsDay, mockStockStatsMonth, mockStockStatsWeek } from "./mock-data";
 import { RequestConfigService } from "src/server-requests/requests.service";
 import { ActivatedRoute } from "@angular/router";
 import * as _ from 'lodash';

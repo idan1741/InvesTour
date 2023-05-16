@@ -1,5 +1,6 @@
 import { Component, Input} from "@angular/core";
 import { Stock } from "./stock.class";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -12,7 +13,7 @@ export class StockComponent {
   public isOpen = false;
   panelOpenState: boolean = false;
 
-  constructor(){}
+  constructor(private router: Router){}
 
   public toggle(){
     this.isOpen=!this.isOpen;
@@ -20,5 +21,9 @@ export class StockComponent {
 
   abs(val){
     return Math.abs(val);
+  }
+
+  gotoStockPage(stockSymbol) {
+    this.router.navigateByUrl('/stockPage', { state: { stockSymbol } })
   }
 }

@@ -30,7 +30,7 @@ import { NewsEffects } from 'src/server-requests/news/news.effects';
 import { newsReducer, newsReducerToken } from 'src/server-requests/news/news.reducer';
 import { MyProfileComponent } from 'src/components/my-profile/myProfile.component';
 import { addStockDialogComponent } from 'src/dialogs/addStockDialog/addStockDialog.component';
-import { StockPageComponent } from 'src/stock-page/stock-page.component';
+import { StockPageComponent } from 'src/components/stock-page/stock-page.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { StocksEffects } from 'src/server-requests/stocks/stocks.effects';
 import { stocksReducer, stocksReducerToken } from 'src/server-requests/stocks/stocks.reducer';
