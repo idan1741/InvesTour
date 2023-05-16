@@ -4,13 +4,17 @@
       <div class="section">
         <h3 style="margin: 2%;font-family: 'Poppins'">Stock Status</h3>
         <div class="articles">
-          <stock *ngFor="let stock of (userStocklList$ | async)" class="article" [stock]="stock"></stock>
+          <mat-accordion style="width: 100%;">
+            <stock *ngFor="let stock of (userStocklList$ | async)" class="article" [stock]="stock"></stock>
+          </mat-accordion>
         </div>
       </div>
       <div class="section">
         <h3 style="margin: 2%; font-family: 'Poppins'">News</h3>
         <div class="articles">
-          <article *ngFor="let article of (allNewByUserId$ | async)" class="article" [article]="article"></article>
+          <mat-accordion>
+            <article *ngFor="let article of (allNewByUserId$ | async)" class="article" [article]="article"></article>
+          </mat-accordion>
         </div>
       </div>
       <div class="section">

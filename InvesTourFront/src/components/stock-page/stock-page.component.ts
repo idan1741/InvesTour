@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { selectUsersFirstName, selectUsersLastName } from "src/server-requests/users/users.reducer";
 import { RequestConfigService } from "src/server-requests/requests.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import * as _ from 'lodash';
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'stock-page',
@@ -15,10 +16,10 @@ export class StockPageComponent implements OnInit {
   stock: any = {
     isRiseUp: null,
     change: null,
-    price: null,
     name: "",
     series: []
-  }
+  };
+  stockPrice: number;
   colorScheme = { domain: [] };
   yScaleMin: number = 0;
 
@@ -32,12 +33,20 @@ export class StockPageComponent implements OnInit {
   firstName$ = this.store.select(selectUsersFirstName);
   lastName$ = this.store.select(selectUsersLastName);
 
-  // allNewsByStock$ = this.store.select(selectAllNewsByStock());
+  allNewsByStock$: Observable<any>;
+  // allNewByUserId$ = this.store.select(selectAllNewsByUser);
+  // userStocklList$ = this.store.select(selectUserStockList);
 
-  constructor(private store: Store, private requestConfigService: RequestConfigService, private route: ActivatedRoute) {}
+  constructor(
+    private store: Store, 
+    private requestConfigService: RequestConfigService, 
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.togglePeriod(this.StatPeriods.Day)
+    this.stockPrice = history.state.price;
+    this.togglePeriod(this.StatPeriods.Day);
+    this.allNewsByStock$ = this.requestConfigService.getArticlesByStock(history.state.symbol);
   }
 
   async togglePeriod(period: string) {
@@ -45,21 +54,15 @@ export class StockPageComponent implements OnInit {
 
     switch(period) {
       case this.StatPeriods.Day:
-        // this.stock = mockStockStatsDay
-       
-        this.stock = await this.requestConfigService.getStockInfoOneDay(history.state.stockSymbol).toPromise();
+        this.stock = await this.requestConfigService.getStockInfoOneDay(history.state.symbol).toPromise();
         this.setMinScaleAndColor()
         break;
       case this.StatPeriods.Week:
-        // this.stock = mockStockStatsWeek
-       
-        this.stock = await this.requestConfigService.getStockInfoOneWeek(history.state.stockSymbol).toPromise();
+        this.stock = await this.requestConfigService.getStockInfoOneWeek(history.state.symbol).toPromise();
         this.setMinScaleAndColor()
         break;
       case this.StatPeriods.Month:
-        // this.stock = mockStockStatsMonth
-        
-        this.stock = await this.requestConfigService.getStockInfoOneMonth(history.state.stockSymbol).toPromise();
+        this.stock = await this.requestConfigService.getStockInfoOneMonth(history.state.symbol).toPromise();
         this.setMinScaleAndColor()
         break;
     }
@@ -68,5 +71,9 @@ export class StockPageComponent implements OnInit {
   setMinScaleAndColor() {
     this.yScaleMin = _.min(_.map(this.stock.series, 'value'));
     this.colorScheme.domain.push(this.stock.isRiseUp ? '#5AA454' : '#E44D25');
+  }
+
+  goBack() {
+    this.router.navigateByUrl('/myWall')
   }
 }

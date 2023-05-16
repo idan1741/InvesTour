@@ -18,8 +18,4 @@ export class MainComponent implements OnInit {
   }
 
   constructor(private router: Router, private configService: RequestConfigService) { }
-
-  gotoStockPage(stockSymbol) {
-    this.router.navigateByUrl('/stockPage', { state: { stockSymbol } })
-  }
 }

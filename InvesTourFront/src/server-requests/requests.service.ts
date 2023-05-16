@@ -77,6 +77,9 @@ export class RequestConfigService {
   getArticlesByUser(userId: string) {
     return this.http.get(`${this.httpApi}/news/articles/user/${userId}`);
   }
+  getArticlesByStock(symbol: string) {
+    return this.http.get(`${this.httpApi}/news/articles/${symbol}`);
+  }
   getPreferredWebsiteArticlesByUser(userId: string) {
     return this.http.get(
       `${this.httpApi}/news/articles/user/website/${userId}`
