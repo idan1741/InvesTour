@@ -27,7 +27,7 @@ import { usersReducer, usersReducerToken } from 'src/server-requests/users/users
 import { HttpClientModule } from '@angular/common/http';
 import { NewsEffects } from 'src/server-requests/news/news.effects';
 import { newsReducer, newsReducerToken } from 'src/server-requests/news/news.reducer';
-import { StocksListComponent } from 'src/components/stocks-list/stocksList.component';
+import { MyProfileComponent } from 'src/components/my-profile/myProfile.component';
 import { addStockDialogComponent } from 'src/dialogs/addStockDialog/addStockDialog.component';
 import { StocksEffects } from 'src/server-requests/stocks/stocks.effects';
 import { stocksReducer, stocksReducerToken } from 'src/server-requests/stocks/stocks.reducer';
@@ -37,6 +37,8 @@ import { TimeAgoPipe } from 'src/utils/pipes/time-ago.pipe';
 import { MyWallComponent } from 'src/components/my-wall/myWall.component';
 import { StockComponent } from 'src/components/stock/stock.component';
 import { SignUpComponent } from 'src/dialogs/sign-up/signUp.component';
+import { MatChipsModule } from '@angular/material/chips';
+
 
 export const store: Store<any> = createStore(
   rootReducer,
@@ -52,7 +54,7 @@ export const store: Store<any> = createStore(
     MyWallComponent,
     ArticleComponent,
     StockComponent,
-    StocksListComponent,
+    MyProfileComponent,
     addStockDialogComponent,
     MainComponent,
     SearchPipe,
@@ -71,6 +73,7 @@ export const store: Store<any> = createStore(
     NgReduxModule,
     HttpClientModule,
     MatDialogModule,
+    MatChipsModule,
     StoreModule.forRoot({}),
     StoreModule.forFeature(usersReducerToken, usersReducer),
     StoreModule.forFeature(newsReducerToken, newsReducer),

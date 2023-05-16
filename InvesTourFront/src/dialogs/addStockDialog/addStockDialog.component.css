@@ -12,13 +12,22 @@
 }
 
 .input {
-    height: 6vh;
-    width: 22vw;
-    background-color: transparent;
-    border: 1.5px solid #548235;
-    border-radius: 5px;
-    color: white;
-    display: flex;
+  height: 5.5vh;
+  width: 22vw;
+  background-color: #423f3f;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  padding: 5px;
+}
+
+.input:hover {
+  background-color: #3c3838;
+}
+
+.input:focus {
+  outline: none;
 }
 
 .section {

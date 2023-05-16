@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from "@ngrx/store";
 import { SignInComponent } from 'src/dialogs/sign-in/signIn.component';
@@ -8,7 +8,8 @@ import { selectUsersFirstName, selectUsersLastName } from 'src/server-requests/u
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   public firstName$ = this.store.select(selectUsersFirstName);
@@ -19,12 +20,14 @@ export class AppComponent {
   public signIn() {
     const dialogRef = this.dialog.open(SignInComponent, {
       data: {},
+      backdropClass: 'backdropBackground'
     });
   }
 
   public signUp() {
     const dialogRef = this.dialog.open(SignUpComponent, {
       data: {},
+      backdropClass: 'backdropBackground'
     });
   }
 }

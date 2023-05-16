@@ -9,7 +9,7 @@
             <a tabindex="1" *ngIf="(firstName$ | async)" style="margin-left: 35px; text-decoration: none;"
                 [routerLink]="['/myWall']"> my wall </a>
             <a tabindex="1" *ngIf="(firstName$ | async)" style="margin-left: 35px; text-decoration: none;"
-                [routerLink]="['/stockList']"> stocks list </a>
+                [routerLink]="['/myProfile']"> my profile </a>
         </div>
         <div style="display: flex" *ngIf="!(firstName$ | async)">
             <button mat-stroked-button (click)="signIn()">Sign In</button>

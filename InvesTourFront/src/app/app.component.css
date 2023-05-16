@@ -45,3 +45,8 @@ a[tabindex]:focus {
     font-size: 15px;
     margin: 1% ;
 }
+
+.backdropBackground {
+    background-color: #120e0e;
+    opacity: 0.9 !important;
+}
