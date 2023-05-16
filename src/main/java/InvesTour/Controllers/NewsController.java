@@ -71,7 +71,7 @@ public class NewsController {
         return ResponseEntity.ok(userWebsiteInfo.toString());
     }
 
-    @DeleteMapping(value = "/user/delete")
+    @PostMapping(value = "/user/delete")
     public ResponseEntity<String> deleteWebsiteFromUser(@RequestBody JsonNode jsonBody) {
         String userEmail = jsonBody.get("userEmail").asText();
         String websiteId = jsonBody.get("websiteId").asText();
