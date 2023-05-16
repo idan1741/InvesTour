@@ -11,15 +11,18 @@
       <div class="section">
         <h2 style="margin: 2%;">Stock Status</h2>
         <div class="articles">
-          <!-- <mat-accordion> -->
-            <stock *ngFor="let stock of (stocks$ | async)" class="article" [stock]="stock" (click)="gotoStockPage(stock.symbol)"></stock>
-          <!-- </mat-accordion> -->
+          <mat-accordion style="width: 100%;">
+            <!-- <stock *ngFor="let stock of (stocks$ | async)" class="article" [stock]="stock" (click)="gotoStockPage(stock.symbol)"></stock> -->
+            <stock *ngFor="let stock of (stocks$ | async)" class="article" [stock]="stock"></stock>
+          </mat-accordion>
         </div>
       </div>
       <div class="section">
         <h2 style="margin: 2%;">News</h2>
         <div class="articles">
-          <article *ngFor="let article of (allNewByUserId$ | async)" class="article" [article]="article"></article>
+          <mat-accordion>
+            <article *ngFor="let article of (allNewByUserId$ | async)" class="article" [article]="article"></article>
+          </mat-accordion>
         </div>
       </div>
       <div class="section">

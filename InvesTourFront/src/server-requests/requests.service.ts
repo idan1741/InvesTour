@@ -11,8 +11,7 @@ export class RequestConfigService {
   ) {}
 
   // TODO: erase
-  private ichaiApi = 'http://localhost:8080';
-  private httpApi = this.ichaiApi;
+  private httpApi = 'http://localhost:8080';
   // private httpApi = `http://${this.envConfig.serverUrl}${this.envConfig.httpPort}`;
 
   // stocks

@@ -8,14 +8,13 @@ import { Article } from "./article.class";
   styleUrls: ['./article.component.css']
 })
 export class ArticleComponent {
-@Input() article;
-public isOpen = false;
+  @Input() article;
+  public isOpen = false;
+  panelOpenState: boolean = false;
 
-constructor(){
-  console.log(this.article);
-}
+  constructor(){}
 
-public toggle(){
-  this.isOpen=!this.isOpen;
-}
+  public toggle(){
+    this.isOpen=!this.isOpen;
+  }
 }

@@ -1,11 +1,15 @@
-<div class="article">
-    <div class="time">
-      <img src="../assets/clock.png" width="20" height="20" style="filter: invert(100%);">
-      {{this.article.publishedAt | timeAgo}}
-    </div>
-    <div style=" display: flex; align-items: center; width: 85%;">
+<mat-expansion-panel hideToggle (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+  <mat-expansion-panel-header [collapsedHeight]="'70px'" [expandedHeight]="'90px'">
+    <mat-panel-title>
+      <img src="../assets/clock.png" width="20" height="20" style="filter: invert(100%);margin-top: 10px;">
+      <label style="font-size: small; white-space: nowrap;">{{this.article.publishedAt | timeAgo}}</label>
+    </mat-panel-title>
+    <mat-panel-title>
       <img style="margin-right: 3%" [src]="article.imageUrl" width="30" height="30">
+    </mat-panel-title>
+    <mat-panel-description [style.color]="'white'">
       {{this.article.title}}
-    </div>
-    <!-- <mat-icon (click)="toggle()">{{isOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</mat-icon> -->
-</div>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <p>{{ article.description }}</p>
+</mat-expansion-panel>

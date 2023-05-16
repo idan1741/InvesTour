@@ -1,39 +1,16 @@
-<div class="stock">
-    <div class="name">
+<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+  <mat-expansion-panel-header [collapsedHeight]="'70px'" [expandedHeight]="'90px'">
+    <mat-panel-title [style.width]="'13rem'">
       <label> {{this.stock.symbol}} </label>
-      <label style="font-size: small;"> {{this.stock.name}} </label>
-    </div>
-    <div style=" display: flex; justify-content: center; width: 30%;">
-      {{this.stock.price}} $
-    </div>
-    <div [ngClass]="this.stock.change > 0 ? 'rise' : 'lala'">
-      <mat-icon>{{stock.change > 0 ? 'trending_up' : 'trending_down'}}</mat-icon>
-      {{ this.abs(this.stock.change)}} %
-    </div>
-    <!-- <mat-icon (click)="toggle()">{{isOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</mat-icon> -->
-<!-- </div> -->
-<!-- <mat-expansion-panel hideToggle (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-  <mat-expansion-panel-header> -->
-    <!-- <div class="stock">
-      <div class="name">
-        <label> {{this.stock.symbol}} </label>
-        <label style="font-size: small;"> {{this.stock.name}} </label>
-      </div>
-      <div style=" display: flex; justify-content: center; width: 30%;">
-        {{this.stock.price}} $
-      </div>
-      <div [ngClass]="this.stock.change > 0 ? 'rise' : 'lala'">
-        <mat-icon>{{stock.change > 0 ? 'trending_up' : 'trending_down'}}</mat-icon>
-        {{ this.abs(this.stock.change)}} %
-      </div>
-    </div> -->
-    <!-- <mat-panel-title>
-      <label> {{this.stock.symbol}} </label>
-        <label style="font-size: small;"> {{this.stock.name}} </label>
+      <label style="font-size: small; white-space: nowrap;"> {{this.stock.name}} </label>
     </mat-panel-title>
     <mat-panel-description>
-      Currently I am {{panelOpenState ? 'open' : 'closed'}}
+      <div class="stock-price">{{this.stock.price}} $</div>
+    </mat-panel-description>
+    <mat-panel-description [style.color]="stock.change > 0 ? 'green' : 'red'">
+      <mat-icon [style.margin-right]="'5px'">{{stock.change > 0 ? 'trending_up' : 'trending_down'}}</mat-icon>
+      {{ this.abs(this.stock.change)}} %
     </mat-panel-description>
   </mat-expansion-panel-header>
-  <p>{{ stock.name }}</p>
-</mat-expansion-panel> -->
+  <p (click)="gotoStockPage(stock.symbol)">go to stock page</p>
+</mat-expansion-panel>
