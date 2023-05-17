@@ -1,9 +1,15 @@
 package InvesTour.Controllers;
 
+import InvesTour.Models.Stock;
 import InvesTour.Services.DataService;
+import InvesTour.Services.StocksService;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping
@@ -12,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class DataController {
 
     private final DataService dataService;
+    private final StocksService stocksService;
 
     @GetMapping(value = "/main/graph")
     public void getGraph() {
@@ -36,5 +43,18 @@ public class DataController {
     @GetMapping(value = "/updates/stock/{stockName}")
     public void getUpdatesForStock(@PathVariable("stockName") String stockName) {
 
+
+    }
+
+    @GetMapping(value = "/tweets/stock/{stockName}")
+    public JsonNode getTweetsByStock(@PathVariable("stockName") String stockName) {
+        return dataService.getTweetsByStock(stockName);
+    }
+
+    @GetMapping(value = "/tweets/user/{userEmail}")
+    public JsonNode getTweetsByUserId(@PathVariable("userEmail") String userEmail) {
+        List<Stock> stocks = stocksService.getAllStocksByUser(userEmail);
+
+        return dataService.getTweetsByListOfStocks(stocks);
     }
 }
