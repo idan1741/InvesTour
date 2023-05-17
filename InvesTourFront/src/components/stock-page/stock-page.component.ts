@@ -72,8 +72,4 @@ export class StockPageComponent implements OnInit {
     this.yScaleMin = _.min(_.map(this.stock.series, 'value'));
     this.colorScheme.domain.push(this.stock.isRiseUp ? '#5AA454' : '#E44D25');
   }
-
-  goBack() {
-    this.router.navigateByUrl('/myWall')
-  }
 }
