@@ -6,6 +6,7 @@ import { getStocksByUser, toggleStock } from "src/server-requests/stocks/stocks.
 import { selectUserStockList } from "src/server-requests/stocks/stocks.reducer";
 import { RequestConfigService } from "src/server-requests/requests.service";
 import { selectUserId, selectUsersState } from "src/server-requests/users/users.reducer";
+import { AddWebsitesDialogComponent } from "src/dialogs/addWebsitesDialog/addWebsitesDialog.component";
 
 @Component({
   selector: 'myProfile',
@@ -28,6 +29,12 @@ export class MyProfileComponent implements OnInit {
 
   addStock() {
     const dialogRef = this.dialog.open(addStockDialogComponent, {
+      data: {},
+    });
+  }
+
+  addWebsite(){
+    const dialogRef = this.dialog.open(AddWebsitesDialogComponent, {
       data: {},
     });
   }

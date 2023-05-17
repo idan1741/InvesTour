@@ -1,0 +1,14 @@
+<div class="addStock">
+    <h1 style="color:#0374d5; font-family: 'Poppins'">Add New Website...</h1>
+    <input class="input" placeholder="Search" [(ngModel)]="searchText">
+    <div class="list">
+        <div *ngIf="(websites$ | async) as websites">
+            <div class="section" *ngFor="let website of websites | searchBySymbolPipe : searchText"
+                (click)="toggleWebsite(website)">
+                <img [src]="isWebsiteInUserList(website) ? './assets/filledHeart.png' : './assets/heart.png'"
+                    width="20" height="20" [ngClass]="isWebsiteInUserList(website) ? '': 'user'">
+                <label style="margin-left: 3%">{{website}}</label>
+            </div>
+        </div>
+    </div>
+</div>

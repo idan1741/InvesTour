@@ -12,15 +12,17 @@
       <div class="section">
         <h3 style="margin: 2%; font-family: 'Poppins'">News</h3>
         <div class="articles">
-          <mat-accordion>
-            <article *ngFor="let article of (allNewByUserId$ | async)" class="article" [article]="article"></article>
-          </mat-accordion>
+          <mat-accordion style="width: 100%;">
+          <article *ngFor="let article of (allNewByUserId$ | async)" class="article" [article]="article"></article>
+        </mat-accordion>
         </div>
       </div>
       <div class="section">
         <h3 style="margin: 2%; font-family: 'Poppins'">Social Media</h3>
         <div class="articles">
+          <mat-accordion>
           <article *ngFor="let article of []" class="article" [article]="article"></article>
+        </mat-accordion>
         </div>
       </div>
     </div>
