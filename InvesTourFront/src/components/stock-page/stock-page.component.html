@@ -9,14 +9,14 @@
       <h2 style="margin: 2%;">News</h2>
       <div class="articles">
         <mat-accordion>
-          <article *ngFor="let article of (allNewsByStock$ | async)" class="article" [article]="article"></article>
+          <article *ngFor="let article of (allNewsByStock$ | async)" [article]="article"></article>
         </mat-accordion>
       </div>
     </div>
     <div class="section">
       <h2 style="margin: 2%;">Social Media</h2>
       <div class="articles">
-        <article *ngFor="let article of []" class="article" [article]="article"></article>
+        <article *ngFor="let article of []" [article]="article"></article>
       </div>
     </div>
     <div class="stock-stat-section" #stockSection>
@@ -49,10 +49,6 @@
         [results]="[stock]"
       >
       </ngx-charts-line-chart>
-      <div (click)="goBack()" class="back-button">
-        <!-- <img src="" alt=""> -->
-        <span class="arrow-right"></span>
-      </div>
     </div>
   </div>
 </div>
