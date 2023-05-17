@@ -8,14 +8,14 @@ def getTweetsByFilters(data):
         query += '(from:' + data.get('user') + ') '
     if data.get('keywords'):
         query += data.get('keywords') + ' '
-    if data.get('likesMin'):
-        query += 'min_faves:' + data.get('likesMin') + ' '
-    else:
-        query += "min_faves: 100"
-    if data.get('endDate'):
-        query += 'until:' + data.get('endDate') + ' '
-    if data.get('startDate'):
-        query += 'since:' + data.get('startDate') + ''
+    # if data.get('likesMin'):
+    #     query += 'min_faves:' + data.get('likesMin') + ' '
+    # else:
+    #     query += "min_faves: 100"
+    # if data.get('endDate'):
+    #     query += 'until:' + data.get('endDate') + ' '
+    # if data.get('startDate'):
+    #     query += 'since:' + data.get('startDate') + ''
     
     tweets = []
     limit = 50

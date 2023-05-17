@@ -1,18 +1,18 @@
 import { Component, Input} from "@angular/core";
-import { Article } from "./article.class";
-
 
 @Component({
-  selector: 'article',
-  templateUrl: './article.component.html',
-  styleUrls: ['./article.component.css']
+  selector: 'tweet',
+  templateUrl: './tweet.component.html',
+  styleUrls: ['./tweet.component.css']
 })
-export class ArticleComponent {
+export class TweetComponent {
   @Input() article;
   public isOpen = false;
   panelOpenState: boolean = false;
 
-  constructor(){ }
+  constructor(){
+    console.log("checkkk", this.article)
+  }
 
   public toggle(){
     this.isOpen=!this.isOpen;

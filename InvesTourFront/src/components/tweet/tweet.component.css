@@ -1,0 +1,24 @@
+mat-expansion-panel {
+    width: 98%;
+    margin-left: 6px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: #333;
+}
+
+::ng-deep .mat-expansion-panel-header-title {
+    /* width: 70px; */
+    margin: 5px;
+    color: white;
+    align-items: center;
+    flex-direction: column;
+}
+
+::ng-deep .mat-expansion-panel-header-description {
+    align-items: center;
+    margin-left: 3px;
+}
+
+::ng-deep .mat-content {
+    align-items: center;
+}

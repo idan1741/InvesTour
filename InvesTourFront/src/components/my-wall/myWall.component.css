@@ -51,3 +51,8 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #3b3838; 
   }
+
+  ::ng-deep#stocks>.mat-expansion-panel-header {
+    padding: 0px;
+    width: max-content;
+  }
