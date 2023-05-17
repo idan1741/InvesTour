@@ -2,6 +2,7 @@ from snscrape.modules import twitter as snstwitter
 import pandas as pd
     
 def getTweetsByFilters(data):
+    print(data)
     query = ""
     if data.get('user'):
         query += '(from:' + data.get('user') + ') '
@@ -9,6 +10,8 @@ def getTweetsByFilters(data):
         query += data.get('keywords') + ' '
     if data.get('likesMin'):
         query += 'min_faves:' + data.get('likesMin') + ' '
+    else:
+        query += "min_faves: 100"
     if data.get('endDate'):
         query += 'until:' + data.get('endDate') + ' '
     if data.get('startDate'):
