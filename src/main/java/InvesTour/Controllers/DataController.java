@@ -43,6 +43,7 @@ public class DataController {
     @GetMapping(value = "/updates/stock/{stockName}")
     public void getUpdatesForStock(@PathVariable("stockName") String stockName) {
 
+
     }
 
     @GetMapping(value = "/tweets/stock/{stockName}")
