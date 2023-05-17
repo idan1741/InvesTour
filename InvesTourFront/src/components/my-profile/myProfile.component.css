@@ -1,5 +1,4 @@
-.myProfilePage
-{
+.myProfilePage {
     background-color: #333333;
     color: white;
     display: flex;
@@ -8,8 +7,24 @@
     align-items: center;
 }
 
+.user {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    justify-content: space-between;
+    /* font-size: large; */
+}
+
+.content {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
 .mat-raised-button {
-    background-color: #548235;
+    border:1px solid #0374d5;
+    background-color: transparent;
     color: white;
     font-family: Calibri;
     font-size: 15px;
@@ -17,16 +32,31 @@
     width: 5vw;
 }
 
-.stocksList {
+.mat-raised-button:hover {
+    background-color: #0374d5;
+}
+
+.section{
+    margin-top: 10px;
+}
+
+.list {
     display: flex;
-    height: 50vh;
-    width: 33vw;
-    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 22vw;
+    height: 30%;
+    gap: 10px;
+
+}
+
+.stocksList>div {
+    flex: 1 1 auto;
+
 }
 
 .stock {
     height: 6vh;
-    width: 5vw;
+    min-width: 5vw;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
@@ -36,21 +66,8 @@
     padding-right: 5px;
 }
 
-.user {
-    filter: invert(100%);
-  }
-
 .icon {
     font-size: small;
     height: 15px;
     width: auto;
-}
-
-ul {
-    list-style-type: none;
-  }
-  
-  ul li:nth-child(4n):after {
-    content: ' ';
-    display: block;
 }
