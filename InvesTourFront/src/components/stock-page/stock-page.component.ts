@@ -11,7 +11,7 @@ import * as _ from 'lodash';
   styleUrls: ['./stock-page.component.css']
 })
 export class StockPageComponent implements OnInit {
-  @Input() stockSymbol: any;
+  // @Input() stockSymbol: any;
   stock: any = {
     isRiseUp: null,
     change: null,
@@ -21,6 +21,13 @@ export class StockPageComponent implements OnInit {
   }
   colorScheme = { domain: [] };
   yScaleMin: number = 0;
+
+  StatPeriods = {
+    Day: "Day",
+    Week: "Week",
+    Month: "Month"
+  }
+  currentPeriod = this.StatPeriods.Day;
   
   firstName$ = this.store.select(selectUsersFirstName);
   lastName$ = this.store.select(selectUsersLastName);
@@ -33,13 +40,9 @@ export class StockPageComponent implements OnInit {
     this.togglePeriod(this.StatPeriods.Day)
   }
 
-  StatPeriods = {
-    Day: "Day",
-    Week: "Week",
-    Month: "Month"
-  }
+  async togglePeriod(period: string) {
+    this.currentPeriod = period;
 
-  async togglePeriod(period) {
     switch(period) {
       case this.StatPeriods.Day:
         // this.stock = mockStockStatsDay
@@ -60,7 +63,6 @@ export class StockPageComponent implements OnInit {
         this.setMinScaleAndColor()
         break;
     }
-    console.log(this.stock)
   }
 
   setMinScaleAndColor() {

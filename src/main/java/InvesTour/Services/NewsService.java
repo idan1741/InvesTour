@@ -41,6 +41,14 @@ public class NewsService {
         return getStocksArticles(userStocksData);
     }
 
+    public Optional<List<Article>> getNewsByStock(String stockSymbol){
+        List<String> keyWordOfStock = stocksRepository.getKeyWordOfStock(stockSymbol);
+
+        JsonNode userStocksData = this.retriever.retrieveDataByKeywords(keyWordOfStock);
+
+        return getStocksArticles(userStocksData);
+    }
+
     public Optional<List<Article>> getStocksArticlesByUserAndWebsites(String userEmail) {
         List<String> userStocks = stocksRepository.getStockNamesByUserEmail(userEmail);
         List<String> userWebsites = websiteRepository.getAllWebsitesByUserEmail(userEmail);

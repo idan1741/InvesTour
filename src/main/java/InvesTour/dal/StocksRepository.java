@@ -26,6 +26,13 @@ public class StocksRepository {
                 .fetchInto(String.class);
     }
 
+    public List<String> getKeyWordOfStock(String stockSymbol) {
+        return this.dsl.select(field("key_word"))
+                .from(table("investour.tbl_stocks"))
+                .where(field("symbol").eq(stockSymbol))
+                .fetchInto(String.class);
+    }
+
     public boolean isStockExist(long stockId) {
         return this.dsl.fetchExists(
                 this.dsl.selectFrom(table("investour.tbl_stocks"))

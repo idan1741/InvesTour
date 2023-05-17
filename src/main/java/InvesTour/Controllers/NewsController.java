@@ -52,6 +52,12 @@ public class NewsController {
                 .orElseThrow(() -> new ArticlesNotFoundException(List.of())));
     }
 
+    @GetMapping(value = "/articles/{symbol}")
+    public ResponseEntity<List<Article>> getNewsByStock(@PathVariable("symbol") String stockSymbol) {
+        return ResponseEntity.ok().body(this.newsService.getNewsByStock(stockSymbol)
+                .orElseThrow(() -> new ArticlesNotFoundException(List.of())));
+    }
+
     @GetMapping(value = "/user/{userId}/stock/{stockName}")
     public void getArticlesByUserAndStock(@PathVariable("userId") Long id, @PathVariable("stockName") String stockName) {
 

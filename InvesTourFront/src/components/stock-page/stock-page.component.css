@@ -58,13 +58,9 @@
 }
 
 .period {
-    padding-left: 5px;
+    padding: 0 5px;
     cursor: pointer;
-}
-
-.stat-graph {
-    /* position: relative;
-    left: -2rem; */
+    border-radius: 5px;
 }
 
 ngx-charts-line-chart {

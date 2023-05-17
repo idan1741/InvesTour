@@ -20,22 +20,33 @@
     <div class="stock-stat-section" #stockSection>
       <div class="stock-stats">
         <div class="stock-price">{{ stock.price }}$</div>
-        <div [ngClass]="this.stock.isRiseUp ? 'rise' : 'lala'"
-          style="margin-right: 15px; font-size: 1.3rem; direction: ltr;">
+        <div [ngClass]="this.stock.isRiseUp ? 'rise' : 'lala'" style="margin-right: 15px; font-size: 1.3rem; direction: ltr;">
           <mat-icon style="position: relative;top: 5px;">{{stock.isRiseUp ? 'trending_up' : 'trending_down'}}</mat-icon>
-          {{ stock.change | changeDisplay}} %
+        {{ stock.change | changeDisplay}} %
         </div>
       </div>
-      <div class="stat-graph">
-        <div class="period-toggle">
-          <div (click)="togglePeriod(StatPeriods.Day)" class="period">{{ StatPeriods.Day }} |</div>
-          <div (click)="togglePeriod(StatPeriods.Week)" class="period">{{ StatPeriods.Week }} |</div>
-          <div (click)="togglePeriod(StatPeriods.Month)" class="period">{{ StatPeriods.Month }}</div>
-        </div>
-        <ngx-charts-line-chart [view]="[stockSection.offsetWidth,300]" [scheme]="colorScheme" [xAxis]="false"
-          [yAxis]="true" [yScaleMin]="yScaleMin" [trimYAxisTicks]="false" [timeline]="true" [results]="[stock]">
-        </ngx-charts-line-chart>
+      <div class="period-toggle">
+        <div (click)="togglePeriod(StatPeriods.Day)" [style.background-color]="currentPeriod == StatPeriods.Day ? '#635d5d' : ''" class="period">
+          {{ StatPeriods.Day }}
+        </div> |
+        <div (click)="togglePeriod(StatPeriods.Week)" [style.background-color]="currentPeriod == StatPeriods.Week ? '#635d5d' : ''" class="period">
+          {{ StatPeriods.Week }}
+        </div> |
+        <div (click)="togglePeriod(StatPeriods.Month)" [style.background-color]="currentPeriod == StatPeriods.Month ? '#635d5d' : ''" class="period">
+          {{ StatPeriods.Month }}
+        </div> 
       </div>
+      <ngx-charts-line-chart
+        [view]="[stockSection.offsetWidth,300]"
+        [scheme]="colorScheme"
+        [xAxis]="false"
+        [yAxis]="true"
+        [yScaleMin]="yScaleMin"
+        [trimYAxisTicks]="false"
+        [timeline]="true"
+        [results]="[stock]"
+      >
+      </ngx-charts-line-chart>
     </div>
   </div>
 </div>
