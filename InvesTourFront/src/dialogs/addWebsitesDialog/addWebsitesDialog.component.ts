@@ -1,13 +1,12 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { getAvailableWebsites } from 'src/server-requests/news/news.actions';
+import {
+  getAvailableWebsites,
+  removeWebsiteFromWatchList,
+  addWebsiteToWatchList,
+} from 'src/server-requests/news/news.actions';
 import { RequestConfigService } from 'src/server-requests/requests.service';
-import { toggleStock } from 'src/server-requests/stocks/stocks.actions';
-import { selectUserStockList } from 'src/server-requests/stocks/stocks.reducer';
 import { selectUsersState } from 'src/server-requests/users/users.reducer';
 
 @Component({
@@ -18,44 +17,54 @@ import { selectUsersState } from 'src/server-requests/users/users.reducer';
 export class AddWebsitesDialogComponent implements OnInit {
   searchText: string;
 
-  websites$ = this.configService.getAvailableWebsites();
+  public availableWebsites$: any = this.configService.getAvailableWebsites();
   public user$ = this.store.select(selectUsersState);
   public websitesByUser$;
+  public user;
 
   constructor(
     private store: Store,
     private configService: RequestConfigService,
     public dialogRef: MatDialogRef<AddWebsitesDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     // this.store.dispatch(getStocksByUser());
-    this.user$.subscribe(user => this.websitesByUser$ = this.configService.getWebsitesByUser(user.email));
+    this.user$.subscribe((user) => {
+      this.user = user;
+      this.configService
+        .getWebsitesByUser(user.email)
+        .subscribe((userWebSite) => (this.websitesByUser$ = userWebSite));
+    });
   }
 
-  isWebsiteInUserList(stockSymbol: string): boolean {
-    let isStockInUserList: boolean;
+  isWebsiteInUserList(websiteID: string): boolean {
+    let isWebSiteInUserList: boolean;
 
-    this.store.select(selectUserStockList).subscribe((userStocks) => {
-      isStockInUserList = Boolean(
-        userStocks.find((userStock) => userStock.symbol === stockSymbol)
-      );
-    });
-
-    return isStockInUserList;
+    isWebSiteInUserList = Boolean(
+      this.websitesByUser$.find((website: string) => website === websiteID)
+    );
+    return isWebSiteInUserList;
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  toggleWebsite(website) {
-    // this.store.dispatch(
-    //   toggleStock({
-    //     stockSymbol,
-    //     stockId,
-    //   })
-    // );
+  toggleWebsite(websiteId: string) {
+    const isInUserLike = this.isWebsiteInUserList(websiteId);
+
+    isInUserLike
+      ? this.configService
+          .removeWebsiteFromWatchList(this.user.email, websiteId)
+          .subscribe((res) => console.log(res))
+      : this.configService
+          .addWebsiteToWatchList(this.user.email, websiteId)
+          .subscribe((res) => console.log(res));
+
+    this.configService
+      .getWebsitesByUser(this.user.email)
+      .subscribe((userWebSite) => (this.websitesByUser$ = userWebSite));
   }
 }
