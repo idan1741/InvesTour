@@ -27,12 +27,11 @@ export class MyWallComponent implements OnInit {
   constructor(private store: Store, private configService: RequestConfigService) {
     this.user$.subscribe(user => this.userTweets$ = this.configService.getTweetsByUserId(user.email));
     // this.userTweets$.subscribe(tweets => console.log("tweets:", tweets));
-    this.userTweets$.subscribe(tweets => {
-      console.log("hiiii");
-      this.userTweets = tweets.map(tweet => {
-        return { publishedAt: tweet[0], title: tweet[1], description: tweet[2], sub: tweet[2].substring(0, 30) + "..." }
-      })
-      return this.userTweets;
-    });
+    // this.userTweets$.subscribe(tweets => {
+    //   this.userTweets = tweets?.map(tweet => {
+    //     return { publishedAt: tweet[0], title: tweet[1], description: tweet[2], sub: tweet[2].substring(0, 30) + "..." }
+    //   })
+    //   return this.userTweets;
+    // });
   }
 }

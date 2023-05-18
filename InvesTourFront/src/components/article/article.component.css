@@ -1,5 +1,5 @@
 mat-expansion-panel {
-    width: 96%;
+    width: 380px;
     margin-left: 6px;
     margin-bottom: 10px;
     border-radius: 10px;
@@ -12,6 +12,7 @@ mat-expansion-panel {
     color: white;
     align-items: center;
     flex-direction: column;
+    overflow: hidden;
 }
 
 ::ng-deep .mat-expansion-panel-header-description {

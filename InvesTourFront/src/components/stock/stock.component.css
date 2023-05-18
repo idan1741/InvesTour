@@ -3,7 +3,7 @@
 }
 
 mat-expansion-panel {
-    width: 96%;
+    width: 380px;
     margin-left: 6px;
     margin-bottom: 10px;
     border-radius: 10px;
@@ -20,4 +20,8 @@ mat-expansion-panel {
 ::ng-deep .mat-expansion-panel-header-description {
     align-items: center;
     margin-left: 3px;
+}
+
+::ng-deep .mat-expansion-panel-header {
+    padding: 0px 11px !important;
 }

@@ -1,6 +1,4 @@
 import { Component, Input} from "@angular/core";
-import { Article } from "./article.class";
-
 
 @Component({
   selector: 'article',
