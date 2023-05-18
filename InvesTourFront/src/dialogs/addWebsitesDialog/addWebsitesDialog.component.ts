@@ -43,7 +43,7 @@ export class AddWebsitesDialogComponent implements OnInit {
     let isWebSiteInUserList: boolean;
 
     isWebSiteInUserList = Boolean(
-      this.websitesByUser$.find((website: string) => website === websiteID)
+      this.websitesByUser$.find((website: any) => website.website_id === websiteID)
     );
     return isWebSiteInUserList;
   }
@@ -52,15 +52,15 @@ export class AddWebsitesDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  toggleWebsite(websiteId: string) {
+  toggleWebsite(websiteId: string, websiteName: string) {
     const isInUserLike = this.isWebsiteInUserList(websiteId);
 
     isInUserLike
       ? this.configService
-          .removeWebsiteFromWatchList(this.user.email, websiteId)
+          .removeWebsiteFromWatchList(this.user.email, websiteId, websiteName)
           .subscribe((res) => console.log(res))
       : this.configService
-          .addWebsiteToWatchList(this.user.email, websiteId)
+          .addWebsiteToWatchList(this.user.email, websiteId, websiteName)
           .subscribe((res) => console.log(res));
 
     this.configService

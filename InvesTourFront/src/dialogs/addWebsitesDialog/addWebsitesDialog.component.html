@@ -4,7 +4,7 @@
     <div class="list">
         <div *ngIf="(availableWebsites$ | async) as websites">
             <div class="section" *ngFor="let website of websites.sources | searchBySymbolPipe : searchText"
-                (click)="toggleWebsite(website.id)">
+                (click)="toggleWebsite(website.id, website.name)">
                 <img [src]="isWebsiteInUserList(website.id) ? './assets/filledHeart.png' : './assets/heart.png'"
                     width="20" height="20" [ngClass]="isWebsiteInUserList(website.id) ? '': 'user'">
                 <label style="margin-left: 3%">{{website.name}}</label>
