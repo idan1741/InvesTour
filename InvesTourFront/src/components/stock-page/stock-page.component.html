@@ -16,7 +16,7 @@
     <div class="section">
       <h2 style="margin: 2%;">Social Media</h2>
       <div class="articles">
-        <article *ngFor="let article of []" [article]="article"></article>
+        <tweet *ngFor="let tweets of allTweetsByStock" [article]="tweets"></tweet>
       </div>
     </div>
     <div class="stock-stat-section" #stockSection>

@@ -56,6 +56,16 @@ export class RequestConfigService {
     );
   }
 
+  // Social Media
+  getTweetsByStock(stockName) {
+    console.log(`${this.httpApi}/tweets/stock/${stockName}`);
+    return this.http.get(`${this.httpApi}/tweets/stock/${stockName}`);
+  }
+  getTweetsByUserId(userId){
+    return this.http.get(`${this.httpApi}/tweets/user/${userId}`);
+  }
+
+  
   // Users
   addUser(userInfo) {
     return this.http.post(`${this.httpApi}/user`, userInfo);

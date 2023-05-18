@@ -3,7 +3,7 @@
     <div class="sections">
       <div class="section">
         <h3 style="margin: 2%;font-family: 'Poppins'">Stock Status</h3>
-        <div class="articles">
+        <div class="articles" id="stocks">
           <mat-accordion style="width: 100%;">
             <stock *ngFor="let stock of (userStocklList$ | async)" class="article" [stock]="stock"></stock>
           </mat-accordion>
@@ -21,7 +21,7 @@
         <h3 style="margin: 2%; font-family: 'Poppins'">Social Media</h3>
         <div class="articles">
           <mat-accordion>
-          <article *ngFor="let article of []" class="article" [article]="article"></article>
+          <tweet *ngFor="let tweet of userTweets" class="article" [article]="tweet"></tweet>
         </mat-accordion>
         </div>
       </div>

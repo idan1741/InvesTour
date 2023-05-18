@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { selectUsersFirstName, selectUsersLastName } from "src/server-requests/users/users.reducer";
 import { RequestConfigService } from "src/server-requests/requests.service";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import * as _ from 'lodash';
 import { Observable } from "rxjs";
 
@@ -33,7 +33,9 @@ export class StockPageComponent implements OnInit {
   firstName$ = this.store.select(selectUsersFirstName);
   lastName$ = this.store.select(selectUsersLastName);
 
+  allTweetsByStock$;
   allNewsByStock$: Observable<any>;
+  allTweetsByStock;
   // allNewByUserId$ = this.store.select(selectAllNewsByUser);
   // userStocklList$ = this.store.select(selectUserStockList);
 
@@ -47,6 +49,12 @@ export class StockPageComponent implements OnInit {
     this.stockPrice = history.state.price;
     this.togglePeriod(this.StatPeriods.Day);
     this.allNewsByStock$ = this.requestConfigService.getArticlesByStock(history.state.symbol);
+    this.allTweetsByStock$ = this.requestConfigService.getTweetsByStock(history.state.symbol);
+    this.allTweetsByStock$.subscribe(tweets => {
+      this.allTweetsByStock = tweets.map(tweet => {
+        return {publishedAt: tweet[0], title: tweet[1], description: tweet[2], sub: tweet[2].substring(0,30) + "..."}})
+      return this.allTweetsByStock;
+    });
   }
 
   async togglePeriod(period: string) {
