@@ -1,5 +1,6 @@
 package InvesTour.retrievers;
 
+import InvesTour.Models.Website;
 import InvesTour.utils.Json;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.SneakyThrows;
@@ -9,6 +10,7 @@ import okhttp3.Response;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UrlRetriever implements Retriever {
@@ -25,9 +27,10 @@ public class UrlRetriever implements Retriever {
     }
 
     @SneakyThrows
-    public JsonNode retrieveDataByStocksKeywordsAndWebsites(List<String> stocks, List<String> websites) {
+    public JsonNode retrieveDataByStocksKeywordsAndWebsites(List<String> stocks, List<Website> websites) {
+        List<String> websiteIds = websites.stream().map(Website::getWebsiteId).collect(Collectors.toList());
         String url = NEWS_API_URL + "/everything?q=" + joinString(stocks, "|") +
-                "&sources=" + joinString(websites, ",") + "&language=en&apiKey=" + API_KEY;
+                "&sources=" + joinString(websiteIds, ",") + "&language=en&apiKey=" + API_KEY;
         return getJsonBodyByUrl(url);
     }
 
