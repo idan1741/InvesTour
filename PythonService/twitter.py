@@ -1,6 +1,7 @@
 from snscrape.modules import twitter as snstwitter
 import pandas as pd
-    
+
+
 def getTweetsByFilters(data):
     print(data)
     query = ""
@@ -16,7 +17,7 @@ def getTweetsByFilters(data):
     #     query += 'until:' + data.get('endDate') + ' '
     # if data.get('startDate'):
     #     query += 'since:' + data.get('startDate') + ''
-    
+
     tweets = []
     limit = 50
 
@@ -25,5 +26,5 @@ def getTweetsByFilters(data):
             break
         else:
             tweets.append([tweet.date, tweet.user.username, tweet.rawContent])
-    
+
     return tweets

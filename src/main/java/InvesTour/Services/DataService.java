@@ -3,7 +3,6 @@ package InvesTour.Services;
 import InvesTour.Models.Stock;
 import InvesTour.utils.Json;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
@@ -18,6 +17,8 @@ import java.util.List;
 @Service
 public class DataService {
     private final String TWEETS_SERVICE_URL = "http://localhost:5000/tweets";
+
+    private final String SENTIMENT_ANALYSIS_SERVICE_URL = "http://localhost:5000/sentimentScore";
 
     public JsonNode getTweetsByStock(String stockName) {
         JsonNode payload = Json.newObject().put("keywords", stockName);
@@ -61,5 +62,25 @@ public class DataService {
         }
 
         return res;
+    }
+
+    public int getSentimentScore(String string) {
+        JsonNode payload = Json.newObject().put("description", string);
+        JsonNode res = Json.newObject();
+        StringEntity entity = new StringEntity(payload.toString(), ContentType.APPLICATION_JSON);
+
+        try (CloseableHttpClient httpClient = HttpClientBuilder.create().build()) {
+            HttpPost request = new HttpPost(SENTIMENT_ANALYSIS_SERVICE_URL);
+            request.setEntity(entity);
+
+            HttpResponse response = (HttpResponse) httpClient.execute(request);
+
+            String responseString = EntityUtils.toString(response.getEntity(), "UTF-8");
+            res = Json.parse(responseString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return res.path("sentiment_score").asInt();
     }
 }
