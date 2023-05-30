@@ -26,7 +26,9 @@ export class StockPageComponent implements OnInit {
   StatPeriods = {
     Day: "Day",
     Week: "Week",
-    Month: "Month"
+    Month: "Month",
+    Year: "Year",
+    TenYears: "TenYears" 
   }
   currentPeriod = this.StatPeriods.Day;
   
@@ -58,20 +60,33 @@ export class StockPageComponent implements OnInit {
   }
 
   async togglePeriod(period: string) {
-    this.currentPeriod = period;
+    // this.currentPeriod = period;
 
     switch(period) {
       case this.StatPeriods.Day:
         this.stock = await this.requestConfigService.getStockInfoOneDay(history.state.symbol).toPromise();
-        this.setMinScaleAndColor()
+        this.setMinScaleAndColor();
+        this.currentPeriod = period;
         break;
       case this.StatPeriods.Week:
         this.stock = await this.requestConfigService.getStockInfoOneWeek(history.state.symbol).toPromise();
-        this.setMinScaleAndColor()
+        this.setMinScaleAndColor();
+        this.currentPeriod = period;
         break;
       case this.StatPeriods.Month:
         this.stock = await this.requestConfigService.getStockInfoOneMonth(history.state.symbol).toPromise();
-        this.setMinScaleAndColor()
+        this.setMinScaleAndColor();
+        this.currentPeriod = period;
+        break;
+      case this.StatPeriods.Year:
+        this.stock = await this.requestConfigService.getStockInfoOneYear(history.state.symbol).toPromise();
+        this.setMinScaleAndColor();
+        this.currentPeriod = period;
+        break;
+      case this.StatPeriods.TenYears:
+        this.stock = await this.requestConfigService.getStockInfoTenYears(history.state.symbol).toPromise();
+        this.setMinScaleAndColor();
+        this.currentPeriod = period;
         break;
     }
   }

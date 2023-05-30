@@ -45,6 +45,12 @@ export class RequestConfigService {
   getStockInfoOneMonth(stockSymbol: string) {
     return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/month`);
   }
+  getStockInfoOneYear(stockSymbol: string) {
+    return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/year`);
+  }
+  getStockInfoTenYears(stockSymbol: string) {
+    return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/years`);
+  }
   getStockView(userId: string, stockName: string) {
     return this.http.get(
       `${this.httpApi}/articles/user/${userId}/stock/${stockName}`

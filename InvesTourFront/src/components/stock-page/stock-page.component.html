@@ -36,6 +36,12 @@
         </div> |
         <div (click)="togglePeriod(StatPeriods.Month)" [style.background-color]="currentPeriod == StatPeriods.Month ? '#635d5d' : ''" class="period">
           {{ StatPeriods.Month }}
+        </div> |
+        <div (click)="togglePeriod(StatPeriods.Year)" [style.background-color]="currentPeriod == StatPeriods.Year ? '#635d5d' : ''" class="period">
+          {{ StatPeriods.Year }}
+        </div> |
+        <div (click)="togglePeriod(StatPeriods.TenYears)" [style.background-color]="currentPeriod == StatPeriods.TenYears ? '#635d5d' : ''" class="period">
+          10 Years
         </div> 
       </div>
       <ngx-charts-line-chart
