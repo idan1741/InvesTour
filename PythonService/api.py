@@ -24,4 +24,3 @@ def analyze_sentiment():
         return {'sentiment_score': sentiment_score}
     else:
         return {'error': 'Invalid data format'}
-
