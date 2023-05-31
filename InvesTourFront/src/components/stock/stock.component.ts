@@ -23,7 +23,7 @@ export class StockComponent {
     return Math.abs(val);
   }
 
-  gotoStockPage(stockSymbol) {
-    this.router.navigateByUrl('/stockPage', { state: { stockSymbol } })
+  gotoStockPage({symbol, price}) {
+    this.router.navigateByUrl('/stockPage', { state: { symbol, price } })
   }
 }

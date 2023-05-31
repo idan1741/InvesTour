@@ -1,7 +1,7 @@
 from snscrape.modules import twitter as snstwitter
 import pandas as pd
 import json
-    
+
 def getTweetsByFilters(data):
     print(data)
     query = ""
@@ -34,5 +34,5 @@ def getTweetsByFilters(data):
                 "url": temp["url"]
             }
             tweets.append(jsonTweet)
-    
+
     return json.dumps(tweets)

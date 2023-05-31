@@ -17,6 +17,7 @@ export enum NewsActions {
   REMOVE_WEBSITE_TO_WATCH_LIST = '[News] remove website to watch list',
   GET_AVAILABLE_WEBSITES = '[News] get available websites',
 
+
   // TODO: should be in stocks reducer
   GET_STOCKS_LIST = '[News] get stocks list',
   GET_STOCKS_LIST_SUCCESS = '[News] get stocks list success',
@@ -39,24 +40,26 @@ export const getArticlesByUserSuccess = createAction(
 
 export const getPreferredWebsiteArticlesByUser = createAction(
   NewsActions.GET_PREFERRED_WEBSITE_ARTICLES_BY_USER,
-  props<{ userId: string }>()
+  props<{ userEmail: string }>()
 );
 export const getWebsitesByUser = createAction(
   NewsActions.GET_WEBSITES_BY_USER,
-  props<{ userId: string }>()
+  props<{ userEmail: string }>()
 );
 export const addWebsiteToWatchList = createAction(
   NewsActions.ADD_WEBSITE_TO_WATCH_LIST,
-  props<{ userId: string; websiteId: string }>()
+  props<{ userEmail: string; websiteId: string }>()
 );
 
 export const removeWebsiteFromWatchList = createAction(
   NewsActions.REMOVE_WEBSITE_TO_WATCH_LIST,
-  props<{ userId: string; websiteId: string }>()
+  props<{ userEmail: string; websiteId: string }>()
 );
 export const getAvailableWebsites = createAction(
   NewsActions.GET_AVAILABLE_WEBSITES
 );
+
+
 
 // TODO: move to stocks
 // export const getStocksList = createAction(NewsActions.GET_STOCKS_LIST)

@@ -26,7 +26,7 @@ public class StockPriceData {
     private String interval;
 
     @JsonIgnore
-    private final int NUMBER_OF_POINTS = 25;
+    private final int NUMBER_OF_POINTS = 50;
     @JsonIgnore
     private static final ZoneId ZONE_ID = ZoneId.of("Asia/Jerusalem");
     @JsonIgnore
@@ -34,7 +34,7 @@ public class StockPriceData {
 
     public StockPriceData(JsonNode jsonNode, String timeInterval) {
         this.symbol = jsonNode.path("Meta Data").path("2. Symbol").asText();
-        if(!timeInterval.equals("year")) {
+        if(!timeInterval.equals("year") && !timeInterval.equals("years")) {
             this.interval = jsonNode.path("Meta Data").path("4. Interval").asText();
         } else {
             this.interval = "-1";
@@ -64,7 +64,7 @@ public class StockPriceData {
             if (i % n == 0) {
                 String dateToAdd = listOfDates.get(i);
                 String outputDate;
-                if(timeInterval.equals("year")) {
+                if(timeInterval.equals("year") || timeInterval.equals("years")) {
                     outputDate = dateToAdd.replaceAll(regex, "");
                 } else {
                     outputDate = dateToAdd;
@@ -77,7 +77,7 @@ public class StockPriceData {
     }
 
     private String getNextDate(String timeInterval, Iterator<String> stringIterator) {
-        if(timeInterval.equals("year")){
+        if(timeInterval.equals("year") || timeInterval.equals("years")){
             return stringIterator.next() + " 23:00:00";
         }
         return stringIterator.next();
@@ -100,14 +100,19 @@ public class StockPriceData {
             case "day" -> dateTime.minusHours(24);
             case "week" -> dateTime.minusDays(7);
             case "month" -> dateTime.minusDays(31);
-            default -> dateTime.minusYears(30);
+            case "year" -> dateTime.minusMonths(12);
+            default -> dateTime.minusYears(10);
         };
     }
 
     private String getJsonPathToPrices(String timeInterval, String interval){
-        return switch (interval){
-            case "-1" -> "Weekly Time Series";
-            default -> "Time Series (" + interval + ")";
-        };
+        if(interval.equals("-1")){
+            return switch (timeInterval){
+                case "year" -> "Weekly Time Series";
+                default -> "Monthly Time Series";
+            };
+        } else {
+            return  "Time Series (" + interval + ")";
+        }
     }
 }

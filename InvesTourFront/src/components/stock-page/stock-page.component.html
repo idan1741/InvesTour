@@ -8,18 +8,20 @@
     <div class="section">
       <h2 style="margin: 2%;">News</h2>
       <div class="articles">
-        <!-- <article *ngFor="let article of (allNewsByStock$ | async)" class="article" [article]="article"></article> -->
+        <mat-accordion>
+          <article *ngFor="let article of (allNewsByStock$ | async)" [article]="article"></article>
+        </mat-accordion>
       </div>
     </div>
     <div class="section">
       <h2 style="margin: 2%;">Social Media</h2>
       <div class="articles">
-        <article *ngFor="let article of []" class="article" [article]="article"></article>
+        <tweet *ngFor="let tweets of allTweetsByStock" [article]="tweets"></tweet>
       </div>
     </div>
     <div class="stock-stat-section" #stockSection>
       <div class="stock-stats">
-        <div class="stock-price">{{ stock.price }}$</div>
+        <div class="stock-price">{{ stockPrice }}$</div>
         <div [ngClass]="this.stock.isRiseUp ? 'rise' : 'lala'" style="margin-right: 15px; font-size: 1.3rem; direction: ltr;">
           <mat-icon style="position: relative;top: 5px;">{{stock.isRiseUp ? 'trending_up' : 'trending_down'}}</mat-icon>
         {{ stock.change | changeDisplay}} %
@@ -34,6 +36,12 @@
         </div> |
         <div (click)="togglePeriod(StatPeriods.Month)" [style.background-color]="currentPeriod == StatPeriods.Month ? '#635d5d' : ''" class="period">
           {{ StatPeriods.Month }}
+        </div> |
+        <div (click)="togglePeriod(StatPeriods.Year)" [style.background-color]="currentPeriod == StatPeriods.Year ? '#635d5d' : ''" class="period">
+          {{ StatPeriods.Year }}
+        </div> |
+        <div (click)="togglePeriod(StatPeriods.TenYears)" [style.background-color]="currentPeriod == StatPeriods.TenYears ? '#635d5d' : ''" class="period">
+          10 Years
         </div> 
       </div>
       <ngx-charts-line-chart

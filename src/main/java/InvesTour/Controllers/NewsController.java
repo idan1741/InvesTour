@@ -2,6 +2,7 @@ package InvesTour.Controllers;
 
 import InvesTour.Exceptions.ArticlesNotFoundException;
 import InvesTour.Models.Article;
+import InvesTour.Models.Website;
 import InvesTour.Services.NewsService;
 import InvesTour.Services.WebsiteService;
 import InvesTour.utils.Json;
@@ -36,7 +37,7 @@ public class NewsController {
     }
 
     @GetMapping(value = "/websites/user/{userEmail}")
-    public ResponseEntity<List<String>> getAllWebsitesByUserEmail(@PathVariable("userEmail") String userEmail) {
+    public ResponseEntity<List<Website>> getAllWebsitesByUserEmail(@PathVariable("userEmail") String userEmail) {
         return ResponseEntity.ok().body(websiteService.getAllWebsitesByUserEmail(userEmail));
     }
 
@@ -67,12 +68,15 @@ public class NewsController {
     public ResponseEntity<String> addWebsiteToUser(@RequestBody JsonNode jsonBody) {
         String userEmail = jsonBody.get("userEmail").asText();
         String websiteId = jsonBody.get("websiteId").asText();
+        String websiteName = jsonBody.get("websiteName").asText();
 
-        this.websiteService.addWebsiteToUser(userEmail, websiteId);
+        this.websiteService.addWebsiteToUser(userEmail, websiteId, websiteName);
 
         ObjectNode userWebsiteInfo = Json.newObject()
                 .put("UserEmail", userEmail)
-                .put("WebsiteID", websiteId);
+                .put("WebsiteID", websiteId)
+                .put("websiteName", websiteName);
+                ;
 
         return ResponseEntity.ok(userWebsiteInfo.toString());
     }
@@ -81,12 +85,14 @@ public class NewsController {
     public ResponseEntity<String> deleteWebsiteFromUser(@RequestBody JsonNode jsonBody) {
         String userEmail = jsonBody.get("userEmail").asText();
         String websiteId = jsonBody.get("websiteId").asText();
+        String websiteName = jsonBody.get("websiteName").asText();
 
-        this.websiteService.deleteWebsiteFromUser(userEmail, websiteId);
+        this.websiteService.deleteWebsiteFromUser(userEmail, websiteId, websiteName);
 
         ObjectNode userWebsiteInfo = Json.newObject()
                 .put("UserEmail", userEmail)
-                .put("WebsiteID", websiteId);
+                .put("WebsiteID", websiteId)
+                .put("websiteName", websiteName);
 
         return ResponseEntity.ok(userWebsiteInfo.toString());
     }

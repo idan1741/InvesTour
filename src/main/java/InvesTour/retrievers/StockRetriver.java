@@ -22,12 +22,14 @@ public class StockRetriver {
         this.funcMap = Map.of("day","TIME_SERIES_INTRADAY",
                 "week", "TIME_SERIES_INTRADAY",
                 "month", "TIME_SERIES_INTRADAY",
-                "year", "TIME_SERIES_WEEKLY");
+                "year", "TIME_SERIES_WEEKLY",
+                "years", "TIME_SERIES_MONTHLY");
 
         this.timeMap = Map.of("day","5min",
                 "week", "5min",
                 "month", "60min",
-                "year", "60min");
+                "year", "60min",
+                "years", "60min");
     }
 
     @SneakyThrows

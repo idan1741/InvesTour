@@ -1,12 +1,13 @@
 package InvesTour.Models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 public class Website {
-    private final Long id;
-    private final String name;
-    private final String url;
-    private final String username;
-    private final String password;
+    @JsonProperty("website_id")
+    private final String websiteId ;
+    @JsonProperty("website_name")
+    private final String websiteName ;
 }
+

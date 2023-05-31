@@ -32,7 +32,6 @@ a[tabindex]:focus {
 }
 
 .mat-stroked-button:hover {
-    background-color: #f8d24b;
     color: white;
     font-family: Calibri;
     font-size: 15px;
@@ -44,6 +43,7 @@ a[tabindex]:focus {
     font-family: Calibri;
     font-size: 15px;
     margin: 1% ;
+    border:1px solid #f8d24b;
 }
 
 .backdropBackground {

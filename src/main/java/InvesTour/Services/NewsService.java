@@ -1,6 +1,7 @@
 package InvesTour.Services;
 
 import InvesTour.Models.Article;
+import InvesTour.Models.Website;
 import InvesTour.dal.StocksRepository;
 import InvesTour.dal.WebsiteRepository;
 import InvesTour.retrievers.UrlRetriever;
@@ -51,7 +52,7 @@ public class NewsService {
 
     public Optional<List<Article>> getStocksArticlesByUserAndWebsites(String userEmail) {
         List<String> userStocks = stocksRepository.getStockNamesByUserEmail(userEmail);
-        List<String> userWebsites = websiteRepository.getAllWebsitesByUserEmail(userEmail);
+        List<Website> userWebsites = websiteRepository.getAllWebsitesByUserEmail(userEmail);
 
         JsonNode userStocksData = this.retriever.retrieveDataByStocksKeywordsAndWebsites(userStocks, userWebsites);
 

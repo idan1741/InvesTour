@@ -23,11 +23,11 @@
       <h3 style="color:#0374d5; font-family: 'Poppins'">Websites List</h3>
       <div class="list">
         <div class="stock" *ngFor="let website of (websites$ | async)">
-          {{website}}
-          <mat-icon class="icon" (click)="remove(website)">close</mat-icon>
+          {{website.website_name}}
+          <mat-icon class="icon" (click)="removeWebsite(website.website_name, website.website_id)">close</mat-icon>
         </div>
         <div>
-          <button mat-raised-button color="primary" (click)="addStock()">Add +</button>
+          <button mat-raised-button color="primary" (click)="addWebsite()">Add +</button>
         </div>
       </div>
     </div>

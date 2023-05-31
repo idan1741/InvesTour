@@ -42,6 +42,8 @@ import { StockComponent } from 'src/components/stock/stock.component';
 import { SignUpComponent } from 'src/dialogs/sign-up/signUp.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { ChangeDisplayPipe } from 'src/utils/pipes/present-change.pipe';
+import { AddWebsitesDialogComponent } from 'src/dialogs/addWebsitesDialog/addWebsitesDialog.component';
+import { TweetComponent } from 'src/components/tweet/tweet.component';
 
 export const store: Store<any> = createStore(
   rootReducer,
@@ -57,9 +59,11 @@ export const store: Store<any> = createStore(
     MyWallComponent,
     StockPageComponent,
     ArticleComponent,
+    TweetComponent,
     StockComponent,
     MyProfileComponent,
     addStockDialogComponent,
+    AddWebsitesDialogComponent,
     MainComponent,
     SearchPipe,
     TimeAgoPipe,

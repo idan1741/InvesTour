@@ -1,0 +1,70 @@
+.addStock
+{
+    width: 25vw;
+    height: 50vh;
+    font-family: Calibri;
+    color: white;
+}
+
+::ng-deep.mat-dialog-container{
+    background-color: #333333;
+
+}
+
+.input {
+  height: 5.5vh;
+  width: 22vw;
+  background-color: #423f3f;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  padding: 5px;
+}
+
+.input:hover {
+  background-color: #3c3838;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.section {
+    width: 24vw;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.user {
+  filter: invert(100%);
+}
+
+.list {
+    overflow: auto;
+    display: block;
+    flex-direction: column;
+    width: 25vw;
+    height: 35vh;
+    align-items: center;
+}
+
+.list::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+.list::-webkit-scrollbar-track {
+    background: #635d5d; 
+  }
+   
+  /* Handle */
+.list::-webkit-scrollbar-thumb{
+    background: #504b4b; 
+  }
+  
+  /* Handle on hover */
+  .list::-webkit-scrollbar-thumb:hover {
+    background: #3b3838; 
+  }
