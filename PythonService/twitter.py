@@ -1,5 +1,6 @@
 from snscrape.modules import twitter as snstwitter
 import pandas as pd
+import json
     
 def getTweetsByFilters(data):
     print(data)
@@ -24,6 +25,14 @@ def getTweetsByFilters(data):
         if len(tweets) == limit:
             break
         else:
-            tweets.append([tweet.date, tweet.user.username, tweet.rawContent])
+            temp = json.loads(tweet.json())
+            print(temp)
+            jsonTweet = {
+                "date": temp["date"],
+                "user": temp["user"]["username"],
+                "content": temp["renderedContent"],
+                "url": temp["url"]
+            }
+            tweets.append(jsonTweet)
     
-    return tweets
+    return json.dumps(tweets)
