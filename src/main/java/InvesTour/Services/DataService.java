@@ -49,7 +49,7 @@ public class DataService {
 
         stocksList += stocks.get(stocks.size() - 1).getSymbol() + " OR " + stocks.get(stocks.size() - 1).getName() + " ";
 
-        JsonNode payload = Json.newObject().put("keywords", stocksList);
+        JsonNode payload = Json.newObject().put("keywords", stocksList).put("likesMin", "10 ");
         JsonNode res = Json.newObject();
         StringEntity entity = new StringEntity(payload.toString(), ContentType.APPLICATION_JSON);
 
