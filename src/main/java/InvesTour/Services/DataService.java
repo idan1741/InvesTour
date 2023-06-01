@@ -44,12 +44,11 @@ public class DataService {
     public JsonNode getTweetsByListOfStocks(List<Stock> stocks) {
         String stocksList = "";
         for (int i = 0; i < stocks.size() - 1; i++) {
-            stocksList += stocks.get(i).getSymbol() + " OR " + stocks.get(i).getName() + " OR ";
+            stocksList += stocks.get(i).getSymbol() + " OR ";
         }
 
-        stocksList += stocks.get(stocks.size() - 1).getSymbol() + " OR " + stocks.get(stocks.size() - 1).getName() + " ";
-
-        JsonNode payload = Json.newObject().put("keywords", stocksList).put("likesMin", "10 ");
+        stocksList += stocks.get(stocks.size() - 1).getSymbol();
+        JsonNode payload = Json.newObject().put("keywords", stocksList).put("likesMin", "10");
         JsonNode res = Json.newObject();
         StringEntity entity = new StringEntity(payload.toString(), ContentType.APPLICATION_JSON);
 

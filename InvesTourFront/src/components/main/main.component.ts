@@ -11,10 +11,12 @@ import { Router } from "@angular/router";
 export class MainComponent implements OnInit {
   public news$: Observable<any>;
   public stocks$: Observable<any>;
+  public tweets$: Observable<any>;
 
   ngOnInit(): void {
     this.stocks$ = this.configService.getStocksList();
     this.news$ = this.configService.getMainPageArticles();
+    this.tweets$ = this.configService.getTweetsByUserId("tweets@gmai.com");
   }
 
   constructor(private router: Router, private configService: RequestConfigService) { }

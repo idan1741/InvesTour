@@ -21,8 +21,7 @@ export class ArticleComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.article.title = this.article.title.substring(0, 80);
-    this.article = { ...this.article, class: ClassificationColorsMap[Math.round(this.article.sentimentScore / 20)] }
+    this.article = { ...this.article, title: this.article.title.substring(0, 80), class: ClassificationColorsMap[Math.round(this.article.sentimentScore / 20)] }
   }
 
   public toggle() {

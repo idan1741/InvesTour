@@ -12,7 +12,6 @@ import { Observable } from "rxjs";
   styleUrls: ['./stock-page.component.css']
 })
 export class StockPageComponent implements OnInit {
-  // @Input() stockSymbol: any;
   stock: any = {
     isRiseUp: null,
     change: null,
@@ -38,9 +37,6 @@ export class StockPageComponent implements OnInit {
   allTweetsByStock$;
   allNewsByStock$: Observable<any>;
   allTweetsByStock;
-  // allNewByUserId$ = this.store.select(selectAllNewsByUser);
-  // userStocklList$ = this.store.select(selectUserStockList);
-
   constructor(
     private store: Store, 
     private requestConfigService: RequestConfigService, 
@@ -52,11 +48,6 @@ export class StockPageComponent implements OnInit {
     this.togglePeriod(this.StatPeriods.Day);
     this.allNewsByStock$ = this.requestConfigService.getArticlesByStock(history.state.symbol);
     this.allTweetsByStock$ = this.requestConfigService.getTweetsByStock(history.state.symbol);
-    this.allTweetsByStock$.subscribe(tweets => {
-      this.allTweetsByStock = tweets.map(tweet => {
-        return {publishedAt: tweet[0], title: tweet[1], description: tweet[2], sub: tweet[2].substring(0,30) + "..."}})
-      return this.allTweetsByStock;
-    });
   }
 
   async togglePeriod(period: string) {
@@ -93,6 +84,6 @@ export class StockPageComponent implements OnInit {
 
   setMinScaleAndColor() {
     this.yScaleMin = _.min(_.map(this.stock.series, 'value'));
-    this.colorScheme.domain.push(this.stock.isRiseUp ? '#5AA454' : '#E44D25');
+    this.colorScheme.domain = [this.stock.isRiseUp ? '#5AA454' : '#E44D25'];
   }
 }

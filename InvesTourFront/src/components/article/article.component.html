@@ -11,7 +11,7 @@
       {{this.article.title}}
     </mat-panel-description>
     <mat-panel-description [style.color]="'#d2d0d3'" style="width: 10%; font-size:13px; margin-right: -10px;">
-      <div [ngClass]="article.class"><mat-progress-spinner diameter="25" [value]="article.sentimentScore"
+      <div [ngClass]="article.class" matTooltip="positivity of the article in percentages"><mat-progress-spinner diameter="25" [value]="article.sentimentScore"
           mode="determinate">
         </mat-progress-spinner>
         <span>{{article.sentimentScore}}% </span>
