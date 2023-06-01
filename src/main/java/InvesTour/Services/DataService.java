@@ -43,9 +43,12 @@ public class DataService {
 
     public JsonNode getTweetsByListOfStocks(List<Stock> stocks) {
         String stocksList = "";
-        for (Stock stock : stocks) {
-            stocksList += stock.getName() + " ";
+        for (int i = 0; i < stocks.size() - 1; i++) {
+            stocksList += stocks.get(i).getSymbol() + " OR " + stocks.get(i).getName() + " OR ";
         }
+
+        stocksList += stocks.get(stocks.size() - 1).getSymbol() + " OR " + stocks.get(stocks.size() - 1).getName() + " ";
+
         JsonNode payload = Json.newObject().put("keywords", stocksList);
         JsonNode res = Json.newObject();
         StringEntity entity = new StringEntity(payload.toString(), ContentType.APPLICATION_JSON);
