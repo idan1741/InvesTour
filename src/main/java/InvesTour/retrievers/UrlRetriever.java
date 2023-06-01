@@ -22,14 +22,14 @@ public class UrlRetriever implements Retriever {
     @Override
     @SneakyThrows
     public JsonNode retrieveDataByKeywords(List<String> keywords) {
-        String url = NEWS_API_URL + "/everything?q=" + joinString(keywords, "|") + "&language=en&apiKey=" + API_KEY;
+        String url = NEWS_API_URL + "/everything?q=" + joinString(keywords, " OR ") + "&language=en&apiKey=" + API_KEY;
         return getJsonBodyByUrl(url);
     }
 
     @SneakyThrows
     public JsonNode retrieveDataByStocksKeywordsAndWebsites(List<String> stocks, List<Website> websites) {
         List<String> websiteIds = websites.stream().map(Website::getWebsiteId).collect(Collectors.toList());
-        String url = NEWS_API_URL + "/everything?q=" + joinString(stocks, "|") +
+        String url = NEWS_API_URL + "/everything?q=" + joinString(stocks, " OR ") +
                 "&sources=" + joinString(websiteIds, ",") + "&language=en&apiKey=" + API_KEY;
         return getJsonBodyByUrl(url);
     }
