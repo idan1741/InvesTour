@@ -19,3 +19,22 @@ mat-expansion-panel {
     align-items: center;
     margin-left: 3px;
 }
+
+::ng-deep .verybad .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #ff0000;
+}
+
+::ng-deep .bad .mat-progress-spinner circle, .mat-spinner circle {   
+    stroke: #f57003;
+}
+
+::ng-deep .natural .mat-progress-spinner circle, .mat-spinner circle {   
+    stroke: #ffee00;
+ }
+
+ ::ng-deep .good .mat-progress-spinner circle, .mat-spinner circle {   
+   stroke: #0ae703;
+}
+::ng-deep .verygood .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #259204;
+}

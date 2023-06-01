@@ -44,6 +44,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ChangeDisplayPipe } from 'src/utils/pipes/present-change.pipe';
 import { AddWebsitesDialogComponent } from 'src/dialogs/addWebsitesDialog/addWebsitesDialog.component';
 import { TweetComponent } from 'src/components/tweet/tweet.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 export const store: Store<any> = createStore(
   rootReducer,
@@ -85,6 +86,7 @@ export const store: Store<any> = createStore(
     NgxChartsModule,
     MatDialogModule,
     MatChipsModule,
+    MatProgressSpinnerModule,
     StoreModule.forRoot({}),
     StoreModule.forFeature(usersReducerToken, usersReducer),
     StoreModule.forFeature(newsReducerToken, newsReducer),
