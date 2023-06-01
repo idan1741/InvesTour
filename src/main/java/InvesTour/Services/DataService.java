@@ -21,7 +21,8 @@ public class DataService {
     private final String SENTIMENT_ANALYSIS_SERVICE_URL = "http://localhost:5000/sentimentScore";
 
     public JsonNode getTweetsByStock(String stockName) {
-        JsonNode payload = Json.newObject().put("keywords", stockName);
+        JsonNode payload = Json.newObject().put("keywords", stockName)
+                .put("likesMin", "10");
         JsonNode res = Json.newObject();
         StringEntity entity = new StringEntity(payload.toString(), ContentType.APPLICATION_JSON);
 
