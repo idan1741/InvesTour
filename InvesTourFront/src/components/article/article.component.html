@@ -7,8 +7,15 @@
     <mat-panel-title style="width: 14%; padding-top: 6px;">
       <img style="margin-right: 3%; border-radius: 50%;" [src]="article.imageUrl" width="40" height="40">
     </mat-panel-title>
-    <mat-panel-description [style.color]="'white'" style="width: 70%; font-size:13px; margin-right: 0px;">
+    <mat-panel-description [style.color]="'white'" style="width: 58%; font-size:13px; margin-right: 6px;">
       {{this.article.title}}
+    </mat-panel-description>
+    <mat-panel-description [style.color]="'#d2d0d3'" style="width: 10%; font-size:13px; margin-right: -10px;">
+      <div [ngClass]="article.class" matTooltip="positivity of the article in percentages"><mat-progress-spinner diameter="25" [value]="article.sentimentScore"
+          mode="determinate">
+        </mat-progress-spinner>
+        <span>{{article.sentimentScore}}% </span>
+      </div>
     </mat-panel-description>
   </mat-expansion-panel-header>
   <p style="color:white">{{ article.description }}</p>

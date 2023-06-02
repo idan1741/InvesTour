@@ -12,7 +12,10 @@ import { HomeComponent } from 'src/components/home/home.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 import { FormsModule } from '@angular/forms';
 
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
@@ -85,6 +88,8 @@ export const store: Store<any> = createStore(
     NgxChartsModule,
     MatDialogModule,
     MatChipsModule,
+    MatProgressSpinnerModule,
+    MatTooltipModule,
     StoreModule.forRoot({}),
     StoreModule.forFeature(usersReducerToken, usersReducer),
     StoreModule.forFeature(newsReducerToken, newsReducer),

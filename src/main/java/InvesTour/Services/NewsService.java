@@ -76,7 +76,6 @@ public class NewsService {
 
         return data.get(statusField).asText().equals("ok") &&
                 data.has(articlesField) &&
-                data.get(articlesField).isArray() &&
-                !data.get(articlesField).isEmpty();
+                data.get(articlesField).isArray();
     }
 }

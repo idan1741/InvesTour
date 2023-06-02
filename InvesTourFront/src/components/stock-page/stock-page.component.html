@@ -1,8 +1,4 @@
 <div class="myWall">
-  <!-- <h1>
-      <img [src]="stock.company" width="60" height="60">
-    </h1>
-    <h1>{{ stock.name }}</h1> -->
   <h1 style="color:#0374d5; font-family: 'Poppins'">{{ stock.name }}</h1>
   <div class="sections">
     <div class="section">
@@ -16,7 +12,9 @@
     <div class="section">
       <h2 style="margin: 2%;">Social Media</h2>
       <div class="articles">
-        <tweet *ngFor="let tweets of allTweetsByStock" [article]="tweets"></tweet>
+        <mat-accordion>
+        <tweet *ngFor="let tweets of (allTweetsByStock$ |async)" [article]="tweets"></tweet>
+        </mat-accordion>
       </div>
     </div>
     <div class="stock-stat-section" #stockSection>
