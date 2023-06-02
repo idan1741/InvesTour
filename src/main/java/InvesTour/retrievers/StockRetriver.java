@@ -2,6 +2,7 @@ package InvesTour.retrievers;
 
 import InvesTour.Models.StockPriceData;
 import InvesTour.utils.Json;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.SneakyThrows;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -44,7 +45,25 @@ public class StockRetriver {
                 throw new RuntimeException("Failed to fetch data from URL: " + response.code());
             }
 
-            return new StockPriceData(Json.parse(response.body().string()), timeInterval);
+            return new StockPriceData(Json.parse(response.body().string()), timeInterval, this.retrieveStockCurrentPrice(stockSymbol));
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to fetch data from URL: " + query);
+        }
+    }
+
+    @SneakyThrows
+    public Double retrieveStockCurrentPrice(String stockSymbol) {
+        String query = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+stockSymbol+"&apikey=EOLDHCBBMKYKRBV6";
+        Request request = new Request.Builder()
+                .url(query)
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new RuntimeException("Failed to fetch data from URL: " + response.code());
+            }
+            JsonNode jsonNode = Json.parse(response.body().string());
+            return jsonNode.path("Global Quote").path("05. price").asDouble();
         } catch (Exception e) {
             throw new RuntimeException("Failed to fetch data from URL: " + query);
         }

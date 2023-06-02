@@ -18,13 +18,14 @@ public class StockPriceData {
     private Boolean isRiseUp;
     @JsonProperty("name")
     private String symbol;
+    @JsonProperty("currentPrice")
+    private Double currentPrice;
     @JsonProperty("change")
     private double change;
     @JsonProperty("series")
     private List<StockPricePerTime> prices;
     @JsonIgnore
     private String interval;
-
     @JsonIgnore
     private final int NUMBER_OF_POINTS = 50;
     @JsonIgnore
@@ -32,7 +33,7 @@ public class StockPriceData {
     @JsonIgnore
     private final String regex = "\\s\\d{2}:\\d{2}:\\d{2}$";
 
-    public StockPriceData(JsonNode jsonNode, String timeInterval) {
+    public StockPriceData(JsonNode jsonNode, String timeInterval, Double currentPrice) {
         this.symbol = jsonNode.path("Meta Data").path("2. Symbol").asText();
         if(!timeInterval.equals("year") && !timeInterval.equals("years")) {
             this.interval = jsonNode.path("Meta Data").path("4. Interval").asText();
@@ -41,6 +42,7 @@ public class StockPriceData {
         }
         this.prices = this.deserializePrices(jsonNode.path(this.getJsonPathToPrices(timeInterval, this.interval)), timeInterval);
         this.change = this.calcChange();
+        this.currentPrice = currentPrice;
         this.isRiseUp = this.change > 0;
     }
 
