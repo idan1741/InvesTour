@@ -62,6 +62,11 @@ public class StocksController {
         return ResponseEntity.ok().body(this.stocksService.getStockRealTimeData(symbol,timeInterval));
     }
 
+    @GetMapping(value = "/price/{symbol}")
+    public ResponseEntity<Double> getStockRealTimeData(@PathVariable("symbol") String symbol) {
+        return ResponseEntity.ok().body(this.stocksService.getCurrentPrice(symbol));
+    }
+
     @GetMapping
     public ResponseEntity<List<Stock>> getAllStocks() {
         return ResponseEntity.ok(this.stocksService.getAllStocks());

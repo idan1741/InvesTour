@@ -45,7 +45,7 @@ public class StockRetriver {
                 throw new RuntimeException("Failed to fetch data from URL: " + response.code());
             }
 
-            return new StockPriceData(Json.parse(response.body().string()), timeInterval, this.retrieveStockCurrentPrice(stockSymbol));
+            return new StockPriceData(Json.parse(response.body().string()), timeInterval);
         } catch (Exception e) {
             throw new RuntimeException("Failed to fetch data from URL: " + query);
         }
@@ -53,7 +53,7 @@ public class StockRetriver {
 
     @SneakyThrows
     public Double retrieveStockCurrentPrice(String stockSymbol) {
-        String query = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+stockSymbol+"&apikey=EOLDHCBBMKYKRBV6";
+        String query = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+stockSymbol+"&apikey=R3G67RHMA2PL9THG";
         Request request = new Request.Builder()
                 .url(query)
                 .build();

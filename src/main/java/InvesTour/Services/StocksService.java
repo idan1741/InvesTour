@@ -33,4 +33,8 @@ public class StocksService {
     public StockPriceData getStockRealTimeData(String symbol, String timeInterval){
        return this.stockRetriver.retrieveDataByKeywords(symbol,timeInterval);
     }
+
+    public double getCurrentPrice(String stockSymbol){
+        return this.stockRetriver.retrieveStockCurrentPrice(stockSymbol);
+    }
 }
