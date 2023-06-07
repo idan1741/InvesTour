@@ -36,6 +36,9 @@ export class RequestConfigService {
   selectAllNewsByStock(stockSymbol: string) {
     return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}`);
   }
+  getStockPrice(stockSymbol: string) {
+    return this.http.get(`${this.httpApi}/stocks/price/${stockSymbol}`);
+  }
   getStockInfoOneDay(stockSymbol: string) {
     return this.http.get(`${this.httpApi}/stocks/data/${stockSymbol}/day`);
   }

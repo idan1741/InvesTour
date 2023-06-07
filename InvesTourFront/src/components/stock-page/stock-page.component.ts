@@ -18,7 +18,7 @@ export class StockPageComponent implements OnInit {
     name: "",
     series: []
   };
-  stockPrice: number;
+  stockPrice$: Observable<any>;
   colorScheme = { domain: [] };
   yScaleMin: number = 0;
 
@@ -44,15 +44,14 @@ export class StockPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.stockPrice = history.state.price;
+    // this.stockPrice = history.state.price;
+    this.stockPrice$ = this.requestConfigService.getStockPrice(history.state.symbol);
     this.togglePeriod(this.StatPeriods.Day);
     this.allNewsByStock$ = this.requestConfigService.getArticlesByStock(history.state.symbol);
     this.allTweetsByStock$ = this.requestConfigService.getTweetsByStock(history.state.symbol);
   }
 
   async togglePeriod(period: string) {
-    // this.currentPeriod = period;
-
     switch(period) {
       case this.StatPeriods.Day:
         this.stock = await this.requestConfigService.getStockInfoOneDay(history.state.symbol).toPromise();

@@ -19,7 +19,7 @@
     </div>
     <div class="stock-stat-section" #stockSection>
       <div class="stock-stats">
-        <div class="stock-price">{{ stockPrice }}$</div>
+        <div class="stock-price">{{ stockPrice$ | async }}$</div>
         <div [ngClass]="this.stock.isRiseUp ? 'rise' : 'lala'" style="margin-right: 15px; font-size: 1.3rem; direction: ltr;">
           <mat-icon style="position: relative;top: 5px;">{{stock.isRiseUp ? 'trending_up' : 'trending_down'}}</mat-icon>
         {{ stock.change | changeDisplay}} %
