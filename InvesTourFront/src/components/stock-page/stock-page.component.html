@@ -45,14 +45,15 @@
       <ngx-charts-line-chart
         [view]="[stockSection.offsetWidth,300]"
         [scheme]="colorScheme"
-        [xAxis]="false"
+        [xAxis]="true"
         [yAxis]="true"
         [yScaleMin]="yScaleMin"
         [trimYAxisTicks]="false"
         [timeline]="true"
         [results]="[stock]"
-      >
+        >
       </ngx-charts-line-chart>
+      <!-- [xAxisTickFormatting]="formatXAxisTick.bind(this)" -->
     </div>
   </div>
 </div>

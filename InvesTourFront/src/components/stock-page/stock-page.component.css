@@ -100,3 +100,7 @@ ngx-charts-line-chart {
 ::-webkit-scrollbar-thumb:hover {
     background: #3b3838;
 }
+
+::ng-deep .gridline-path-vertical {
+    display: none;
+}

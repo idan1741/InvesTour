@@ -5,6 +5,7 @@ import { RequestConfigService } from "src/server-requests/requests.service";
 import { Router } from "@angular/router";
 import * as _ from 'lodash';
 import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: 'stock-page',
@@ -44,37 +45,48 @@ export class StockPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.stockPrice = history.state.price;
     this.stockPrice$ = this.requestConfigService.getStockPrice(history.state.symbol);
-    this.togglePeriod(this.StatPeriods.Day);
     this.allNewsByStock$ = this.requestConfigService.getArticlesByStock(history.state.symbol);
     this.allTweetsByStock$ = this.requestConfigService.getTweetsByStock(history.state.symbol);
+  
+    this.togglePeriod(this.currentPeriod);
   }
 
   async togglePeriod(period: string) {
     switch(period) {
       case this.StatPeriods.Day:
-        this.stock = await this.requestConfigService.getStockInfoOneDay(history.state.symbol).toPromise();
+        this.stock = await this.requestConfigService.getStockInfoOneDay(history.state.symbol).pipe(
+          map((stock: any) => ({...stock, series: stock.series.map(s => this.formatXAxisTick(s, period)).filter(s => !_.isNull(s))}))
+        ).toPromise();
         this.setMinScaleAndColor();
         this.currentPeriod = period;
         break;
       case this.StatPeriods.Week:
-        this.stock = await this.requestConfigService.getStockInfoOneWeek(history.state.symbol).toPromise();
+        this.stock = await this.requestConfigService.getStockInfoOneWeek(history.state.symbol).pipe(
+          map((stock: any) => ({...stock, series: stock.series.map(s => this.formatXAxisTick(s, period)).filter(s => !_.isNull(s))}))
+        ).toPromise();
+        console.log(this.stock)
         this.setMinScaleAndColor();
         this.currentPeriod = period;
         break;
       case this.StatPeriods.Month:
-        this.stock = await this.requestConfigService.getStockInfoOneMonth(history.state.symbol).toPromise();
+        this.stock = await this.requestConfigService.getStockInfoOneMonth(history.state.symbol).pipe(
+          map((stock: any) => ({...stock, series: stock.series.map(s => this.formatXAxisTick(s, period)).filter(s => !_.isNull(s))}))
+        ).toPromise();
         this.setMinScaleAndColor();
         this.currentPeriod = period;
         break;
       case this.StatPeriods.Year:
-        this.stock = await this.requestConfigService.getStockInfoOneYear(history.state.symbol).toPromise();
+        this.stock = await this.requestConfigService.getStockInfoOneYear(history.state.symbol).pipe(
+          map((stock: any) => ({...stock, series: stock.series.map(s => this.formatXAxisTick(s, period)).filter(s => !_.isNull(s))}))
+        ).toPromise();
         this.setMinScaleAndColor();
         this.currentPeriod = period;
         break;
       case this.StatPeriods.TenYears:
-        this.stock = await this.requestConfigService.getStockInfoTenYears(history.state.symbol).toPromise();
+        this.stock = await this.requestConfigService.getStockInfoTenYears(history.state.symbol).pipe(
+          map((stock: any) => ({...stock, series: stock.series.map(s => this.formatXAxisTick(s, period)).filter(s => !_.isNull(s))}))
+        ).toPromise();
         this.setMinScaleAndColor();
         this.currentPeriod = period;
         break;
@@ -84,5 +96,49 @@ export class StockPageComponent implements OnInit {
   setMinScaleAndColor() {
     this.yScaleMin = _.min(_.map(this.stock.series, 'value'));
     this.colorScheme.domain = [this.stock.isRiseUp ? '#5AA454' : '#E44D25'];
+  }
+
+  lastFormattedLabel: string = '';
+
+  formatXAxisTick(data, period: string): string {
+    const date = new Date(data.name);
+    let formattedLabel: string;
+
+    switch (period) {
+      case this.StatPeriods.Day:
+        formattedLabel = date.getHours().toString() + ':00';
+        break;
+      case this.StatPeriods.Week:
+        formattedLabel = this.getDayOfWeek(date);
+        break;
+      case this.StatPeriods.Month:
+        formattedLabel = date.getDate().toString();
+        break;
+      case this.StatPeriods.Year:
+        formattedLabel = this.getMonthName(date);
+        break;
+      case this.StatPeriods.TenYears:
+        formattedLabel = date.getFullYear().toString();
+        break;
+      default:
+        formattedLabel = '';
+    }
+
+    if (formattedLabel === this.lastFormattedLabel) {
+      return null;
+    }
+
+    this.lastFormattedLabel = formattedLabel;
+    return {...data, name: formattedLabel};
+  }
+  
+  getDayOfWeek(date: Date): string {
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    return days[date.getDay()];
+  }
+  
+  getMonthName(date: Date): string {
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return months[date.getMonth()];
   }
 }
