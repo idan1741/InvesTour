@@ -15,7 +15,7 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "/stocks")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "*")
 public class StocksController {
     private final UsersService service;
 
