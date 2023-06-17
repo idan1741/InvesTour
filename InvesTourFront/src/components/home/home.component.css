@@ -15,9 +15,13 @@
 .title {
     display: flex;
     flex-direction: column;
-    width: 55vw; 
+    /* width: 55vw;  */
     font-size: 70px; 
     font-family: 'Segoe UI'
+}
+
+.one-line-title {
+    display: none;
 }
 
 .mat-raised-button {
@@ -28,6 +32,28 @@
 }
 
 @media only screen and (max-width: 600px) {
+    .home {
+        padding-top: 0%;
+    }
+
+    .text {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .one-line-title {
+        display: block;
+        font-size: 30px;
+    }
+
+    .description {
+        font-size: small;
+    }
+
     .title {
         font-size: 25px; 
         width: 100%;
@@ -39,6 +65,10 @@
 
     img {
         display: none;
+    }
+
+    .button {
+        margin: 5vh auto;
     }
   }
   
