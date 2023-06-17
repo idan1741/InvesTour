@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "*")
 public class DataController {
 
     private final DataService dataService;
@@ -56,5 +56,17 @@ public class DataController {
         List<Stock> stocks = stocksService.getAllStocksByUser(userEmail);
 
         return dataService.getTweetsByListOfStocks(stocks);
+    }
+
+    @GetMapping(value = "/posts/stock/{stockName}")
+    public JsonNode getPostsByStock(@PathVariable("stockName") String stockName) {
+        return dataService.getPostsByStock(stockName);
+    }
+
+    @GetMapping(value = "/posts/user/{userEmail}")
+    public JsonNode getPostsByUserId(@PathVariable("userEmail") String userEmail) {
+        List<Stock> stocks = stocksService.getAllStocksByUser(userEmail);
+
+        return dataService.getPostsByListOfStocks(stocks);
     }
 }

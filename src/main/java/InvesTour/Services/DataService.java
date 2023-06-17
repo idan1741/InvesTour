@@ -1,8 +1,12 @@
 package InvesTour.Services;
 
 import InvesTour.Models.Stock;
+import InvesTour.dal.FacebookRepository;
 import InvesTour.utils.Json;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import lombok.RequiredArgsConstructor;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
@@ -10,15 +14,20 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.util.List;
 
 @Service
 public class DataService {
+    private ObjectMapper mapper = new ObjectMapper();
     private final String TWEETS_SERVICE_URL = "http://localhost:5000/tweets";
 
     private final String SENTIMENT_ANALYSIS_SERVICE_URL = "http://localhost:5000/sentimentScore";
+
+    private final FacebookRepository facebookRepository = new FacebookRepository();
 
     public JsonNode getTweetsByStock(String stockName) {
         JsonNode payload = Json.newObject().put("keywords", stockName)
@@ -39,6 +48,30 @@ public class DataService {
         }
 
         return res;
+    }
+
+    public JsonNode getPostsByStock(String stockName) {
+        switch (stockName) {
+            case "Netflix":
+                return facebookRepository.getNetflixPosts();
+            case "Starbucks":
+                return facebookRepository.getStarbucksPosts();
+            case "Nvidia":
+                return facebookRepository.getNvidiaPosts();
+            default:
+                return Json.parse("");
+        }
+    }
+
+    public JsonNode getPostsByListOfStocks(List<Stock> stocks) {
+        ArrayNode objectNode = mapper.createArrayNode();
+
+        for (Stock stock : stocks) {
+            JsonNode res = this.getPostsByStock(stock.getName());
+            objectNode.add(res);
+        }
+
+        return objectNode;
     }
 
     public JsonNode getTweetsByListOfStocks(List<Stock> stocks) {
