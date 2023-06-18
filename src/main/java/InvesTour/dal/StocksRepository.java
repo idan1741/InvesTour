@@ -55,4 +55,12 @@ public class StocksRepository {
                                 .where(field("user_email").eq(userEmail))))
                 .fetchInto(Stock.class);
     }
+
+    public void updateStockPrice(String stockSymbol, double price, double change){
+        this.dsl.update(table("investour.tbl_stocks"))
+                .set(field("price"), price)
+                .set(field("change"), change)
+                .where(field("symbol").eq(stockSymbol))
+                .execute();
+    }
 }
