@@ -5,6 +5,7 @@ import {
   getAvailableWebsites,
   removeWebsiteFromWatchList,
   addWebsiteToWatchList,
+  getNewsByUser,
 } from 'src/server-requests/news/news.actions';
 import { RequestConfigService } from 'src/server-requests/requests.service';
 import { selectUsersState } from 'src/server-requests/users/users.reducer';
@@ -58,13 +59,13 @@ export class AddWebsitesDialogComponent implements OnInit {
     isInUserLike
       ? this.configService
           .removeWebsiteFromWatchList(this.user.email, websiteId, websiteName)
-          .subscribe((res) => console.log(res))
+          .subscribe(() => this.store.dispatch(getNewsByUser()))
       : this.configService
           .addWebsiteToWatchList(this.user.email, websiteId, websiteName)
-          .subscribe((res) => console.log(res));
+          .subscribe(() => this.store.dispatch(getNewsByUser()));
 
-    this.configService
-      .getWebsitesByUser(this.user.email)
-      .subscribe((userWebSite) => (this.websitesByUser$ = userWebSite));
+    // this.configService
+    //   .getWebsitesByUser(this.user.email)
+    //   .subscribe((userWebSite) => (this.websitesByUser$ = userWebSite));
   }
 }

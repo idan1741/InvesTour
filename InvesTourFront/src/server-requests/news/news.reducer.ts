@@ -5,16 +5,14 @@ import {
   createSelector,
   on,
 } from '@ngrx/store';
-import { getArticlesByUserSuccess } from './news.actions';
-import { state } from '@angular/animations';
+import { getArticlesByUserSuccess, getNewsByUserSuccess } from './news.actions';
 import { Article } from 'src/components/article/article.class';
 
 export const newsReducerToken = 'news';
 
 export interface NewsState {
   newsByUser: Article[];
-  // stocksList: any[],
-  // stocksListByUser: any[]
+  newsList: any[];
 }
 
 export interface userWebSite {
@@ -23,8 +21,7 @@ export interface userWebSite {
 
 export const initialState: NewsState = {
   newsByUser: [],
-  // stocksList: [],
-  // stocksListByUser: []
+  newsList: []
 };
 
 const reducer = createReducer(
@@ -32,9 +29,11 @@ const reducer = createReducer(
   on(getArticlesByUserSuccess, (state, { articles }) => ({
     ...state,
     newsByUser: articles,
+  })),
+  on(getNewsByUserSuccess, (state, { news }) => ({
+    ...state,
+    newsList: news,
   }))
-  // on(getStocksListSuccess, (state, {stocks}) => ({ ...state, stocksList: stocks})),
-  // on(getStocksByUserListSuccess, (state, {stocks}) => ({ ...state, stocksListByUser: stocks})),
 );
 
 export function newsReducer(state: NewsState | undefined, action: Action) {
@@ -49,12 +48,7 @@ export const selectAllNewsByUser = createSelector(
   (state: NewsState) => state.newsByUser
 );
 
-// TODO: move to stocks
-// export const selectStocksList = createSelector(
-//     selectNewsState,
-//     (state: NewsState) => state.stocksList
-// )
-// export const selectStocksByUserList = createSelector(
-//     selectNewsState,
-//     (state: NewsState) => state.stocksListByUser
-// )
+export const selectNewsList = createSelector(
+  selectNewsState,
+  (state: NewsState) => state.newsList
+);
