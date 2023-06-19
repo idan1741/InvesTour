@@ -14,7 +14,7 @@ public class Stock {
     @JsonProperty("price")
     private final double price;
     @JsonProperty("change")
-    private final double change;
+    private final double  change;
     @JsonProperty("key_word")
     private final String keyWord;
 }
