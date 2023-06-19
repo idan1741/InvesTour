@@ -58,6 +58,10 @@ public class DataService {
                 return facebookRepository.getStarbucksPosts();
             case "Nvidia":
                 return facebookRepository.getNvidiaPosts();
+            case "Apple":
+                return facebookRepository.getApplePosts();
+            case "Tesla":
+                return facebookRepository.getTeslaPosts();
             default:
                 return Json.parse("");
         }

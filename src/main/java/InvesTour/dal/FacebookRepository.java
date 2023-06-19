@@ -101,4 +101,104 @@ public class FacebookRepository {
                 "  }\n" +
                 "]");
     }
+
+    public JsonNode getApplePosts() {
+        return Json.parse("[\n" +
+                "  {\n" +
+                "    \"pageName\": \"InvestorPlace\",\n" +
+                "    \"url\": \"https://www.facebook.com/investorplace/posts/pfbid0DwZ5Qst92RdVNf3HbWZhNiEkWLTf5aMdSxTkR6VKKxUEbX9m2JHdkMpDAnkPfjQul\",\n" +
+                "    \"time\": \"2023-06-15T15:02:28.000Z\",\n" +
+                "    \"timestamp\": 1683543748,\n" +
+                "    \"text\": \"#Apple is on its way to becoming the first $3 trillion company. Who will follow it?\",\n" +
+                "    \"likes\": 606,\n" +
+                "    \"comments\": 24,\n" +
+                "    \"shares\": 127\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"pageName\": \"Insider Finance\",\n" +
+                "    \"url\": \"https://www.facebook.com/BusinessInsider.Finance/posts/pfbid037Eewjy7U5PYzDDZo9iJBmTFK9DKV3dahNpSgPvBHVsjXaG1ZWgAnaKGD5bqV1A7El\",\n" +
+                "    \"time\": \"2023-05-29T13:01:44.000Z\",\n" +
+                "    \"timestamp\": 1683197744,\n" +
+                "    \"text\": \"Apple, Microsoft, Google parent Alphabet, Amazon, Nvidia, and Meta now account for over a quarter of the S&P 500's total market cap.\",\n" +
+                "    \"likes\": 145,\n" +
+                "    \"comments\": 6,\n" +
+                "    \"shares\": 15\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"pageName\": \"InvestorPlace\",\n" +
+                "    \"url\": \"https://www.facebook.com/investorplace/posts/pfbid02QByzYn1Gi5NQE9VjRUfFZoUKjcgvcdcnEEoERxb1ai2f5KbYjsUed24wnZsLCzo2l\",\n" +
+                "    \"time\": \"2023-05-05T02:00:47.000Z\",\n" +
+                "    \"timestamp\": 1681803227,\n" +
+                "    \"text\": \"#AAPL stock inched up ahead of next week's anticipated #WWDC developer conference. \",\n" +
+                "    \"likes\": 14,\n" +
+                "    \"comments\": 4,\n" +
+                "    \"shares\": 1\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"pageName\": \"MarketWatch\",\n" +
+                "    \"url\": \"https://www.facebook.com/marketwatch/posts/pfbid0Ep7oeiKnrp9rmtVmWDRYUDFmeAeyuNxGVMAon37Bi3Djpn9x2BZBTKTojFwky3hul\",\n" +
+                "    \"time\": \"2023-06-10T09:30:47.000Z\",\n" +
+                "    \"timestamp\": 1681803227,\n" +
+                "    \"text\": \"Apple’s mixed-reality headset is set to challenge Meta’s. Here’s why that hasn’t bothered Mark Zuckerberg.\",\n" +
+                "    \"likes\": 581,\n" +
+                "    \"comments\": 48,\n" +
+                "    \"shares\": 15\n" +
+                "  }\n" +
+                "]");
+    }
+
+    public JsonNode getTeslaPosts() {
+        return Json.parse("[\n" +
+                "  {\n" +
+                "    \"pageName\": \"InvestorPlace\",\n" +
+                "    \"url\": \"https://www.facebook.com/investorplace/posts/pfbid02wjUHHsKpkgGukn9LZo1LDDnoXkJ5rCt8P74PQ8Cs5ouSCX1eB7kMrhZJ1HpmqRvWl\",\n" +
+                "    \"time\": \"2023-05-03T22:00:28.000Z\",\n" +
+                "    \"timestamp\": 1683543748,\n" +
+                "    \"text\": \"#Tesla has set a date for its shareholder meeting. Here's what #investors need to know ahead of the big day.\",\n" +
+                "    \"likes\": 100,\n" +
+                "    \"comments\": 4,\n" +
+                "    \"shares\": 0\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"pageName\": \"Yahoo Finance\",\n" +
+                "    \"url\": \"https://www.facebook.com/yahoofinance/posts/pfbid02JttHY7L7yRJchY9zK82aZyT1zj9EUCwiYYe4AhCP3G8rUAWKEFMx392f2SphUjZYl\",\n" +
+                "    \"time\": \"2023-04-27T19:02:44.000Z\",\n" +
+                "    \"timestamp\": 1683197744,\n" +
+                "    \"text\": \"Tesla has lost about $87 billion in market capitalization since the EV manufacturer released its first-quarter earnings earlier this month. Here's why.\",\n" +
+                "    \"likes\": 8,\n" +
+                "    \"comments\": 3,\n" +
+                "    \"shares\": 3\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"pageName\": \"The Wall Street Journal\",\n" +
+                "    \"url\": \"https://www.facebook.com/WSJ/posts/pfbid02xV9yrArmwjic5VoqkiPgBxkLm23kzjcSqBdykR885WQLjLXZQCvBNGVjR6smeG8Ml\",\n" +
+                "    \"time\": \"2023-05-15T14:30:47.000Z\",\n" +
+                "    \"timestamp\": 1681803227,\n" +
+                "    \"text\": \"For the first time, companies are figuring the gains and losses in the stock awards that make up much of CEOs’ pay. Elon Musk took a nearly $10 billion hit at Tesla.\",\n" +
+                "    \"likes\": 5700,\n" +
+                "    \"comments\": 237,\n" +
+                "    \"shares\": 235\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"pageName\": \"MarketWatch\",\n" +
+                "    \"url\": \"https://www.facebook.com/marketwatch/posts/pfbid031M3cL2JS8riLMJoGfhn2yJsoDdAY8hmDE6iKEgJZVuNNafkS3oitTgPbVY3uWSJel\",\n" +
+                "    \"time\": \"2023-05-15T23:25:47.000Z\",\n" +
+                "    \"timestamp\": 1681803227,\n" +
+                "    \"text\": \"This RBC analyst lifted his target price on Tesla’s stock by 44%. Here’s why.\",\n" +
+                "    \"likes\": 345,\n" +
+                "    \"comments\": 27,\n" +
+                "    \"shares\": 18\n" +
+                "  },\n" +
+                "  {\n" +
+                "    \"pageName\": \"MarketWatch\",\n" +
+                "    \"url\": \"https://www.facebook.com/marketwatch/posts/pfbid0T3f3AgUeKGpabXizoRKuPok3vwmGTVTrebNpDq8YTMiF37FaFcGcMCVGsomf3nP2l\",\n" +
+                "    \"time\": \"2023-05-16T05:47:47.000Z\",\n" +
+                "    \"timestamp\": 1681803227,\n" +
+                "    \"text\": \"Tesla’s stock is looking at a gain of more than 5% this week, adding to an already spectacular, nearly 60% increase from the end of April.\",\n" +
+                "    \"likes\": 151,\n" +
+                "    \"comments\": 11,\n" +
+                "    \"shares\": 11\n" +
+                "  }\n" +
+                "]");
+    }
 }
