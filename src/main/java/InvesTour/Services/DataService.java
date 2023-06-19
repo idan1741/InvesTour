@@ -52,15 +52,15 @@ public class DataService {
 
     public JsonNode getPostsByStock(String stockName) {
         switch (stockName) {
-            case "Netflix":
+            case "NFLX":
                 return facebookRepository.getNetflixPosts();
-            case "Starbucks":
+            case "SBUX":
                 return facebookRepository.getStarbucksPosts();
-            case "Nvidia":
+            case "NVDA":
                 return facebookRepository.getNvidiaPosts();
-            case "Apple":
+            case "APPL":
                 return facebookRepository.getApplePosts();
-            case "Tesla":
+            case "TSLA":
                 return facebookRepository.getTeslaPosts();
             default:
                 return Json.parse("");
