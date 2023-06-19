@@ -68,4 +68,22 @@ public class StockRetriver {
             throw new RuntimeException("Failed to fetch data from URL: " + query);
         }
     }
+
+    @SneakyThrows
+    public Double retrieveStockCurrentPriceForUpdates(String stockSymbol) {
+        String query = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+stockSymbol+"&apikey=Q896XGE57D3K67UA";
+        Request request = new Request.Builder()
+                .url(query)
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new RuntimeException("Failed to fetch data from URL: " + response.code());
+            }
+            JsonNode jsonNode = Json.parse(response.body().string());
+            return jsonNode.path("Global Quote").path("05. price").asDouble();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to fetch data from URL: " + query);
+        }
+    }
 }

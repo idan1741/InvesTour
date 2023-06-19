@@ -8,22 +8,18 @@ import {
   addWebsiteToWatchList,
   getArticlesByUser,
   getArticlesByUserSuccess,
+  getNewsByUser,
+  getNewsByUserSuccess,
 } from './news.actions';
 import { selectUsersEmail } from '../users/users.reducer';
 import { Article } from 'src/components/article/article.class';
-import { getStocksByUser } from '../stocks/stocks.actions';
 
 @Injectable()
 export class NewsEffects {
   addNewUser = createEffect(() =>
     this.actions$.pipe(
       ofType(getArticlesByUser),
-      // TODO: deprecate when server works
-      // tap(() =>  this.store.dispatch(getArticlesByUserSuccess({ articles: INITIAL_NEWS_STATE as Article[] }))),
       withLatestFrom(this.store.select(selectUsersEmail)),
-      // filter(([, userId]) => Boolean(userId)),
-      // TODO: change to getArticlesByUser()
-      // switchMap(([, userEmail]) => this.configService.getArticlesByUser(userEmail).pipe(
       switchMap(([, userEmail]) =>
         this.configService.getArticlesByUser(userEmail).pipe(
           tap((res) => console.log(res)),
@@ -46,37 +42,24 @@ export class NewsEffects {
     )
   );
 
-
-  // TODO: move to stocks
-  // getAllStocksList = createEffect(() =>
-  //     this.actions$.pipe(
-  //         ofType(getStocksList),
-  //         switchMap(() => this.configService.getStocksList().pipe(
-  //             tap(res => console.log(res)),
-  //             map(res => getStocksListSuccess({ stocks: (res as any[])}))
-  //         ))
-  //     )
-  // )
-  // addStock = createEffect(() =>
-  //     this.actions$.pipe(
-  //         ofType(addStockToUserList),
-  //         withLatestFrom(this.store.select(selectUsersEmail)),
-  //         switchMap(([{stockId}, userEmail]) => this.configService.addStockToUserList(userEmail,stockId).pipe(
-  //             tap((res) => console.log(res))
-  //         ))
-  //     ),
-  //     { dispatch: false }
-  // )
-  // removeStock = createEffect(() =>
-  //     this.actions$.pipe(
-  //         ofType(removeStockFromUserList),
-  //         withLatestFrom(this.store.select(selectUsersEmail)),
-  //         switchMap(([{stockId}, userEmail]) => this.configService.removeStockFromUserList(userEmail, stockId).pipe(
-  //             tap((res) => console.log(res))
-  //         ))
-  //     ),
-  //     { dispatch: false }
-  // )
+  newsList = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(getNewsByUser),
+        withLatestFrom(this.store.select(selectUsersEmail)),
+        switchMap(([, userEmail]) =>
+          this.configService.getWebsitesByUser(userEmail).pipe(
+            tap((res) => console.log(res)),
+            tap((res) =>
+              this.store.dispatch(
+                getNewsByUserSuccess({ news: res as any[] })
+              )
+            )
+          )
+        )
+      ),
+    { dispatch: false }
+  );
 
   constructor(
     private readonly actions$: Actions,

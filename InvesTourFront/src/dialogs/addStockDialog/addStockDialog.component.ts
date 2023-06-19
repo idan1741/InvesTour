@@ -24,7 +24,7 @@ export class addStockDialogComponent implements OnInit {
     private configService: RequestConfigService,
     public dialogRef: MatDialogRef<addStockDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     // this.store.dispatch(getStocksByUser());

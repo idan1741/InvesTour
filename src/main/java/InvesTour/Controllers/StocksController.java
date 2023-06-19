@@ -2,6 +2,7 @@ package InvesTour.Controllers;
 
 import InvesTour.Models.Stock;
 import InvesTour.Models.StockPriceData;
+import InvesTour.Runnables.StockPricesRunnable;
 import InvesTour.Services.StocksService;
 import InvesTour.Services.UsersService;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -11,15 +12,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping(value = "/stocks")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "*")
 public class StocksController {
     private final UsersService service;
 
     private final StocksService stocksService;
+
+    private final StockPricesRunnable stockPricesRunnable;
 
     @PostMapping("/user/add")
     public Map<String, String> addStockToUser(@RequestBody JsonNode jsonBody) throws Exception {
@@ -70,5 +74,11 @@ public class StocksController {
     @GetMapping
     public ResponseEntity<List<Stock>> getAllStocks() {
         return ResponseEntity.ok(this.stocksService.getAllStocks());
+    }
+
+    @PutMapping(value = "/update/prices")
+    public ResponseEntity<String> updateAllStocks() {
+        CompletableFuture.runAsync(this.stockPricesRunnable);
+        return ResponseEntity.ok("start sync prices");
     }
 }

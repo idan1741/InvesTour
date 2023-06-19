@@ -37,4 +37,12 @@ public class StocksService {
     public double getCurrentPrice(String stockSymbol){
         return this.stockRetriver.retrieveStockCurrentPrice(stockSymbol);
     }
+
+    public double getCurrentPriceForUpdate(String stockSymbol){
+        return this.stockRetriver.retrieveStockCurrentPriceForUpdates(stockSymbol);
+    }
+
+    public void updateCurrentPrice(String stockSymbol, double price, double change){
+        this.repository.updateStockPrice(stockSymbol,price, change);
+    }
 }

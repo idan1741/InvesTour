@@ -5,7 +5,9 @@ import {
   getAvailableWebsites,
   removeWebsiteFromWatchList,
   addWebsiteToWatchList,
+  getNewsByUser,
 } from 'src/server-requests/news/news.actions';
+import { selectNewsList } from 'src/server-requests/news/news.reducer';
 import { RequestConfigService } from 'src/server-requests/requests.service';
 import { selectUsersState } from 'src/server-requests/users/users.reducer';
 
@@ -42,9 +44,14 @@ export class AddWebsitesDialogComponent implements OnInit {
   isWebsiteInUserList(websiteID: string): boolean {
     let isWebSiteInUserList: boolean;
 
-    isWebSiteInUserList = Boolean(
-      this.websitesByUser$.find((website: any) => website.website_id === websiteID)
-    );
+    // isWebSiteInUserList = Boolean(
+    //   this.websitesByUser$.find((website: any) => website.website_id === websiteID)
+    // );
+    this.store.select(selectNewsList).subscribe((newsList) => {
+      isWebSiteInUserList = Boolean(
+        newsList.find(website => website.website_id === websiteID)
+      );
+    });
     return isWebSiteInUserList;
   }
 
@@ -58,13 +65,13 @@ export class AddWebsitesDialogComponent implements OnInit {
     isInUserLike
       ? this.configService
           .removeWebsiteFromWatchList(this.user.email, websiteId, websiteName)
-          .subscribe((res) => console.log(res))
+          .subscribe(() => this.store.dispatch(getNewsByUser()))
       : this.configService
           .addWebsiteToWatchList(this.user.email, websiteId, websiteName)
-          .subscribe((res) => console.log(res));
+          .subscribe(() => this.store.dispatch(getNewsByUser()));
 
-    this.configService
-      .getWebsitesByUser(this.user.email)
-      .subscribe((userWebSite) => (this.websitesByUser$ = userWebSite));
+    // this.configService
+    //   .getWebsitesByUser(this.user.email)
+    //   .subscribe((userWebSite) => (this.websitesByUser$ = userWebSite));
   }
 }

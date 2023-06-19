@@ -13,6 +13,8 @@ import {
   selectUsersState,
 } from 'src/server-requests/users/users.reducer';
 import { AddWebsitesDialogComponent } from 'src/dialogs/addWebsitesDialog/addWebsitesDialog.component';
+import { selectNewsList } from 'src/server-requests/news/news.reducer';
+import { getNewsByUser } from 'src/server-requests/news/news.actions';
 
 @Component({
   selector: 'myProfile',
@@ -21,9 +23,10 @@ import { AddWebsitesDialogComponent } from 'src/dialogs/addWebsitesDialog/addWeb
 })
 export class MyProfileComponent implements OnInit {
   public UserStockList$ = this.store.select(selectUserStockList);
+  public websites$ = this.store.select(selectNewsList);
   public user$ = this.store.select(selectUsersState);
   public userId$ = this.store.select(selectUserId);
-  public websites$;
+  // public websites$;
   public user;
 
   constructor(
@@ -34,9 +37,10 @@ export class MyProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(getStocksByUser());
+    this.store.dispatch(getNewsByUser());
     this.user$.subscribe(
       (user) =>{
-        this.websites$ = this.configService.getWebsitesByUser(user.email)
+        // this.websites$ = this.configService.getWebsitesByUser(user.email)
         this.user = user;
       }
     );
