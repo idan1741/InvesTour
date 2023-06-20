@@ -12,11 +12,14 @@ export class MainComponent implements OnInit {
   public news$: Observable<any>;
   public stocks$: Observable<any>;
   public tweets$: Observable<any>;
+  public posts$: Observable<any>;
 
   ngOnInit(): void {
     this.stocks$ = this.configService.getStocksList();
     this.news$ = this.configService.getMainPageArticles();
-    this.tweets$ = this.configService.getTweetsByUserId("tweets@gmai.com");
+    this.tweets$ = this.configService.getTweetsByUserId("demo");
+    this.posts$ = this.configService.getPostsByUserId("demo");
+
   }
 
   constructor(private router: Router, private configService: RequestConfigService) { }

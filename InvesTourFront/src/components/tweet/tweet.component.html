@@ -4,13 +4,16 @@
       <img src="../assets/clock.png" width="20" height="20" style="filter: invert(100%);margin-top: 10px;">
       <label style="font-size: small; white-space: nowrap;">{{this.article.date | timeAgo}}</label>
     </mat-panel-title>
-    <mat-panel-title style="width: 40%" [style.color]="'#0374d5'">
+    <mat-panel-title style="width: 14%; padding-top: 6px;">
+      <img style="margin-right: 3%; border-radius: 50%;" [src]="article.image" width="40" height="40">
+    </mat-panel-title>
+    <mat-panel-title style="width: 40%">
       <!-- <img style="margin-right: 3%" [src]="article.imageUrl" width="30" height="30"> -->
       {{this.article.user}}
     </mat-panel-title>
-    <mat-panel-description style="width: 40%; font-size: small;" [style.color]="'white'">
+    <!-- <mat-panel-description style="width: 40%; font-size: small;" [style.color]="'white'">
       {{this.article.title}}
-    </mat-panel-description>
+    </mat-panel-description> -->
   </mat-expansion-panel-header>
   <p style="color: white; font-size: small;">{{ article.content }}</p>
 </mat-expansion-panel>

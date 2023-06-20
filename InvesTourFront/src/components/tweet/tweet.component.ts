@@ -13,7 +13,11 @@ export class TweetComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.article = { ...this.article, title: this.article.content.substring(0, 20) + "..." };
+    if (this.article.pageName) {
+      this.article = { user: this.article.pageName, date: this.article.time, content: this.article.text, image: "./../../assets/Facebook.png" }
+    } else {
+      this.article = { ...this.article, image: "./../../assets/Twitter.png" };
+    }
 
   }
 

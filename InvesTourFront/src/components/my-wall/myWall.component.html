@@ -21,7 +21,8 @@
         <h3 style="margin: 2%; font-family: 'Poppins'">Social Media</h3>
         <div class="articles">
           <mat-accordion>
-          <tweet *ngFor="let tweet of (userTweets$ | async)" class="article" [article]="tweet"></tweet>
+          <tweet *ngFor="let tweet of (userPosts$ | async)" class="article" [article]="tweet"></tweet>
+          <tweet *ngFor="let tweets of (userTweets$ |async)" [article]="tweets"></tweet>
         </mat-accordion>
         </div>
       </div>

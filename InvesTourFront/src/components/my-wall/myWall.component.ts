@@ -17,14 +17,16 @@ export class MyWallComponent implements OnInit {
   public userStocklList$ = this.store.select(selectUserStockList);
   public user$ = this.store.select(selectUsersState);
   public userTweets$;
+  public userPosts$;
   public userTweets;
 
   ngOnInit(): void {
     this.store.dispatch(getArticlesByUser());
     this.store.dispatch(getStocksByUser());
+    this.userTweets$ = this.configService.getTweetsByUserId("idoozeri@gmail.com");
+    this.userPosts$ = this.configService.getPostsByUserId("idoozeri@gmail.com");
   }
 
   constructor(private store: Store, private configService: RequestConfigService) {
-    this.userTweets$ = this.configService.getTweetsByUserId("idoozeri@gmail.com");
   }
 }

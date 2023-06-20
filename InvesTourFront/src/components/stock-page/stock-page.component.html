@@ -13,6 +13,7 @@
       <h2 style="margin: 2%;">Social Media</h2>
       <div class="articles">
         <mat-accordion>
+        <tweet *ngFor="let tweets of (allPostsByStock$ |async)" [article]="tweets"></tweet>
         <tweet *ngFor="let tweets of (allTweetsByStock$ |async)" [article]="tweets"></tweet>
         </mat-accordion>
       </div>

@@ -4,7 +4,7 @@ import { selectUsersFirstName, selectUsersLastName } from "src/server-requests/u
 import { RequestConfigService } from "src/server-requests/requests.service";
 import { Router } from "@angular/router";
 import * as _ from 'lodash';
-import { Observable } from "rxjs";
+import { Observable, forkJoin, merge } from "rxjs";
 import { map } from "rxjs/operators";
 
 @Component({
@@ -38,6 +38,8 @@ export class StockPageComponent implements OnInit {
   allTweetsByStock$;
   allNewsByStock$: Observable<any>;
   allTweetsByStock;
+  allPostsByStock$;
+  combined$;
   constructor(
     private store: Store, 
     private requestConfigService: RequestConfigService, 
@@ -48,7 +50,7 @@ export class StockPageComponent implements OnInit {
     this.stockPrice$ = this.requestConfigService.getStockPrice(history.state.symbol);
     this.allNewsByStock$ = this.requestConfigService.getArticlesByStock(history.state.symbol);
     this.allTweetsByStock$ = this.requestConfigService.getTweetsByStock(history.state.symbol);
-  
+    this.allPostsByStock$ = this.requestConfigService.getPostsByStock(history.state.symbol);
     this.togglePeriod(this.currentPeriod);
   }
 

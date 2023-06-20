@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class UrlRetriever implements Retriever {
     private final OkHttpClient client = new OkHttpClient();
 
-    private final String API_KEY = "270f59d0fcff4c2faae66dfcee7a5535";
+    private final String API_KEY = "7743e801ec3e4a27a7724d8e3669470c";
     private final String NEWS_API_URL = "https://newsapi.org/v2";
 
     @Override

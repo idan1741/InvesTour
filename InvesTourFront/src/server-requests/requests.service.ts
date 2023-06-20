@@ -73,11 +73,17 @@ export class RequestConfigService {
 
   // Social Media
   getTweetsByStock(stockName) {
-    console.log(`${this.httpApi}/tweets/stock/${stockName}`);
     return this.http.get(`${this.httpApi}/tweets/stock/${stockName}`);
   }
   getTweetsByUserId(userId) {
     return this.http.get(`${this.httpApi}/tweets/user/${userId}`);
+  }
+
+  getPostsByStock(stockName) {
+    return this.http.get(`${this.httpApi}/posts/stock/${stockName}`);
+  }
+  getPostsByUserId(userId) {
+    return this.http.get(`${this.httpApi}/posts/user/${userId}`);
   }
 
   // Users
