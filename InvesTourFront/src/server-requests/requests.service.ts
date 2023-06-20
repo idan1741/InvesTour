@@ -11,6 +11,7 @@ export class RequestConfigService {
   ) {}
 
   // TODO: erase
+  //private httpApi = 'http://193.106.55.117:8080';
   private httpApi = 'http://localhost:8080';
   // private httpApi = `http://${this.envConfig.serverUrl}${this.envConfig.httpPort}`;
 

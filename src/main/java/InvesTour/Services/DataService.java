@@ -71,11 +71,11 @@ public class DataService {
         ArrayNode objectNode = mapper.createArrayNode();
 
         for (Stock stock : stocks) {
-            JsonNode res = this.getPostsByStock(stock.getName());
+            JsonNode res = this.getPostsByStock(stock.getSymbol());
             objectNode.add(res);
         }
 
-        return objectNode;
+        return objectNode.get(0);
     }
 
     public JsonNode getTweetsByListOfStocks(List<Stock> stocks) {

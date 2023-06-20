@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
-import { RequestConfigService } from "src/server-requests/requests.service";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { RequestConfigService } from 'src/server-requests/requests.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css'],
 })
 export class MainComponent implements OnInit {
   public news$: Observable<any>;
@@ -17,10 +17,12 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.stocks$ = this.configService.getStocksList();
     this.news$ = this.configService.getMainPageArticles();
-    this.tweets$ = this.configService.getTweetsByUserId("demo");
-    this.posts$ = this.configService.getPostsByUserId("demo");
-
+    this.tweets$ = this.configService.getTweetsByUserId('tweets@gmai.com');
+    this.posts$ = this.configService.getPostsByUserId('tweets@gmai.com');
   }
 
-  constructor(private router: Router, private configService: RequestConfigService) { }
+  constructor(
+    private router: Router,
+    private configService: RequestConfigService
+  ) {}
 }
