@@ -39,7 +39,8 @@ export class StockPageComponent implements OnInit {
   allNewsByStock$: Observable<any>;
   allTweetsByStock;
   allPostsByStock$;
-  combined$;
+  combined$
+
   constructor(
     private store: Store, 
     private requestConfigService: RequestConfigService, 
@@ -52,6 +53,17 @@ export class StockPageComponent implements OnInit {
     this.allTweetsByStock$ = this.requestConfigService.getTweetsByStock(history.state.symbol);
     this.allPostsByStock$ = this.requestConfigService.getPostsByStock(history.state.symbol);
     this.togglePeriod(this.currentPeriod);
+
+    this.combined$ = forkJoin([
+      this.requestConfigService.getTweetsByStock(history.state.symbol), 
+      this.requestConfigService.getPostsByStock(history.state.symbol)
+    ]).pipe(
+      map(([tweets, posts]) => (tweets as any[]).concat(posts).sort(
+          (a, b) =>
+            new Date(b.time | b.date).getTime() -
+            new Date(a.time | b.date).getTime()
+        )
+    ));
   }
 
   async togglePeriod(period: string) {

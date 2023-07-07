@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { getArticlesByUser } from 'src/server-requests/news/news.actions';
 import { selectAllNewsByUser } from 'src/server-requests/news/news.reducer';
 import { RequestConfigService } from 'src/server-requests/requests.service';
@@ -20,6 +21,17 @@ export class MyWallComponent implements OnInit {
   public userTweets$;
   public userPosts$;
   public userTweets;
+
+  combined$ = forkJoin([
+    this.configService.getTweetsByUserId("idoozeri@gmail.com"), 
+    this.configService.getPostsByUserId("idoozeri@gmail.com")
+  ]).pipe(
+    map(([tweets, posts]) => (tweets as any[]).concat(posts).sort(
+        (a, b) =>
+          new Date(b.time | b.date).getTime() -
+          new Date(a.time | b.date).getTime()
+      )
+  ));
 
   ngOnInit(): void {
     this.store.dispatch(getArticlesByUser());
